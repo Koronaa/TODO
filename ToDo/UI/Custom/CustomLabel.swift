@@ -29,7 +29,11 @@ class WelcomeLabel:UILabel{
     
     fileprivate func commonInit(){
         self.font = UIFont(name: "Montserrat-Medium", size: 23.0)
-        self.textColor = .label
+        if #available(iOS 13.0, *) {
+            self.textColor = .label
+        } else {
+            self.textColor = .black
+        }
     }
 }
 
@@ -54,7 +58,11 @@ class TitleLabel:UILabel{
     
     fileprivate func commonInit(){
         self.font = UIFont(name: "Montserrat-Bold", size: 30.0)
-        self.textColor = .label
+        if #available(iOS 13.0, *) {
+            self.textColor = .label
+        } else {
+            self.textColor = .black
+        }
     }
 }
 
@@ -79,7 +87,11 @@ class BodyLabel:UILabel{
     
     fileprivate func commonInit(){
         self.font = UIFont(name: "Montserrat-Regular", size: 18.0)
-        self.textColor = .label
+        if #available(iOS 13.0, *) {
+            self.textColor = .label
+        } else {
+            self.textColor = .black
+        }
     }
 }
 
@@ -103,7 +115,11 @@ class TableHeaderLabel:UILabel{
     
     fileprivate func commonInit(){
         self.font = UIFont(name: "Montserrat-Regular", size: 23.0)
-        self.textColor = .label
+        if #available(iOS 13.0, *) {
+            self.textColor = .label
+        } else {
+            self.textColor = .black
+        }
     }
 }
 
@@ -128,6 +144,10 @@ class SmallTitleLabel:UILabel{
     
     fileprivate func commonInit(){
         self.font = UIFont(name: "Montserrat-Bold", size: 11.0)
-        self.textColor = .label
+        if #available(iOS 13.0, *) {
+            self.textColor = .label
+        } else {
+            self.textColor = .black
+        }
     }
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BjH-mI-F3U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wcW-Aq-T8T">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -70,7 +71,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qk9-FL-MXM">
-                                <rect key="frame" x="10" y="0.0" width="290" height="30"/>
+                                <rect key="frame" x="10" y="0.0" width="300" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QlL-K7-mrC">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -81,11 +82,19 @@
                                         <state key="normal" image="back"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJz-F3-KYG" customClass="BodyLabel" customModule="ToDo" customModuleProvider="target">
-                                        <rect key="frame" x="40" y="0.0" width="250" height="30"/>
+                                        <rect key="frame" x="40" y="0.0" width="220" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8T-dh-pAR">
+                                        <rect key="frame" x="270" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="7aI-dz-XEQ"/>
+                                            <constraint firstAttribute="height" constant="30" id="8gL-xV-MJB"/>
+                                        </constraints>
+                                        <state key="normal" image="sort"/>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today, April 18, 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tw7-s5-NQA" customClass="BodyLabel" customModule="ToDo" customModuleProvider="target">
@@ -146,7 +155,7 @@
                             <constraint firstItem="SyC-hv-G7p" firstAttribute="trailing" secondItem="FWd-Aa-4KJ" secondAttribute="trailing" constant="20" id="dXR-57-fyl"/>
                             <constraint firstItem="TG0-O5-rb0" firstAttribute="top" secondItem="SOK-Om-3nd" secondAttribute="bottom" constant="10" id="exX-nO-7L8"/>
                             <constraint firstItem="TG0-O5-rb0" firstAttribute="trailing" secondItem="SyC-hv-G7p" secondAttribute="trailing" id="ipU-6g-0Ns"/>
-                            <constraint firstItem="SyC-hv-G7p" firstAttribute="trailing" secondItem="Qk9-FL-MXM" secondAttribute="trailing" constant="20" id="mO5-aM-K2C"/>
+                            <constraint firstItem="SyC-hv-G7p" firstAttribute="trailing" secondItem="Qk9-FL-MXM" secondAttribute="trailing" constant="10" id="mO5-aM-K2C"/>
                             <constraint firstItem="3yc-8F-2sk" firstAttribute="leading" secondItem="SyC-hv-G7p" secondAttribute="leading" id="oxJ-ox-mAH"/>
                             <constraint firstItem="tw7-s5-NQA" firstAttribute="leading" secondItem="SyC-hv-G7p" secondAttribute="leading" constant="20" id="pMa-aT-QAg"/>
                             <constraint firstItem="wTj-35-zmH" firstAttribute="leading" secondItem="SyC-hv-G7p" secondAttribute="leading" constant="80" id="utU-tL-tBn"/>
@@ -290,6 +299,9 @@
                                     <constraint firstAttribute="height" constant="55" id="A9v-fq-yC1"/>
                                 </constraints>
                                 <state key="normal" title="Add Task"/>
+                                <connections>
+                                    <segue destination="m2d-g0-N57" kind="presentation" id="BiR-vn-A68"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -342,7 +354,7 @@
             <objects>
                 <viewController id="m2d-g0-N57" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="omN-5a-5Vy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ua2-ZK-yef">
@@ -381,7 +393,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xpD-Hx-dPt">
-                                <rect key="frame" x="0.0" y="277" width="320" height="291"/>
+                                <rect key="frame" x="0.0" y="277" width="320" height="271"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -441,5 +453,6 @@
         <image name="close" width="63" height="63"/>
         <image name="delete" width="63" height="63"/>
         <image name="favourite" width="63" height="63"/>
+        <image name="sort" width="63" height="63"/>
     </resources>
 </document>
