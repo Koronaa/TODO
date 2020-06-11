@@ -10,8 +10,16 @@ import UIKit
 
 class TaskTypeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var categoryNameLabel: BodyLabel!
     @IBOutlet weak var taskCountLabel: BodyLabel!
     
-    //TODO:
+    var task:Task!{
+        didSet{
+            UIHelper.addShadow(to: holderView)
+            UIHelper.addCornerRadius(to: holderView)
+            categoryNameLabel.text = task.category.name
+            taskCountLabel.text = "4"
+        }
+    }
 }

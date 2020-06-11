@@ -17,6 +17,15 @@
 		3D50BC822490F9F000164866 /* TaskTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D50BC802490F9F000164866 /* TaskTypeTableViewCell.xib */; };
 		3D50BC872490FD2D00164866 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D50BC852490FD2D00164866 /* TaskTableViewCell.swift */; };
 		3D50BC882490FD2D00164866 /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D50BC862490FD2D00164866 /* TaskTableViewCell.xib */; };
+		3DC3F5C52491F9450050C61D /* Featured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C42491F9450050C61D /* Featured.swift */; };
+		3DC3F5C82491FA8C0050C61D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C72491FA8C0050C61D /* Date.swift */; };
+		3DC3F5CA2491FDA10050C61D /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C92491FDA10050C61D /* UIHelper.swift */; };
+		3DC3F5CC2491FF0E0050C61D /* FeaturedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5CB2491FF0E0050C61D /* FeaturedTableViewCell.swift */; };
+		3DC3F5CE249200850050C61D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5CD249200850050C61D /* HomeViewModel.swift */; };
+		3DC3F5D0249201D40050C61D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5CF249201D40050C61D /* UIColor.swift */; };
+		3DC3F5D22492023F0050C61D /* UIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D12492023F0050C61D /* UIConstant.swift */; };
+		3DC3F5D424920B8D0050C61D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D324920B8D0050C61D /* Category.swift */; };
+		3DC3F5D624920BAD0050C61D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D524920BAD0050C61D /* Task.swift */; };
 		3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E31C2490B2CE00C3C50F /* AppDelegate.swift */; };
 		3DF6E31F2490B2CE00C3C50F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E31E2490B2CE00C3C50F /* SceneDelegate.swift */; };
 		3DF6E3212490B2CE00C3C50F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E3202490B2CE00C3C50F /* HomeViewController.swift */; };
@@ -76,6 +85,15 @@
 		3D50BC802490F9F000164866 /* TaskTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTypeTableViewCell.xib; sourceTree = "<group>"; };
 		3D50BC852490FD2D00164866 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		3D50BC862490FD2D00164866 /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
+		3DC3F5C42491F9450050C61D /* Featured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Featured.swift; sourceTree = "<group>"; };
+		3DC3F5C72491FA8C0050C61D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		3DC3F5C92491FDA10050C61D /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		3DC3F5CB2491FF0E0050C61D /* FeaturedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedTableViewCell.swift; sourceTree = "<group>"; };
+		3DC3F5CD249200850050C61D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		3DC3F5CF249201D40050C61D /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		3DC3F5D12492023F0050C61D /* UIConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstant.swift; sourceTree = "<group>"; };
+		3DC3F5D324920B8D0050C61D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		3DC3F5D524920BAD0050C61D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		3DF6E3192490B2CE00C3C50F /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E31C2490B2CE00C3C50F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DF6E31E2490B2CE00C3C50F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +195,7 @@
 			children = (
 				3D50BC782490F66900164866 /* Cells */,
 				3DF6E3202490B2CE00C3C50F /* HomeViewController.swift */,
+				3DC3F5CD249200850050C61D /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -195,6 +214,7 @@
 			children = (
 				3D50BC792490F6A200164866 /* FeaturedCollectionViewCell.swift */,
 				3D50BC7A2490F6A200164866 /* FeaturedCollectionViewCell.xib */,
+				3DC3F5CB2491FF0E0050C61D /* FeaturedTableViewCell.swift */,
 			);
 			path = Featured;
 			sourceTree = "<group>";
@@ -234,6 +254,25 @@
 			path = AddTask;
 			sourceTree = "<group>";
 		};
+		3DC3F5C32491F8F40050C61D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DC3F5C42491F9450050C61D /* Featured.swift */,
+				3DC3F5D324920B8D0050C61D /* Category.swift */,
+				3DC3F5D524920BAD0050C61D /* Task.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DC3F5C62491FA7C0050C61D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3DC3F5C72491FA8C0050C61D /* Date.swift */,
+				3DC3F5CF249201D40050C61D /* UIColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		3DF6E3102490B2CE00C3C50F = {
 			isa = PBXGroup;
 			children = (
@@ -257,10 +296,14 @@
 		3DF6E31B2490B2CE00C3C50F /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
+				3DC3F5C62491FA7C0050C61D /* Extension */,
+				3DC3F5C32491F8F40050C61D /* Model */,
 				3DF6E3512490B61300C3C50F /* Fonts */,
 				3D50BC742490F58D00164866 /* SupportingFiles */,
 				3D50BC732490F53500164866 /* UI */,
 				3DF6E3252490B2CE00C3C50F /* ToDo.xcdatamodeld */,
+				3DC3F5C92491FDA10050C61D /* UIHelper.swift */,
+				3DC3F5D12492023F0050C61D /* UIConstant.swift */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -462,17 +505,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DC3F5CE249200850050C61D /* HomeViewModel.swift in Sources */,
 				3DF6E3212490B2CE00C3C50F /* HomeViewController.swift in Sources */,
 				3D50BC702490D4BA00164866 /* AddTaskViewController.swift in Sources */,
 				3D50BC7B2490F6A200164866 /* FeaturedCollectionViewCell.swift in Sources */,
 				3D50BC6E2490CC9D00164866 /* QueryViewController.swift in Sources */,
 				3DF6E3502490B36F00C3C50F /* CustomLabel.swift in Sources */,
 				3D50BC6C2490C9AC00164866 /* CustomButton.swift in Sources */,
+				3DC3F5D22492023F0050C61D /* UIConstant.swift in Sources */,
 				3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */,
 				3DF6E31F2490B2CE00C3C50F /* SceneDelegate.swift in Sources */,
+				3DC3F5CA2491FDA10050C61D /* UIHelper.swift in Sources */,
+				3DC3F5D424920B8D0050C61D /* Category.swift in Sources */,
+				3DC3F5CC2491FF0E0050C61D /* FeaturedTableViewCell.swift in Sources */,
 				3D50BC872490FD2D00164866 /* TaskTableViewCell.swift in Sources */,
+				3DC3F5C82491FA8C0050C61D /* Date.swift in Sources */,
+				3DC3F5D0249201D40050C61D /* UIColor.swift in Sources */,
 				3D50BC812490F9F000164866 /* TaskTypeTableViewCell.swift in Sources */,
+				3DC3F5C52491F9450050C61D /* Featured.swift in Sources */,
 				3DF6E3272490B2CE00C3C50F /* ToDo.xcdatamodeld in Sources */,
+				3DC3F5D624920BAD0050C61D /* Task.swift in Sources */,
 				3D50BC722490EE0300164866 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
