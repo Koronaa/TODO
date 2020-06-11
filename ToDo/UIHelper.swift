@@ -10,6 +10,13 @@ import UIKit
 
 class UIHelper{
     
+    static private func makeViewController(storyBoardName:String, viewControllerName:String) -> UIViewController {
+        return UIStoryboard(name: storyBoardName, bundle: nil).instantiateViewController(withIdentifier: viewControllerName)
+    }
+    
+    static func makeViewController<T:UIViewController>(in storyboard:UIConstant.StoryBoard = .Main,viewControllerName:UIConstant.StoryBoardID) -> T{
+        return makeViewController(storyBoardName: storyboard.rawValue, viewControllerName: viewControllerName.rawValue) as! T
+    }
     
     static func hide(view:UIView){
         view.isHidden = true
@@ -33,5 +40,13 @@ class UIHelper{
             view.layer.borderWidth = 0.5
             view.layer.borderColor = borderColor
         }
+    }
+    
+    static func circular(view:UIView,devider:CGFloat = 2){
+        view.layer.borderWidth = 0.0
+        view.layer.masksToBounds = false
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.cornerRadius = view.frame.height/devider
+        view.clipsToBounds = true
     }
 }

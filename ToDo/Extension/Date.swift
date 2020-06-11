@@ -35,6 +35,12 @@ extension Date{
         return dateFormatter.string(from: tomorrow)
     }
     
+    var formatted:String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy - h:mm a"
+        return dateFormatter.string(from: self)
+    }
+    
     
     
 }

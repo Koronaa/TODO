@@ -10,9 +10,22 @@ import UIKit
 
 class TaskTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var backgroundHolerView: UIView!
     @IBOutlet weak var taskLabel: BodyLabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
     
-//    TODO: 
+    var task:Task!{
+        didSet{
+            setupUI()
+            taskLabel.text = task.name
+            dateTimeLabel.text = task.dateTime.formatted
+        }
+    }
+    
+    private func setupUI(){
+        UIHelper.addShadow(to: backgroundHolerView)
+        UIHelper.addCornerRadius(to: backgroundHolerView)
+        dateTimeLabel.font = UIFont(name: "Montserrat-Thin", size: 11)
+    }
     
 }

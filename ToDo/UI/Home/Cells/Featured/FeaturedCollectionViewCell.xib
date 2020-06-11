@@ -54,7 +54,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WDR-DF-PrH" firstAttribute="top" secondItem="5KG-jk-TJj" secondAttribute="top" constant="5" id="26x-If-Zfr"/>
                             <constraint firstAttribute="trailing" secondItem="WDR-DF-PrH" secondAttribute="trailing" constant="5" id="85Y-68-62J"/>
@@ -64,6 +64,7 @@
                     </view>
                 </subviews>
             </view>
+            <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="5KG-jk-TJj" secondAttribute="trailing" id="E4Y-q8-dpF"/>
                 <constraint firstItem="5KG-jk-TJj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EER-fO-241"/>

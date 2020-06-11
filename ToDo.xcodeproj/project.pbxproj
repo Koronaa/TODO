@@ -27,6 +27,11 @@
 		3DC3F5D424920B8D0050C61D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D324920B8D0050C61D /* Category.swift */; };
 		3DC3F5D624920BAD0050C61D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D524920BAD0050C61D /* Task.swift */; };
 		3DC3F5D824921A710050C61D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D724921A710050C61D /* Categories.swift */; };
+		3DC3F5DB249223950050C61D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5DA249223950050C61D /* CategoriesViewController.swift */; };
+		3DD3DCB0249247FD000533C6 /* QueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCAF249247FD000533C6 /* QueryViewModel.swift */; };
+		3DD3DCB324924E6B000533C6 /* CalenderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCB124924E6B000533C6 /* CalenderCollectionViewCell.swift */; };
+		3DD3DCB424924E6B000533C6 /* CalenderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3DCB224924E6B000533C6 /* CalenderCollectionViewCell.xib */; };
+		3DD3DCB62492508F000533C6 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCB52492508F000533C6 /* Day.swift */; };
 		3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E31C2490B2CE00C3C50F /* AppDelegate.swift */; };
 		3DF6E31F2490B2CE00C3C50F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E31E2490B2CE00C3C50F /* SceneDelegate.swift */; };
 		3DF6E3212490B2CE00C3C50F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E3202490B2CE00C3C50F /* HomeViewController.swift */; };
@@ -96,6 +101,11 @@
 		3DC3F5D324920B8D0050C61D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		3DC3F5D524920BAD0050C61D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		3DC3F5D724921A710050C61D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		3DC3F5DA249223950050C61D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		3DD3DCAF249247FD000533C6 /* QueryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryViewModel.swift; sourceTree = "<group>"; };
+		3DD3DCB124924E6B000533C6 /* CalenderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderCollectionViewCell.swift; sourceTree = "<group>"; };
+		3DD3DCB224924E6B000533C6 /* CalenderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderCollectionViewCell.xib; sourceTree = "<group>"; };
+		3DD3DCB52492508F000533C6 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		3DF6E3192490B2CE00C3C50F /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E31C2490B2CE00C3C50F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DF6E31E2490B2CE00C3C50F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,7 +176,8 @@
 				3D50BC772490F64C00164866 /* Home */,
 				3D50BC832490FD0700164866 /* Query */,
 				3D50BC892491064F00164866 /* AddTask */,
-				3D50BC752490F5BD00164866 /* Custom */,
+				3DC3F5D9249223760050C61D /* Categories */,
+				3D50BC752490F5BD00164866 /* CustomComponents */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -182,14 +193,14 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		3D50BC752490F5BD00164866 /* Custom */ = {
+		3D50BC752490F5BD00164866 /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
 				3DF6E34F2490B36F00C3C50F /* CustomLabel.swift */,
 				3D50BC6B2490C9AC00164866 /* CustomButton.swift */,
 				3D50BC712490EE0300164866 /* CustomTextField.swift */,
 			);
-			path = Custom;
+			path = CustomComponents;
 			sourceTree = "<group>";
 		};
 		3D50BC772490F64C00164866 /* Home */ = {
@@ -235,6 +246,7 @@
 			children = (
 				3D50BC842490FD1200164866 /* Cells */,
 				3D50BC6D2490CC9D00164866 /* QueryViewController.swift */,
+				3DD3DCAF249247FD000533C6 /* QueryViewModel.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -244,6 +256,8 @@
 			children = (
 				3D50BC852490FD2D00164866 /* TaskTableViewCell.swift */,
 				3D50BC862490FD2D00164866 /* TaskTableViewCell.xib */,
+				3DD3DCB124924E6B000533C6 /* CalenderCollectionViewCell.swift */,
+				3DD3DCB224924E6B000533C6 /* CalenderCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -263,6 +277,7 @@
 				3DC3F5D324920B8D0050C61D /* Category.swift */,
 				3DC3F5D524920BAD0050C61D /* Task.swift */,
 				3DC3F5D724921A710050C61D /* Categories.swift */,
+				3DD3DCB52492508F000533C6 /* Day.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -274,6 +289,14 @@
 				3DC3F5CF249201D40050C61D /* UIColor.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		3DC3F5D9249223760050C61D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				3DC3F5DA249223950050C61D /* CategoriesViewController.swift */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		3DF6E3102490B2CE00C3C50F = {
@@ -481,6 +504,7 @@
 				3DF6E3752490B61300C3C50F /* Montserrat-Italic.ttf in Resources */,
 				3DF6E36C2490B61300C3C50F /* Montserrat-Bold.ttf in Resources */,
 				3DF6E36D2490B61300C3C50F /* Montserrat-MediumItalic.ttf in Resources */,
+				3DD3DCB424924E6B000533C6 /* CalenderCollectionViewCell.xib in Resources */,
 				3DF6E3242490B2CE00C3C50F /* Main.storyboard in Resources */,
 				3DF6E3732490B61300C3C50F /* Montserrat-Black.ttf in Resources */,
 				3DF6E3772490B61300C3C50F /* Montserrat-ExtraBoldItalic.ttf in Resources */,
@@ -514,9 +538,11 @@
 				3D50BC7B2490F6A200164866 /* FeaturedCollectionViewCell.swift in Sources */,
 				3D50BC6E2490CC9D00164866 /* QueryViewController.swift in Sources */,
 				3DF6E3502490B36F00C3C50F /* CustomLabel.swift in Sources */,
+				3DD3DCB62492508F000533C6 /* Day.swift in Sources */,
 				3D50BC6C2490C9AC00164866 /* CustomButton.swift in Sources */,
 				3DC3F5D22492023F0050C61D /* UIConstant.swift in Sources */,
 				3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */,
+				3DD3DCB0249247FD000533C6 /* QueryViewModel.swift in Sources */,
 				3DF6E31F2490B2CE00C3C50F /* SceneDelegate.swift in Sources */,
 				3DC3F5CA2491FDA10050C61D /* UIHelper.swift in Sources */,
 				3DC3F5D424920B8D0050C61D /* Category.swift in Sources */,
@@ -529,6 +555,8 @@
 				3DC3F5C52491F9450050C61D /* Featured.swift in Sources */,
 				3DF6E3272490B2CE00C3C50F /* ToDo.xcdatamodeld in Sources */,
 				3DC3F5D624920BAD0050C61D /* Task.swift in Sources */,
+				3DD3DCB324924E6B000533C6 /* CalenderCollectionViewCell.swift in Sources */,
+				3DC3F5DB249223950050C61D /* CategoriesViewController.swift in Sources */,
 				3D50BC722490EE0300164866 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

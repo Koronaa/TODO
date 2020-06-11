@@ -54,7 +54,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="GVu-mu-pNq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="UEf-aM-3kj"/>
                     <constraint firstItem="GVu-mu-pNq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="cx7-KY-2rB"/>

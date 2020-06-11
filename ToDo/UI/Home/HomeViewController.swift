@@ -22,6 +22,11 @@ class HomeViewController: UIViewController {
         tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
     }
     
+    @IBAction func addButtonOnTapped(_ sender: Any) {
+        let addTaskModalVC = UIHelper.makeViewController(viewControllerName: .AddTaskVC) as! AddTaskViewController
+        self.modalPresentationStyle = .currentContext
+        self.present(addTaskModalVC, animated: true, completion: nil)
+    }
     
 }
 
@@ -46,6 +51,7 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "FeaturedTableViewCell", for: indexPath) as! FeaturedTableViewCell
+            cell.delegate = self
             return cell
         case 1:
             let category = homeVM.getCategories[indexPath.row]
@@ -83,17 +89,34 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let myLabel = TableHeaderLabel()
         myLabel.frame = CGRect(x: 15, y: -5, width: 320, height: 25)
-        
+        myLabel.backgroundColor = .clear
         myLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         
         let headerView = UIView()
-//        if #available(iOS 13.0, *) {
-            headerView.backgroundColor = .TODOYellow
-//        } else {
-//            headerView.backgroundColor = .white
-//        }
+        //        if #available(iOS 13.0, *) {
+        headerView.backgroundColor = .clear
+        //        } else {
+        //            headerView.backgroundColor = .white
+        //        }
         headerView.addSubview(myLabel)
         return headerView
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1{
+            let queryVC = UIHelper.makeViewController(viewControllerName: .QueryVC) as! QueryViewController
+            self.navigationController?.pushViewController(queryVC, animated: true)
+        }
+    }
+}
+
+extension HomeViewController:FeaturedCollectionViewDelegate{
+    
+    func didSelectFeatured(for featured: Featured) {
+        let queryVC = UIHelper.makeViewController(viewControllerName: .QueryVC) as! QueryViewController
+        self.navigationController?.pushViewController(queryVC, animated: true)
+    }
+    
+    
 }
 

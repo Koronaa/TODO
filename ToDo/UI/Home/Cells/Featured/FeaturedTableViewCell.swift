@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol FeaturedCollectionViewDelegate {
+    func didSelectFeatured(for featured:Featured)
+}
+
 class FeaturedTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource {
     
     var featuredCollectionView:UICollectionView!
+    var delegate:FeaturedCollectionViewDelegate!
     
     let homeVM = HomeViewModel()
     
@@ -34,11 +39,11 @@ class FeaturedTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollecti
         
         featuredCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 180), collectionViewLayout: featuredLayout)
         
-//        if #available(iOS 13.0, *) {
-            featuredCollectionView.backgroundColor = .TODOYellow
-//        } else {
-//            featuredCollectionView.backgroundColor = .white
-//        }
+        //        if #available(iOS 13.0, *) {
+        featuredCollectionView.backgroundColor = .TODOYellow
+        //        } else {
+        //            featuredCollectionView.backgroundColor = .white
+        //        }
         featuredCollectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         featuredCollectionView.isScrollEnabled = true
         featuredCollectionView.showsHorizontalScrollIndicator = false
@@ -62,10 +67,8 @@ class FeaturedTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollecti
         return cell
     }
     
-    
-    
-    
-    
-    
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let featuredItem = homeVM.featuredItems[indexPath.row]
+        delegate.didSelectFeatured(for: featuredItem)
+    }
 }

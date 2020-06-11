@@ -16,8 +16,11 @@ class AddTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-
-        // Do any additional setup after loading the view.
+        
+        //TODO:
+        let categoryTapGesture = UITapGestureRecognizer(target: self, action: #selector(addCategotyLabelOnTapped))
+        addNewCategoryLabel.addGestureRecognizer(categoryTapGesture)
+        
     }
     
     fileprivate func setupUI(){
@@ -25,7 +28,17 @@ class AddTaskViewController: UIViewController {
         
     }
     
-
+    @IBAction func closeButtonOnTapped(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    @objc func addCategotyLabelOnTapped(){
+        let categoryModelVC = UIHelper.makeViewController(viewControllerName: .CategoriesVC) as! CategoriesViewController
+        self.modalPresentationStyle = .currentContext
+        self.present(categoryModelVC, animated: true, completion: nil)
+        
+    }
+    
     
 
 }
