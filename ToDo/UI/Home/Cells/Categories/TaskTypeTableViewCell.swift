@@ -14,12 +14,12 @@ class TaskTypeTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryNameLabel: BodyLabel!
     @IBOutlet weak var taskCountLabel: BodyLabel!
     
-    var task:Task!{
+    var categories:Categories!{
         didSet{
             UIHelper.addShadow(to: holderView)
             UIHelper.addCornerRadius(to: holderView)
-            categoryNameLabel.text = task.category.name
-            taskCountLabel.text = "4"
+            categoryNameLabel.text = categories.categoryName
+            taskCountLabel.text = categories.count.description
         }
     }
 }

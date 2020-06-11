@@ -201,7 +201,7 @@
             <objects>
                 <viewController id="SUq-IZ-zHl" customClass="AddTaskViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OR7-iU-jKZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaK-Wy-G2K">
@@ -336,7 +336,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gn-g9-dRM" customClass="CustomButton" customModule="ToDo" customModuleProvider="target">
-                                <rect key="frame" x="80" y="503" width="160" height="55"/>
+                                <rect key="frame" x="80" y="483" width="160" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="A9v-fq-yC1"/>
                                 </constraints>
@@ -504,7 +504,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ViC-b0-1X9"/>
+        <segue reference="rW1-am-0Pa"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="add" width="63" height="63"/>

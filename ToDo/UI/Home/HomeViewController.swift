@@ -32,7 +32,7 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
         case 0:
             return 1
         case 1:
-            return 4
+            return homeVM.getCategories.count
         default:()
         }
         return 0
@@ -48,9 +48,9 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "FeaturedTableViewCell", for: indexPath) as! FeaturedTableViewCell
             return cell
         case 1:
-            let task = homeVM.getTodos[indexPath.row]
+            let category = homeVM.getCategories[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue, for: indexPath) as! TaskTypeTableViewCell
-            cell.task = task
+            cell.categories = category
             return cell
         default:()
         return UITableViewCell()

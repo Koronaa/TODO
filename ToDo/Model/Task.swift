@@ -22,4 +22,14 @@ struct Task {
         tasks.append(Task(name: "KMN", dateTime: Date(), category:Category(name: "TODO"), isFavourite: false))
         return tasks
     }
+    
+    static func getGroceries() -> [Task]{
+        var tasks:[Task] = []
+        tasks.append(Task(name: "Buy Milk", dateTime: Date(), category:Category(name: "Groceries"), isFavourite: true))
+        tasks.append(Task(name: "Milo", dateTime: Date(), category:Category(name: "Groceries"), isFavourite: false))
+        tasks.append(Task(name: "Vegitables", dateTime: Date(), category:Category(name: "Groceries"), isFavourite: false))
+        return tasks
+    }
+    
+    
 }

@@ -13,7 +13,7 @@ class HomeViewModel{
         return Featured.getFeatures()
     }
     
-    var getTodos:[Task]{
-        return Task.getTodos()
+    var getCategories:[Categories]{
+        return Categories.getCategories()
     }
 }
