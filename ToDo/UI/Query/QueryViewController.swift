@@ -72,7 +72,7 @@ extension QueryViewController:UITableViewDelegate,UITableViewDataSource{
     }
 }
 
-extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSource{
+extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return queryVM.days.count

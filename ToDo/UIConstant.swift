@@ -27,6 +27,7 @@ class UIConstant{
         case TaskTypeTableViewCell = "taskTypeTVCell"
         case TaskTableViewCell = "taskTVCell"
         case CalenderCollectionViewCell = "calenderCVCell"
+        case CategoriesCollectionViewCell = "categoriesCoVCell"
         
     }
     

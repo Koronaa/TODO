@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -307,24 +306,14 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kqX-4M-cjS">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="120"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bbN-Sz-Vuw">
+                                        <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bbN-Sz-Vuw">
                                             <size key="itemSize" width="128" height="42"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Y3V-jt-ERL">
-                                                <rect key="frame" x="0.0" y="0.0" width="128" height="42"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="czH-2u-Ihe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="42"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </collectionViewCellContentView>
-                                                <size key="customSize" width="128" height="42"/>
-                                            </collectionViewCell>
-                                        </cells>
+                                        <cells/>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Records" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANA-aR-xON" customClass="SmallTitleLabel" customModule="ToDo" customModuleProvider="target">
                                         <rect key="frame" x="85.5" y="50" width="89.5" height="20.5"/>
@@ -333,7 +322,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="kqX-4M-cjS" secondAttribute="bottom" id="6wR-VR-h5V"/>
                                     <constraint firstItem="kqX-4M-cjS" firstAttribute="top" secondItem="ccF-k4-l2g" secondAttribute="top" id="7uR-fF-6AH"/>
@@ -417,7 +405,9 @@
                     <navigationItem key="navigationItem" id="47x-CB-CEj"/>
                     <connections>
                         <outlet property="addNewCategoryLabel" destination="nxg-uV-gHl" id="4j4-QB-1E5"/>
+                        <outlet property="collectionView" destination="kqX-4M-cjS" id="bAx-O3-qG9"/>
                         <outlet property="dateTimeLabel" destination="k69-3I-heq" id="BOu-Vg-yHO"/>
+                        <outlet property="noRecordsLabel" destination="ANA-aR-xON" id="HVa-Sq-FFS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bhp-um-hb5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
