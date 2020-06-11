@@ -34,11 +34,11 @@ class FeaturedTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollecti
         
         featuredCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 180), collectionViewLayout: featuredLayout)
         
-        if #available(iOS 13.0, *) {
-            featuredCollectionView.backgroundColor = .systemGray6
-        } else {
-            featuredCollectionView.backgroundColor = .systemGray6Fallback
-        }
+//        if #available(iOS 13.0, *) {
+            featuredCollectionView.backgroundColor = .TODOYellow
+//        } else {
+//            featuredCollectionView.backgroundColor = .white
+//        }
         featuredCollectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         featuredCollectionView.isScrollEnabled = true
         featuredCollectionView.showsHorizontalScrollIndicator = false

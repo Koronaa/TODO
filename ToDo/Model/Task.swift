@@ -16,10 +16,10 @@ struct Task {
     
     static func getTodos() -> [Task]{
         var tasks:[Task] = []
-        tasks.append(Task(name: "Call Sajith", dateTime: Date(), category:Category(name: "TODO"), isFavourite: true))
-        tasks.append(Task(name: "Go Shopping", dateTime: Date(), category:Category(name: "TODO"), isFavourite: false))
-        tasks.append(Task(name: "Fix Bugs", dateTime: Date(), category:Category(name: "TODO"), isFavourite: false))
-        tasks.append(Task(name: "KMN", dateTime: Date(), category:Category(name: "TODO"), isFavourite: false))
+        tasks.append(Task(name: "Call Sajith", dateTime: Date(), category:Category(name: "To do"), isFavourite: true))
+        tasks.append(Task(name: "Go Shopping", dateTime: Date(), category:Category(name: "To do"), isFavourite: false))
+        tasks.append(Task(name: "Fix Bugs", dateTime: Date(), category:Category(name: "To do"), isFavourite: false))
+        tasks.append(Task(name: "KMN", dateTime: Date(), category:Category(name: "To do"), isFavourite: false))
         return tasks
     }
     
