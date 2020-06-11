@@ -429,6 +429,9 @@
                                     <constraint firstAttribute="width" constant="30" id="XMp-eB-3VG"/>
                                 </constraints>
                                 <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="closeButtonOnTapped:" destination="m2d-g0-N57" eventType="touchUpInside" id="tDv-YF-pQE"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qp1-KJ-iNS" customClass="TitleLabel" customModule="ToDo" customModuleProvider="target">
                                 <rect key="frame" x="20" y="50" width="280" height="21"/>
@@ -450,6 +453,9 @@
                                     <constraint firstAttribute="height" constant="55" id="1v0-wH-mbf"/>
                                 </constraints>
                                 <state key="normal" title="Add Category"/>
+                                <connections>
+                                    <action selector="addCategoryButtonOnTapped:" destination="m2d-g0-N57" eventType="touchUpInside" id="zpJ-k4-0mF"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Snf-YE-zW9" customClass="TableHeaderLabel" customModule="ToDo" customModuleProvider="target">
                                 <rect key="frame" x="20" y="246" width="280" height="21"/>
@@ -460,9 +466,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="miE-1K-180">
                                 <rect key="frame" x="0.0" y="277" width="320" height="291"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xpD-Hx-dPt">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xpD-Hx-dPt">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="291"/>
-                                        <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
+                                        <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Records" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pku-hz-0yQ" customClass="SmallTitleLabel" customModule="ToDo" customModuleProvider="target">
                                         <rect key="frame" x="115" y="135" width="90" height="21"/>
@@ -505,6 +511,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U0V-t4-qGL"/>
                     </view>
+                    <connections>
+                        <outlet property="noRecordsLabel" destination="Pku-hz-0yQ" id="3Rw-00-jeM"/>
+                        <outlet property="tableView" destination="xpD-Hx-dPt" id="8uf-4a-y4o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kw9-rb-Ja2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

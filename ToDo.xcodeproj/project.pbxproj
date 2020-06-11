@@ -35,6 +35,9 @@
 		3DD3DCBA249267F9000533C6 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCB8249267F9000533C6 /* CategoriesCollectionViewCell.swift */; };
 		3DD3DCBB249267F9000533C6 /* CategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3DCB9249267F9000533C6 /* CategoriesCollectionViewCell.xib */; };
 		3DD3DCBD249269EC000533C6 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCBC249269EC000533C6 /* AddTaskViewModel.swift */; };
+		3DD3DCBF249270EC000533C6 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCBE249270EC000533C6 /* CategoriesViewModel.swift */; };
+		3DD3DCC32492714E000533C6 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCC12492714E000533C6 /* CategoriesTableViewCell.swift */; };
+		3DD3DCC42492714E000533C6 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3DCC22492714E000533C6 /* CategoriesTableViewCell.xib */; };
 		3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E31C2490B2CE00C3C50F /* AppDelegate.swift */; };
 		3DF6E31F2490B2CE00C3C50F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E31E2490B2CE00C3C50F /* SceneDelegate.swift */; };
 		3DF6E3212490B2CE00C3C50F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E3202490B2CE00C3C50F /* HomeViewController.swift */; };
@@ -112,6 +115,9 @@
 		3DD3DCB8249267F9000533C6 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		3DD3DCB9249267F9000533C6 /* CategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
 		3DD3DCBC249269EC000533C6 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
+		3DD3DCBE249270EC000533C6 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		3DD3DCC12492714E000533C6 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
+		3DD3DCC22492714E000533C6 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
 		3DF6E3192490B2CE00C3C50F /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E31C2490B2CE00C3C50F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DF6E31E2490B2CE00C3C50F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -302,7 +308,9 @@
 		3DC3F5D9249223760050C61D /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3DD3DCC02492712D000533C6 /* Cells */,
 				3DC3F5DA249223950050C61D /* CategoriesViewController.swift */,
+				3DD3DCBE249270EC000533C6 /* CategoriesViewModel.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -312,6 +320,15 @@
 			children = (
 				3DD3DCB8249267F9000533C6 /* CategoriesCollectionViewCell.swift */,
 				3DD3DCB9249267F9000533C6 /* CategoriesCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3DD3DCC02492712D000533C6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3DD3DCC12492714E000533C6 /* CategoriesTableViewCell.swift */,
+				3DD3DCC22492714E000533C6 /* CategoriesTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -500,6 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DF6E3762490B61300C3C50F /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				3DD3DCC42492714E000533C6 /* CategoriesTableViewCell.xib in Resources */,
 				3DF6E3722490B61300C3C50F /* OFL.txt in Resources */,
 				3DD3DCBB249267F9000533C6 /* CategoriesCollectionViewCell.xib in Resources */,
 				3D50BC822490F9F000164866 /* TaskTypeTableViewCell.xib in Resources */,
@@ -556,6 +574,7 @@
 				3D50BC7B2490F6A200164866 /* FeaturedCollectionViewCell.swift in Sources */,
 				3D50BC6E2490CC9D00164866 /* QueryViewController.swift in Sources */,
 				3DF6E3502490B36F00C3C50F /* CustomLabel.swift in Sources */,
+				3DD3DCBF249270EC000533C6 /* CategoriesViewModel.swift in Sources */,
 				3DD3DCB62492508F000533C6 /* Day.swift in Sources */,
 				3D50BC6C2490C9AC00164866 /* CustomButton.swift in Sources */,
 				3DC3F5D22492023F0050C61D /* UIConstant.swift in Sources */,
@@ -578,6 +597,7 @@
 				3DD3DCB324924E6B000533C6 /* CalenderCollectionViewCell.swift in Sources */,
 				3DC3F5DB249223950050C61D /* CategoriesViewController.swift in Sources */,
 				3D50BC722490EE0300164866 /* CustomTextField.swift in Sources */,
+				3DD3DCC32492714E000533C6 /* CategoriesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
