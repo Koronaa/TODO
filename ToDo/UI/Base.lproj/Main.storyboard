@@ -68,6 +68,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="o67-hD-vhX" id="X3D-zJ-qy4"/>
+                        <outlet property="welcomeLabel" destination="wQq-3C-ceq" id="4xf-jG-NEf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Piu-qr-l0X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

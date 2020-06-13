@@ -10,6 +10,19 @@ import Foundation
 
 class AddTaskViewModel{
     
-    var categories:[Category] = Category.getCatrgories()
+    let modelLayer = ModelLayer()
+    
+    var categories:[Category] {
+        return modelLayer.getCategories()
+    }
+    
+    var selectedCategory:Category!
+    
+    func addTask(taskName:String,isFavourite:Bool,dateTime:Date,cate:String){
+        let taskDTO = TaskDTO(name: taskName, isFavourite: isFavourite, dateTime: dateTime)
+        modelLayer.addTask(taskDTO: taskDTO,category: selectedCategory)
+    }
+    
+    
     
 }

@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum FeaturedType{
+    case Today
+    case Tomorrow
+    case Month
+    case Week
+    case Favourite
+}
+
 struct Featured{
     
     var name:String

@@ -9,6 +9,8 @@
 import Foundation
 class HomeViewModel{
     
+    let modelLayer = ModelLayer()
+    
     var featuredItems:[Featured] {
         return Featured.getFeatures()
     }
@@ -16,4 +18,9 @@ class HomeViewModel{
     var getCategories:[Categories]{
         return Categories.getCategories()
     }
+    
+    var todysTaskCount:Int{
+        return modelLayer.getTasksForToday().count
+    }
+    
 }

@@ -10,7 +10,7 @@ import Foundation
 class QueryViewModel{
     
     var getTasks:[Task]{
-        return Task.getTodos()
+        return [Task]()
     }
     
     var days:[Day] = Day.getDays(for: 10, from: Date())

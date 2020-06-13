@@ -24,9 +24,8 @@
 		3DC3F5CE249200850050C61D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5CD249200850050C61D /* HomeViewModel.swift */; };
 		3DC3F5D0249201D40050C61D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5CF249201D40050C61D /* UIColor.swift */; };
 		3DC3F5D22492023F0050C61D /* UIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D12492023F0050C61D /* UIConstant.swift */; };
-		3DC3F5D424920B8D0050C61D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D324920B8D0050C61D /* Category.swift */; };
-		3DC3F5D624920BAD0050C61D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D524920BAD0050C61D /* Task.swift */; };
-		3DC3F5D824921A710050C61D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D724921A710050C61D /* Categories.swift */; };
+		3DC3F5D424920B8D0050C61D /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D324920B8D0050C61D /* Category+CoreDataClass.swift */; };
+		3DC3F5D624920BAD0050C61D /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5D524920BAD0050C61D /* Task+CoreDataClass.swift */; };
 		3DC3F5DB249223950050C61D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5DA249223950050C61D /* CategoriesViewController.swift */; };
 		3DD3DCB0249247FD000533C6 /* QueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCAF249247FD000533C6 /* QueryViewModel.swift */; };
 		3DD3DCB324924E6B000533C6 /* CalenderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCB124924E6B000533C6 /* CalenderCollectionViewCell.swift */; };
@@ -38,6 +37,14 @@
 		3DD3DCBF249270EC000533C6 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCBE249270EC000533C6 /* CategoriesViewModel.swift */; };
 		3DD3DCC32492714E000533C6 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCC12492714E000533C6 /* CategoriesTableViewCell.swift */; };
 		3DD3DCC42492714E000533C6 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3DCC22492714E000533C6 /* CategoriesTableViewCell.xib */; };
+		3DE71670249348F40084059A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE7166F249348F40084059A /* CoreDataStack.swift */; };
+		3DE71672249349610084059A /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE71671249349610084059A /* URL.swift */; };
+		3DE7167424934D170084059A /* DataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE7167324934D170084059A /* DataLayer.swift */; };
+		3DE71676249353000084059A /* CategoryDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE71675249353000084059A /* CategoryDataService.swift */; };
+		3DE71678249364DF0084059A /* TaskDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE71677249364DF0084059A /* TaskDataService.swift */; };
+		3DE7167A24948C390084059A /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE7167924948C390084059A /* ModelLayer.swift */; };
+		3DEE9EEB2494B74A00AF44CC /* CategoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEE9EEA2494B74A00AF44CC /* CategoryDTO.swift */; };
+		3DEE9EED2494B75700AF44CC /* TaskDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEE9EEC2494B75700AF44CC /* TaskDTO.swift */; };
 		3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E31C2490B2CE00C3C50F /* AppDelegate.swift */; };
 		3DF6E31F2490B2CE00C3C50F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E31E2490B2CE00C3C50F /* SceneDelegate.swift */; };
 		3DF6E3212490B2CE00C3C50F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E3202490B2CE00C3C50F /* HomeViewController.swift */; };
@@ -104,9 +111,8 @@
 		3DC3F5CD249200850050C61D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		3DC3F5CF249201D40050C61D /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		3DC3F5D12492023F0050C61D /* UIConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstant.swift; sourceTree = "<group>"; };
-		3DC3F5D324920B8D0050C61D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		3DC3F5D524920BAD0050C61D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		3DC3F5D724921A710050C61D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		3DC3F5D324920B8D0050C61D /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3DC3F5D524920BAD0050C61D /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3DC3F5DA249223950050C61D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		3DD3DCAF249247FD000533C6 /* QueryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryViewModel.swift; sourceTree = "<group>"; };
 		3DD3DCB124924E6B000533C6 /* CalenderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -118,6 +124,14 @@
 		3DD3DCBE249270EC000533C6 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		3DD3DCC12492714E000533C6 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		3DD3DCC22492714E000533C6 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
+		3DE7166F249348F40084059A /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		3DE71671249349610084059A /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		3DE7167324934D170084059A /* DataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLayer.swift; sourceTree = "<group>"; };
+		3DE71675249353000084059A /* CategoryDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDataService.swift; sourceTree = "<group>"; };
+		3DE71677249364DF0084059A /* TaskDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDataService.swift; sourceTree = "<group>"; };
+		3DE7167924948C390084059A /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
+		3DEE9EEA2494B74A00AF44CC /* CategoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDTO.swift; sourceTree = "<group>"; };
+		3DEE9EEC2494B75700AF44CC /* TaskDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDTO.swift; sourceTree = "<group>"; };
 		3DF6E3192490B2CE00C3C50F /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E31C2490B2CE00C3C50F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DF6E31E2490B2CE00C3C50F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -287,11 +301,9 @@
 		3DC3F5C32491F8F40050C61D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3DC3F5C42491F9450050C61D /* Featured.swift */,
-				3DC3F5D324920B8D0050C61D /* Category.swift */,
-				3DC3F5D524920BAD0050C61D /* Task.swift */,
-				3DC3F5D724921A710050C61D /* Categories.swift */,
-				3DD3DCB52492508F000533C6 /* Day.swift */,
+				3DE7167924948C390084059A /* ModelLayer.swift */,
+				3DEE9EE92494B72D00AF44CC /* Data */,
+				3DE7166E2493489F0084059A /* DataLayer */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -301,6 +313,7 @@
 			children = (
 				3DC3F5C72491FA8C0050C61D /* Date.swift */,
 				3DC3F5CF249201D40050C61D /* UIColor.swift */,
+				3DE71671249349610084059A /* URL.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -333,6 +346,31 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		3DE7166E2493489F0084059A /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3DF6E3252490B2CE00C3C50F /* ToDo.xcdatamodeld */,
+				3DE7166F249348F40084059A /* CoreDataStack.swift */,
+				3DE7167324934D170084059A /* DataLayer.swift */,
+				3DE71675249353000084059A /* CategoryDataService.swift */,
+				3DE71677249364DF0084059A /* TaskDataService.swift */,
+			);
+			path = DataLayer;
+			sourceTree = "<group>";
+		};
+		3DEE9EE92494B72D00AF44CC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3DC3F5D324920B8D0050C61D /* Category+CoreDataClass.swift */,
+				3DEE9EEA2494B74A00AF44CC /* CategoryDTO.swift */,
+				3DC3F5D524920BAD0050C61D /* Task+CoreDataClass.swift */,
+				3DEE9EEC2494B75700AF44CC /* TaskDTO.swift */,
+				3DC3F5C42491F9450050C61D /* Featured.swift */,
+				3DD3DCB52492508F000533C6 /* Day.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		3DF6E3102490B2CE00C3C50F = {
 			isa = PBXGroup;
 			children = (
@@ -361,7 +399,6 @@
 				3DF6E3512490B61300C3C50F /* Fonts */,
 				3D50BC742490F58D00164866 /* SupportingFiles */,
 				3D50BC732490F53500164866 /* UI */,
-				3DF6E3252490B2CE00C3C50F /* ToDo.xcdatamodeld */,
 				3DC3F5C92491FDA10050C61D /* UIHelper.swift */,
 				3DC3F5D12492023F0050C61D /* UIConstant.swift */,
 			);
@@ -569,6 +606,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DC3F5CE249200850050C61D /* HomeViewModel.swift in Sources */,
+				3DE7167A24948C390084059A /* ModelLayer.swift in Sources */,
 				3DF6E3212490B2CE00C3C50F /* HomeViewController.swift in Sources */,
 				3D50BC702490D4BA00164866 /* AddTaskViewController.swift in Sources */,
 				3D50BC7B2490F6A200164866 /* FeaturedCollectionViewCell.swift in Sources */,
@@ -577,23 +615,29 @@
 				3DD3DCBF249270EC000533C6 /* CategoriesViewModel.swift in Sources */,
 				3DD3DCB62492508F000533C6 /* Day.swift in Sources */,
 				3D50BC6C2490C9AC00164866 /* CustomButton.swift in Sources */,
+				3DE71670249348F40084059A /* CoreDataStack.swift in Sources */,
 				3DC3F5D22492023F0050C61D /* UIConstant.swift in Sources */,
 				3DD3DCBA249267F9000533C6 /* CategoriesCollectionViewCell.swift in Sources */,
 				3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */,
 				3DD3DCB0249247FD000533C6 /* QueryViewModel.swift in Sources */,
 				3DF6E31F2490B2CE00C3C50F /* SceneDelegate.swift in Sources */,
 				3DC3F5CA2491FDA10050C61D /* UIHelper.swift in Sources */,
-				3DC3F5D424920B8D0050C61D /* Category.swift in Sources */,
+				3DC3F5D424920B8D0050C61D /* Category+CoreDataClass.swift in Sources */,
+				3DEE9EED2494B75700AF44CC /* TaskDTO.swift in Sources */,
 				3DC3F5CC2491FF0E0050C61D /* FeaturedTableViewCell.swift in Sources */,
 				3D50BC872490FD2D00164866 /* TaskTableViewCell.swift in Sources */,
 				3DD3DCBD249269EC000533C6 /* AddTaskViewModel.swift in Sources */,
 				3DC3F5C82491FA8C0050C61D /* Date.swift in Sources */,
 				3DC3F5D0249201D40050C61D /* UIColor.swift in Sources */,
+				3DEE9EEB2494B74A00AF44CC /* CategoryDTO.swift in Sources */,
 				3D50BC812490F9F000164866 /* TaskTypeTableViewCell.swift in Sources */,
-				3DC3F5D824921A710050C61D /* Categories.swift in Sources */,
+				3DE71672249349610084059A /* URL.swift in Sources */,
+				3DE7167424934D170084059A /* DataLayer.swift in Sources */,
+				3DE71678249364DF0084059A /* TaskDataService.swift in Sources */,
 				3DC3F5C52491F9450050C61D /* Featured.swift in Sources */,
 				3DF6E3272490B2CE00C3C50F /* ToDo.xcdatamodeld in Sources */,
-				3DC3F5D624920BAD0050C61D /* Task.swift in Sources */,
+				3DC3F5D624920BAD0050C61D /* Task+CoreDataClass.swift in Sources */,
+				3DE71676249353000084059A /* CategoryDataService.swift in Sources */,
 				3DD3DCB324924E6B000533C6 /* CalenderCollectionViewCell.swift in Sources */,
 				3DC3F5DB249223950050C61D /* CategoriesViewController.swift in Sources */,
 				3D50BC722490EE0300164866 /* CustomTextField.swift in Sources */,

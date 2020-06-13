@@ -15,8 +15,6 @@ class Day:Equatable {
     var date:String
     var isSelected:Bool
     
-    
-    
     init(name: String, date: String,year:String, isSelected: Bool) {
         self.name = name
         self.date = date

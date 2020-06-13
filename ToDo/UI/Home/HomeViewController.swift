@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var welcomeLabel: WelcomeLabel!
     
     var homeVM = HomeViewModel()
     
@@ -20,6 +21,19 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(FeaturedTableViewCell.self, forCellReuseIdentifier: "FeaturedTableViewCell")
         tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+            self.setupUI()
+        }
+        
+    }
+    
+    
+    private func setupUI(){
+        if homeVM.todysTaskCount == 0{
+            welcomeLabel.text = "Hey, You've got no tasks today."
+        }else{
+            welcomeLabel.text = "Hey, You've got \(homeVM.todysTaskCount) tasks today."
+        }
     }
     
     @IBAction func addButtonOnTapped(_ sender: Any) {
