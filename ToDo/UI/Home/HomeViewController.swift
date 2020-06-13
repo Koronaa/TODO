@@ -8,20 +8,28 @@
 
 import UIKit
 
+enum HomeUIType{
+    case FEATURED
+    case CATEGORIES
+}
+
 class HomeViewController: UIViewController {
+
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: WelcomeLabel!
     
-    var homeVM = HomeViewModel()
+    var homeVM:HomeViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(FeaturedTableViewCell.self, forCellReuseIdentifier: "FeaturedTableViewCell")
-        tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+            self.homeVM = HomeViewModel()
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.register(FeaturedTableViewCell.self, forCellReuseIdentifier: "FeaturedTableViewCell")
+            self.tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
             self.setupUI()
         }
         
@@ -51,7 +59,7 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
         case 0:
             return 1
         case 1:
-            return homeVM.getCategories.count
+            return homeVM.categoryInfo.count
         default:()
         }
         return 0
@@ -68,9 +76,9 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
             cell.delegate = self
             return cell
         case 1:
-            let category = homeVM.getCategories[indexPath.row]
+            let categoryInfo = homeVM.categoryInfo[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue, for: indexPath) as! TaskTypeTableViewCell
-            cell.categories = category
+            cell.taskTypeVM = TaskTypeViewModel(categoryInfo: categoryInfo)
             return cell
         default:()
         return UITableViewCell()
@@ -119,6 +127,8 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1{
             let queryVC = UIHelper.makeViewController(viewControllerName: .QueryVC) as! QueryViewController
+            queryVC.selectedUIType = .CATEGORIES
+            queryVC.categoryName = homeVM.categoryInfo[indexPath.row].name
             self.navigationController?.pushViewController(queryVC, animated: true)
         }
     }
@@ -128,6 +138,8 @@ extension HomeViewController:FeaturedCollectionViewDelegate{
     
     func didSelectFeatured(for featured: Featured) {
         let queryVC = UIHelper.makeViewController(viewControllerName: .QueryVC) as! QueryViewController
+        queryVC.selectedUIType = .FEATURED
+        queryVC.selectedFeature = featured
         self.navigationController?.pushViewController(queryVC, animated: true)
     }
     

@@ -66,9 +66,6 @@ extension Date{
         return gregorian.date(byAdding: .day, value: 7, to: sunday)
     }
     
-    
-    
-    
     func formatTime(hour:Int,min:Int,second:Int) -> Date{
         let calender = Calendar.current
         var components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: self)
@@ -77,7 +74,4 @@ extension Date{
         components.second = second
         return calender.date(from: components)!
     }
-    
-    
-    
 }

@@ -6,52 +6,55 @@
 //  Copyright © 2020 Sajith Konara. All rights reserved.
 //
 
-import Foundation
+
+import UIKit
 import CoreData
 
 class DataLayer{
     
-    var context:NSManagedObjectContext!
-    var taskDataService = TaskDataService()
-    var categoryDataService = CategoryDataService()
+    let taskDataService = TaskDataService()
+    let categoryDataService = CategoryDataService()
     
-    init() {
-        createMainContext { container in
-            self.context = container.viewContext
-        }
+    var context:NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
     }
     
     //MARK: Task
     
-    func getTasksForToday() -> [Task]{
-        return taskDataService.getFeaturedTasks(for: context, for: .Today)
+    func getFeaturedTaks(for type:FeaturedType) -> [Task]{
+        return taskDataService.getFeaturedTasks(for: context, for: type)
     }
     
-    func getTasksForTomorrow() -> [Task]{
-        return taskDataService.getFeaturedTasks(for: context, for: .Tomorrow)
+    func addTask(for taskDTO:TaskDTO,category:Category?){
+         taskDataService.addTask(taskDTO: taskDTO, category: category, for: context)
     }
     
-    func getTasksForThisWeek() -> [Task]{
-        return taskDataService.getFeaturedTasks(for: context, for: .Week)
-    }
-    
-    func getTasksForThisMonth() -> [Task]{
-        return taskDataService.getFeaturedTasks(for: context, for: .Month)
-    }
-    
-    func getFavourites()->[Task]{
-        return taskDataService.getFavouriteTasks(for: context)
-    }
-    
-    func addTask(for taskDTO:TaskDTO,category:Category){
-        taskDataService.addTask(taskDTO: taskDTO, category: category, for: context)
+    func getTaskForCategory(category:Category) -> [Task]{
+        return taskDataService.getTasks(for: category, using: context)
     }
     
     //MARK: Category
     
-    
     func getAllCategories() -> [Category]{
         return categoryDataService.getAllCategories(for: context)
+    }
+    
+    func getCategoryInfo() -> [CategoryInfo] {
+        var categoryInfo = [CategoryInfo]()
+        for category in getAllCategories(){
+            let taskCount = getTaskForCategory(category: category).count
+            categoryInfo.append(CategoryInfo(name: category.name, taskCount: taskCount))
+        }
+        return categoryInfo
+    }
+    
+    func addCategory(name:String){
+        categoryDataService.addCategory(name: name, for: context)
+    }
+    
+    func getCategoryByName(name:String) -> Category?{
+        return categoryDataService.getCategory(for: name, context: context)
     }
     
     

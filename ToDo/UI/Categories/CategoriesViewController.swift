@@ -12,17 +12,17 @@ class CategoriesViewController: UIViewController {
     
     @IBOutlet weak var noRecordsLabel: SmallTitleLabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var categoryNameTextField: CustomTextField!
     
     let categoriesVM = CategoriesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        categoryNameTextField.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName:"CategoriesTableViewCell" , bundle: .main), forCellReuseIdentifier: UIConstant.Cell.CategoriesTableViewCell.rawValue)
-        
-        
     }
     
     private func setupUI(){
@@ -39,7 +39,8 @@ class CategoriesViewController: UIViewController {
     }
     
     @IBAction func addCategoryButtonOnTapped(_ sender: Any) {
-        //TODO
+        categoriesVM.addCategory(for: categoryNameTextField.text!)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -59,6 +60,11 @@ extension CategoriesViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
     }
-    
-    
+}
+
+extension CategoriesViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

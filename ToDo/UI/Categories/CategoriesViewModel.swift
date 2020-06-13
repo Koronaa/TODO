@@ -9,5 +9,13 @@
 import Foundation
 class CategoriesViewModel{
     
+    
+    let modelLayer = ModelLayer()
+    
     var categories:[Category] = Category.getCatrgories()
+    
+    func addCategory(for name:String){
+        modelLayer.dataLayer.addCategory(name: name)
+    }
+    
 }

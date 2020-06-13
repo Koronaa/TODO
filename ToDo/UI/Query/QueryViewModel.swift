@@ -9,9 +9,26 @@
 import Foundation
 class QueryViewModel{
     
-    var getTasks:[Task]{
+    let modelLayer = ModelLayer()
+    
+    var tasks:[Task]?
+    
+    var days:[Day] = Day.getDays(for: 10, from: Date())
+    
+    
+    func getTaks(for categoryName:String) -> [Task]{
+        if let category = modelLayer.dataLayer.getCategoryByName(name: categoryName){
+            return modelLayer.dataLayer.getTaskForCategory(category: category)
+        }else{
+            //ERROR: No category
+        }
         return [Task]()
     }
     
-    var days:[Day] = Day.getDays(for: 10, from: Date())
+    func getFeaturedTasks(for type:FeaturedType){
+        tasks =  modelLayer.dataLayer.getFeaturedTaks(for: type)
+    }
+    
+   
+    
 }

@@ -1,5 +1,5 @@
 //
-//  CategoryDTO.swift
+//  CategoryInfo.swift
 //  ToDo
 //
 //  Created by Sajith Konara on 6/13/20.
@@ -7,7 +7,8 @@
 //
 
 import Foundation
-struct CategoryDTO{
+
+struct CategoryInfo{
     var name:String
-    var isSelected:Bool
+    var taskCount:Int
 }

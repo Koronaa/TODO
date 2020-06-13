@@ -38,7 +38,7 @@ class TaskDataService{
             dateFrom = Date().startOfWeek!
             dateTo = Date().endOfWeek!
         case .Favourite:
-            fatalError("Favourite doesn't handle here. Use getFavouriteTasks() method instead")
+            return getFavouriteTasks(for: context)
         }
         
         let fromPredicate = NSPredicate(format: "dateTime >= %@", dateFrom as NSDate)
@@ -57,9 +57,9 @@ class TaskDataService{
         }
     }
     
-    func getFavouriteTasks(for context:NSManagedObjectContext) -> [Task]{
+    private func getFavouriteTasks(for context:NSManagedObjectContext) -> [Task]{
         let favouritesFetchRequest = fetchRequest
-        favouritesFetchRequest.predicate = NSPredicate(format: "isFavourite = %@", true)
+        favouritesFetchRequest.predicate = NSPredicate(format: "isFavourite = %@", NSNumber(value: true))
         do{
             let tasks = try context.fetch(favouritesFetchRequest)
             return tasks
@@ -69,7 +69,7 @@ class TaskDataService{
         }
     }
     
-    func addTask(taskDTO:TaskDTO,category:Category,for context:NSManagedObjectContext){
+    func addTask(taskDTO:TaskDTO,category:Category?,for context:NSManagedObjectContext){
         let newTask = NSEntityDescription.insertNewObject(forEntityName: Task.entityName, into: context) as! Task
         newTask.name = taskDTO.name
         newTask.isFavourite = taskDTO.isFavourite
@@ -80,6 +80,18 @@ class TaskDataService{
         }catch{
             print(error.localizedDescription)
             context.rollback()
+        }
+    }
+    
+    func getTasks(for category:Category,using context:NSManagedObjectContext)->[Task]{
+        let taskFetchRequest = fetchRequest
+        fetchRequest.predicate = NSPredicate(format: "category.name = %@", category.name)
+        do{
+            let tasks = try context.fetch(taskFetchRequest)
+            return tasks
+        }catch{
+            print(error.localizedDescription)
+            return [Task]()
         }
     }
 }

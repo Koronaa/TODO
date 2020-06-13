@@ -27,6 +27,31 @@ class CategoryDataService{
         }
     }
     
-//    g/et
+    func addCategory(name:String,for context:NSManagedObjectContext){
+        let newCategory = NSEntityDescription.insertNewObject(forEntityName: Category.entityName, into: context) as! Category
+        newCategory.name = name
+        newCategory.isSelected = false
+        
+        do{
+            try context.save()
+        }catch{
+            print(error.localizedDescription)
+            context.rollback()
+        }
+    }
+    
+    func getCategory(for name:String,context:NSManagedObjectContext) -> Category?{
+        let categoryFetchRequest = fetchRequest
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        do{
+            let category = try context.fetch(categoryFetchRequest).first
+            return category
+        }catch{
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
+    
     
 }

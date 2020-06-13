@@ -45,6 +45,8 @@
 		3DE7167A24948C390084059A /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE7167924948C390084059A /* ModelLayer.swift */; };
 		3DEE9EEB2494B74A00AF44CC /* CategoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEE9EEA2494B74A00AF44CC /* CategoryDTO.swift */; };
 		3DEE9EED2494B75700AF44CC /* TaskDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEE9EEC2494B75700AF44CC /* TaskDTO.swift */; };
+		3DEE9EEF2494DA0200AF44CC /* CategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEE9EEE2494DA0200AF44CC /* CategoryInfo.swift */; };
+		3DEE9EF12494DAD500AF44CC /* TaskTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEE9EF02494DAD500AF44CC /* TaskTypeViewModel.swift */; };
 		3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E31C2490B2CE00C3C50F /* AppDelegate.swift */; };
 		3DF6E31F2490B2CE00C3C50F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E31E2490B2CE00C3C50F /* SceneDelegate.swift */; };
 		3DF6E3212490B2CE00C3C50F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E3202490B2CE00C3C50F /* HomeViewController.swift */; };
@@ -132,6 +134,8 @@
 		3DE7167924948C390084059A /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
 		3DEE9EEA2494B74A00AF44CC /* CategoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDTO.swift; sourceTree = "<group>"; };
 		3DEE9EEC2494B75700AF44CC /* TaskDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDTO.swift; sourceTree = "<group>"; };
+		3DEE9EEE2494DA0200AF44CC /* CategoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInfo.swift; sourceTree = "<group>"; };
+		3DEE9EF02494DAD500AF44CC /* TaskTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTypeViewModel.swift; sourceTree = "<group>"; };
 		3DF6E3192490B2CE00C3C50F /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E31C2490B2CE00C3C50F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DF6E31E2490B2CE00C3C50F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -263,6 +267,7 @@
 			children = (
 				3D50BC7F2490F9F000164866 /* TaskTypeTableViewCell.swift */,
 				3D50BC802490F9F000164866 /* TaskTypeTableViewCell.xib */,
+				3DEE9EF02494DAD500AF44CC /* TaskTypeViewModel.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				3DEE9EEC2494B75700AF44CC /* TaskDTO.swift */,
 				3DC3F5C42491F9450050C61D /* Featured.swift */,
 				3DD3DCB52492508F000533C6 /* Day.swift */,
+				3DEE9EEE2494DA0200AF44CC /* CategoryInfo.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -620,6 +626,7 @@
 				3DD3DCBA249267F9000533C6 /* CategoriesCollectionViewCell.swift in Sources */,
 				3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */,
 				3DD3DCB0249247FD000533C6 /* QueryViewModel.swift in Sources */,
+				3DEE9EEF2494DA0200AF44CC /* CategoryInfo.swift in Sources */,
 				3DF6E31F2490B2CE00C3C50F /* SceneDelegate.swift in Sources */,
 				3DC3F5CA2491FDA10050C61D /* UIHelper.swift in Sources */,
 				3DC3F5D424920B8D0050C61D /* Category+CoreDataClass.swift in Sources */,
@@ -631,6 +638,7 @@
 				3DC3F5D0249201D40050C61D /* UIColor.swift in Sources */,
 				3DEE9EEB2494B74A00AF44CC /* CategoryDTO.swift in Sources */,
 				3D50BC812490F9F000164866 /* TaskTypeTableViewCell.swift in Sources */,
+				3DEE9EF12494DAD500AF44CC /* TaskTypeViewModel.swift in Sources */,
 				3DE71672249349610084059A /* URL.swift in Sources */,
 				3DE7167424934D170084059A /* DataLayer.swift in Sources */,
 				3DE71678249364DF0084059A /* TaskDataService.swift in Sources */,

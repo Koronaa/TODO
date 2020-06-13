@@ -14,12 +14,19 @@ class QueryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tasksHeaderLabel: UILabel!
     @IBOutlet weak var noTaskLabel: SmallTitleLabel!
+    @IBOutlet weak var collectionViewHolderViewHeightConstraint: NSLayoutConstraint!
     
     let queryVM = QueryViewModel()
+    
+    var categoryName:String!
+    var selectedUIType:HomeUIType!
+    var selectedFeature:Featured!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupData()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TaskTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTableViewCell.rawValue)
@@ -29,8 +36,23 @@ class QueryViewController: UIViewController {
         setupUI()
     }
     
+    fileprivate func setupData(){
+        if selectedUIType == HomeUIType.CATEGORIES{
+            queryVM.tasks = queryVM.getTaks(for: categoryName)
+        }else{
+            queryVM.getFeaturedTasks(for: selectedFeature.type)
+        }
+    }
+    
     fileprivate func setupUI(){
-        if queryVM.getTasks.count > 0{
+        
+        if selectedUIType == HomeUIType.CATEGORIES || selectedFeature.type == .Favourite{
+            collectionViewHolderViewHeightConstraint.constant = 0
+        }else{
+            collectionViewHolderViewHeightConstraint.constant = 70
+        }
+        
+        if queryVM.tasks?.count ?? 0 > 0{
             UIHelper.hide(view: noTaskLabel)
             UIHelper.show(view: tableView)
         }else{
@@ -57,11 +79,11 @@ class QueryViewController: UIViewController {
 extension QueryViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return queryVM.getTasks.count
+        return queryVM.tasks?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let task = queryVM.getTasks[indexPath.row]
+        let task = queryVM.tasks?[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: UIConstant.Cell.TaskTableViewCell.rawValue, for: indexPath) as! TaskTableViewCell
         cell.task = task
         return cell
@@ -69,6 +91,10 @@ extension QueryViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //TODO
     }
 }
 

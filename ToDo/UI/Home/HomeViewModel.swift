@@ -15,12 +15,13 @@ class HomeViewModel{
         return Featured.getFeatures()
     }
     
-    var getCategories:[Categories]{
-        return Categories.getCategories()
+    var categoryInfo:[CategoryInfo] {
+        return modelLayer.getCategoryDetails()
     }
     
     var todysTaskCount:Int{
         return modelLayer.getTasksForToday().count
     }
+    
     
 }

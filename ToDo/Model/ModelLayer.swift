@@ -13,17 +13,15 @@ class ModelLayer{
     let dataLayer = DataLayer()
     
     func getTasksForToday() -> [Task]{
-        return dataLayer.getTasksForToday()
-    }
-    
-    func addTask(taskDTO:TaskDTO,category:Category){
-        dataLayer.addTask(for: taskDTO, category: category)
+        return dataLayer.getFeaturedTaks(for: .Today)
     }
     
     func getCategories() -> [Category]{
         dataLayer.getAllCategories()
     }
     
-    
+    func getCategoryDetails() -> [CategoryInfo]{
+        dataLayer.getCategoryInfo() 
+    }
     
 }
