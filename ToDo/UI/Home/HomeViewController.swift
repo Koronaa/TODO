@@ -14,7 +14,7 @@ enum HomeUIType{
 }
 
 class HomeViewController: UIViewController {
-
+    
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: WelcomeLabel!
@@ -23,16 +23,12 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
-            self.homeVM = HomeViewModel()
-            self.tableView.delegate = self
-            self.tableView.dataSource = self
-            self.tableView.register(FeaturedTableViewCell.self, forCellReuseIdentifier: "FeaturedTableViewCell")
-            self.tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
-            self.setupUI()
-        }
-        
+        self.homeVM = HomeViewModel()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(FeaturedTableViewCell.self, forCellReuseIdentifier: "FeaturedTableViewCell")
+        self.tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
+        self.setupUI()
     }
     
     

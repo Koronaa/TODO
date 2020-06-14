@@ -149,21 +149,15 @@
                                     <constraint firstItem="v4C-yf-mdH" firstAttribute="leading" secondItem="TG0-O5-rb0" secondAttribute="leading" id="ymd-hW-g1S"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWd-Aa-4KJ" customClass="TableHeaderLabel" customModule="ToDo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="166" width="280" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z7b-O4-Z4v">
-                                <rect key="frame" x="0.0" y="196.5" width="320" height="296.5"/>
+                                <rect key="frame" x="0.0" y="176" width="320" height="317"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3yc-8F-2sk">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="296.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="317"/>
                                         <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Tasks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMh-Vk-28p" customClass="SmallTitleLabel" customModule="ToDo" customModuleProvider="target">
-                                        <rect key="frame" x="125.5" y="138" width="69.5" height="20.5"/>
+                                        <rect key="frame" x="125.5" y="148.5" width="69.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -194,9 +188,7 @@
                         <constraints>
                             <constraint firstItem="TG0-O5-rb0" firstAttribute="leading" secondItem="SyC-hv-G7p" secondAttribute="leading" id="0aK-gk-ktV"/>
                             <constraint firstItem="SyC-hv-G7p" firstAttribute="trailing" secondItem="Z7b-O4-Z4v" secondAttribute="trailing" id="6Gj-TR-Atq"/>
-                            <constraint firstItem="FWd-Aa-4KJ" firstAttribute="top" secondItem="TG0-O5-rb0" secondAttribute="bottom" constant="10" id="6Ob-iG-Jot"/>
                             <constraint firstItem="SyC-hv-G7p" firstAttribute="trailing" secondItem="SOK-Om-3nd" secondAttribute="trailing" constant="20" id="7dM-Fo-RRm"/>
-                            <constraint firstItem="Z7b-O4-Z4v" firstAttribute="top" secondItem="FWd-Aa-4KJ" secondAttribute="bottom" constant="10" id="Cdn-GW-UAi"/>
                             <constraint firstItem="tw7-s5-NQA" firstAttribute="top" secondItem="Qk9-FL-MXM" secondAttribute="bottom" constant="5" id="H7w-Is-4bT"/>
                             <constraint firstItem="wTj-35-zmH" firstAttribute="top" secondItem="Z7b-O4-Z4v" secondAttribute="bottom" constant="10" id="Hk5-IG-dZU"/>
                             <constraint firstItem="Qk9-FL-MXM" firstAttribute="leading" secondItem="SyC-hv-G7p" secondAttribute="leading" constant="10" id="Ljn-qa-UwW"/>
@@ -204,10 +196,9 @@
                             <constraint firstItem="SyC-hv-G7p" firstAttribute="trailing" secondItem="wTj-35-zmH" secondAttribute="trailing" constant="80" id="RFN-co-62k"/>
                             <constraint firstItem="SyC-hv-G7p" firstAttribute="trailing" secondItem="tw7-s5-NQA" secondAttribute="trailing" constant="20" id="WxJ-y0-vA9"/>
                             <constraint firstItem="SOK-Om-3nd" firstAttribute="top" secondItem="tw7-s5-NQA" secondAttribute="bottom" id="YZE-ZI-lhG"/>
-                            <constraint firstItem="FWd-Aa-4KJ" firstAttribute="leading" secondItem="SyC-hv-G7p" secondAttribute="leading" constant="20" id="bvp-tH-MzB"/>
-                            <constraint firstItem="SyC-hv-G7p" firstAttribute="trailing" secondItem="FWd-Aa-4KJ" secondAttribute="trailing" constant="20" id="dXR-57-fyl"/>
                             <constraint firstItem="TG0-O5-rb0" firstAttribute="top" secondItem="SOK-Om-3nd" secondAttribute="bottom" constant="10" id="exX-nO-7L8"/>
                             <constraint firstItem="TG0-O5-rb0" firstAttribute="trailing" secondItem="SyC-hv-G7p" secondAttribute="trailing" id="ipU-6g-0Ns"/>
+                            <constraint firstItem="Z7b-O4-Z4v" firstAttribute="top" secondItem="TG0-O5-rb0" secondAttribute="bottom" constant="20" id="k5S-r7-myR"/>
                             <constraint firstItem="SyC-hv-G7p" firstAttribute="trailing" secondItem="Qk9-FL-MXM" secondAttribute="trailing" constant="10" id="mO5-aM-K2C"/>
                             <constraint firstItem="Z7b-O4-Z4v" firstAttribute="leading" secondItem="SyC-hv-G7p" secondAttribute="leading" id="nqb-6U-0xy"/>
                             <constraint firstItem="tw7-s5-NQA" firstAttribute="leading" secondItem="SyC-hv-G7p" secondAttribute="leading" constant="20" id="pMa-aT-QAg"/>
@@ -221,9 +212,11 @@
                     <connections>
                         <outlet property="collectionView" destination="v4C-yf-mdH" id="woY-W8-OJM"/>
                         <outlet property="collectionViewHolderViewHeightConstraint" destination="nI6-r5-AdT" id="cbP-Kc-jkv"/>
+                        <outlet property="dateHeaderLabel" destination="tw7-s5-NQA" id="rfN-Jq-ZJr"/>
+                        <outlet property="navigationTitleLabel" destination="vJz-F3-KYG" id="9g3-vO-TgX"/>
                         <outlet property="noTaskLabel" destination="zMh-Vk-28p" id="YlV-Z2-JM6"/>
                         <outlet property="tableView" destination="3yc-8F-2sk" id="9Ie-XB-5K6"/>
-                        <outlet property="tasksHeaderLabel" destination="FWd-Aa-4KJ" id="pU8-8Z-uLk"/>
+                        <outlet property="titleLabel" destination="SOK-Om-3nd" id="RFZ-lw-mix"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Jn-N0-xh2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -358,9 +351,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WzB-TJ-A2t">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WzB-TJ-A2t">
                                         <rect key="frame" x="231" y="0.0" width="51" height="31"/>
                                         <color key="onTintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <connections>
+                                            <action selector="remonderSwitchValueChanged:" destination="SUq-IZ-zHl" eventType="valueChanged" id="Uc7-yD-QOt"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                             </stackView>
@@ -477,6 +473,7 @@
                         <outlet property="noRecordsLabel" destination="ANA-aR-xON" id="HVa-Sq-FFS"/>
                         <outlet property="pickerViewBottomConstraint" destination="hc4-dE-MyM" id="7nh-ae-6t3"/>
                         <outlet property="pickerViewTitleLabel" destination="xMe-W0-KhD" id="uac-JG-iQ5"/>
+                        <outlet property="reminderSwitch" destination="WzB-TJ-A2t" id="Xoe-dB-Enf"/>
                         <outlet property="taskNameTextField" destination="QVB-hb-dpt" id="DXO-jX-ulK"/>
                     </connections>
                 </viewController>

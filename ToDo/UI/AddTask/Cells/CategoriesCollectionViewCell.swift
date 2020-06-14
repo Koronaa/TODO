@@ -13,7 +13,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var categoryLabel: SmallTitleLabel!
     
-    var category:Category!{
+    var category:CategoryDTO!{
         didSet{
             setupUI()
             categoryLabel.text = category.name

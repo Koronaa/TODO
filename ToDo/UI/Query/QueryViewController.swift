@@ -10,10 +10,13 @@ import UIKit
 
 class QueryViewController: UIViewController {
     
+    @IBOutlet weak var titleLabel: TitleLabel!
+    @IBOutlet weak var dateHeaderLabel: BodyLabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tasksHeaderLabel: UILabel!
     @IBOutlet weak var noTaskLabel: SmallTitleLabel!
+    @IBOutlet weak var navigationTitleLabel: BodyLabel!
     @IBOutlet weak var collectionViewHolderViewHeightConstraint: NSLayoutConstraint!
     
     let queryVM = QueryViewModel()
@@ -45,8 +48,10 @@ class QueryViewController: UIViewController {
     }
     
     fileprivate func setupUI(){
-        
-        if selectedUIType == HomeUIType.CATEGORIES || selectedFeature.type == .Favourite{
+        titleLabel.text = queryVM.title
+        dateHeaderLabel.text = queryVM.dateTitle
+        navigationTitleLabel.text = queryVM.navigationTitle
+        if selectedUIType == HomeUIType.CATEGORIES || selectedFeature.type == .Favourite || selectedFeature.type == .Month || selectedFeature.type == .Week{
             collectionViewHolderViewHeightConstraint.constant = 0
         }else{
             collectionViewHolderViewHeightConstraint.constant = 70
@@ -101,11 +106,11 @@ extension QueryViewController:UITableViewDelegate,UITableViewDataSource{
 extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return queryVM.days.count
+        return queryVM.days?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let day = queryVM.days[indexPath.row]
+        let day = queryVM.days?[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UIConstant.Cell.CalenderCollectionViewCell.rawValue, for: indexPath) as! CalenderCollectionViewCell
         cell.day = day
         return cell
@@ -116,8 +121,8 @@ extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let currentDay = queryVM.days[indexPath.row]
-        for day in queryVM.days{
+        let currentDay = queryVM.days?[indexPath.row]
+        for day in queryVM.days!{
             if day == currentDay{
                 day.isSelected = true
             }else{
@@ -126,6 +131,4 @@ extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSourc
         }
         collectionView.reloadData()
     }
-    
-    
 }

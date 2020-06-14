@@ -16,7 +16,6 @@ class CategoryDataService{
     }
     
     func getAllCategories(for context:NSManagedObjectContext) -> [Category]{
-        
         let categoriesFetchRequest = fetchRequest
         do{
             let categories = try context.fetch(categoriesFetchRequest)
@@ -30,8 +29,6 @@ class CategoryDataService{
     func addCategory(name:String,for context:NSManagedObjectContext){
         let newCategory = NSEntityDescription.insertNewObject(forEntityName: Category.entityName, into: context) as! Category
         newCategory.name = name
-        newCategory.isSelected = false
-        
         do{
             try context.save()
         }catch{
@@ -42,7 +39,7 @@ class CategoryDataService{
     
     func getCategory(for name:String,context:NSManagedObjectContext) -> Category?{
         let categoryFetchRequest = fetchRequest
-        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        categoryFetchRequest.predicate = NSPredicate(format: "name == %@", name)
         do{
             let category = try context.fetch(categoryFetchRequest).first
             return category

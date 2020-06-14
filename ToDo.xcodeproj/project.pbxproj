@@ -17,6 +17,7 @@
 		3D50BC822490F9F000164866 /* TaskTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D50BC802490F9F000164866 /* TaskTypeTableViewCell.xib */; };
 		3D50BC872490FD2D00164866 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D50BC852490FD2D00164866 /* TaskTableViewCell.swift */; };
 		3D50BC882490FD2D00164866 /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D50BC862490FD2D00164866 /* TaskTableViewCell.xib */; };
+		3D8925782495D3D600265B8E /* TranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8925772495D3D600265B8E /* TranslationLayer.swift */; };
 		3DC3F5C52491F9450050C61D /* Featured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C42491F9450050C61D /* Featured.swift */; };
 		3DC3F5C82491FA8C0050C61D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C72491FA8C0050C61D /* Date.swift */; };
 		3DC3F5CA2491FDA10050C61D /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C92491FDA10050C61D /* UIHelper.swift */; };
@@ -106,6 +107,7 @@
 		3D50BC802490F9F000164866 /* TaskTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTypeTableViewCell.xib; sourceTree = "<group>"; };
 		3D50BC852490FD2D00164866 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		3D50BC862490FD2D00164866 /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
+		3D8925772495D3D600265B8E /* TranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLayer.swift; sourceTree = "<group>"; };
 		3DC3F5C42491F9450050C61D /* Featured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Featured.swift; sourceTree = "<group>"; };
 		3DC3F5C72491FA8C0050C61D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		3DC3F5C92491FDA10050C61D /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				3DE7167924948C390084059A /* ModelLayer.swift */,
+				3D8925772495D3D600265B8E /* TranslationLayer.swift */,
 				3DEE9EE92494B72D00AF44CC /* Data */,
 				3DE7166E2493489F0084059A /* DataLayer */,
 			);
@@ -640,6 +643,7 @@
 				3D50BC812490F9F000164866 /* TaskTypeTableViewCell.swift in Sources */,
 				3DEE9EF12494DAD500AF44CC /* TaskTypeViewModel.swift in Sources */,
 				3DE71672249349610084059A /* URL.swift in Sources */,
+				3D8925782495D3D600265B8E /* TranslationLayer.swift in Sources */,
 				3DE7167424934D170084059A /* DataLayer.swift in Sources */,
 				3DE71678249364DF0084059A /* TaskDataService.swift in Sources */,
 				3DC3F5C52491F9450050C61D /* Featured.swift in Sources */,

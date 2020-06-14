@@ -20,13 +20,14 @@ class AddTaskViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var pickerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var favouriteButton: UIButton!
+    @IBOutlet weak var reminderSwitch: UISwitch!
     
     let addTaskVM = AddTaskViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addTaskVM.getCategories()
         setupUI()
-        
         taskNameTextField.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -55,13 +56,17 @@ class AddTaskViewController: UIViewController {
         dateTimeLabel.text = datePicker.date.formatted
         pickerViewTitleLabel.text = "Set date and time"
         dateTimeLabel.font = UIFont(name: "Montserrat-Bold", size: 23.0)
-        if addTaskVM.categories.count > 0{
+        if addTaskVM.categories?.count ?? 0 > 0{
             UIHelper.hide(view: noRecordsLabel)
             UIHelper.show(view: collectionView)
         }else{
             UIHelper.show(view: noRecordsLabel)
             UIHelper.hide(view: collectionView)
         }
+    }
+    
+    @IBAction func remonderSwitchValueChanged(_ sender: Any) {
+        addTaskVM.isReminder = reminderSwitch.isOn
     }
     
     @IBAction func pickerViewSubmitButtonOnTapped(_ sender: Any) {
@@ -102,20 +107,20 @@ class AddTaskViewController: UIViewController {
 extension AddTaskViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        addTaskVM.categories.count
+        addTaskVM.categories?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let category = addTaskVM.categories[indexPath.row]
+        let category = addTaskVM.categories?[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UIConstant.Cell.CategoriesCollectionViewCell.rawValue, for: indexPath) as! CategoriesCollectionViewCell
         cell.category = category
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedCategory = addTaskVM.categories[indexPath.row]
+        let selectedCategory = addTaskVM.categories?[indexPath.row]
         addTaskVM.selectedCategory = selectedCategory
-        for category in addTaskVM.categories{
+        for category in addTaskVM.categories!{
             if category == selectedCategory{
                 category.isSelected = true
             }else{
@@ -126,10 +131,10 @@ extension AddTaskViewController:UICollectionViewDelegate,UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let selectedCategory = addTaskVM.categories[indexPath.row]
+        let selectedCategory = addTaskVM.categories?[indexPath.row]
         let font = UIFont(name: "Montserrat-Bold", size: 11.0)
         let fontAttributes = [NSAttributedString.Key.font: font]
-        let initialSize = (selectedCategory.name as NSString).size(withAttributes: fontAttributes as [NSAttributedString.Key : Any])
+        let initialSize = (selectedCategory!.name as NSString).size(withAttributes: fontAttributes as [NSAttributedString.Key : Any])
         return CGSize(width: initialSize.width + 10, height: initialSize.height + 10)
     }
 }

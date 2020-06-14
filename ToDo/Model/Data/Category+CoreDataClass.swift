@@ -17,14 +17,9 @@ enum CategoryType:String{
 class Category:NSManagedObject,Entitiable{
     
     @NSManaged var name:String
-    @NSManaged var isSelected:Bool
     @NSManaged var tasks:NSSet?
     
     static var entityName: String {return "Category" }
     
-    
-    static func getCatrgories()->[Category]{
-        return [Category]()
-    }
 }
 

@@ -12,16 +12,18 @@ class AddTaskViewModel{
     
     let modelLayer = ModelLayer()
     
-    var categories:[Category] {
-        return modelLayer.getCategories()
-    }
-    
     var selectedDate:Date?
-    var selectedCategory:Category?
+    var selectedCategory:CategoryDTO?
+    var categories:[CategoryDTO]?
     var isFavourite:Bool = false
+    var isReminder:Bool = false
     
     func addTask(taskName:String,isFavourite:Bool,dateTime:Date){
-        let taskDTO = TaskDTO(name: taskName, isFavourite: isFavourite, dateTime: dateTime)
-        modelLayer.dataLayer.addTask(for: taskDTO,category: selectedCategory)
+        let taskDTO = TaskDTO(name: taskName, isFavourite: isFavourite, isReminder: isReminder, dateTime: dateTime)
+        modelLayer.addTask(for: taskDTO, categoryDTO: selectedCategory)
+    }
+    
+    func getCategories(){
+        self.categories = modelLayer.getCategories()
     }
 }

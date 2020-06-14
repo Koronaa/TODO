@@ -74,6 +74,7 @@ class TaskDataService{
         newTask.name = taskDTO.name
         newTask.isFavourite = taskDTO.isFavourite
         newTask.dateTime = taskDTO.dateTime
+        newTask.isReminder = taskDTO.isReminder
         newTask.category = category
         do{
             try context.save()
@@ -85,10 +86,10 @@ class TaskDataService{
     
     func getTasks(for category:Category,using context:NSManagedObjectContext)->[Task]{
         let taskFetchRequest = fetchRequest
-        fetchRequest.predicate = NSPredicate(format: "category.name = %@", category.name)
         do{
             let tasks = try context.fetch(taskFetchRequest)
-            return tasks
+            let filteredTasks = tasks.filter {$0.category?.name == category.name}
+            return filteredTasks
         }catch{
             print(error.localizedDescription)
             return [Task]()

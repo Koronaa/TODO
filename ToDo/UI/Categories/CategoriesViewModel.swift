@@ -12,7 +12,9 @@ class CategoriesViewModel{
     
     let modelLayer = ModelLayer()
     
-    var categories:[Category] = Category.getCatrgories()
+    var categories:[Category]  {
+        modelLayer.dataLayer.getAllCategories()
+    }
     
     func addCategory(for name:String){
         modelLayer.dataLayer.addCategory(name: name)
