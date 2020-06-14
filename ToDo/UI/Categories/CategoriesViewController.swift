@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CategoriesViewControllerDelegate {
+    func categoriesUpdated()
+}
+
 class CategoriesViewController: UIViewController {
     
     @IBOutlet weak var noRecordsLabel: SmallTitleLabel!
@@ -15,6 +19,7 @@ class CategoriesViewController: UIViewController {
     @IBOutlet weak var categoryNameTextField: CustomTextField!
     
     let categoriesVM = CategoriesViewModel()
+    var categoriesViewControllerDelegate:CategoriesViewControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +40,13 @@ class CategoriesViewController: UIViewController {
     
     
     @IBAction func closeButtonOnTapped(_ sender: Any) {
+        categoriesViewControllerDelegate.categoriesUpdated()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addCategoryButtonOnTapped(_ sender: Any) {
         categoriesVM.addCategory(for: categoryNameTextField.text!)
+        categoriesViewControllerDelegate.categoriesUpdated()
         self.dismiss(animated: true, completion: nil)
     }
 }
@@ -55,6 +62,16 @@ extension CategoriesViewController:UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: UIConstant.Cell.CategoriesTableViewCell.rawValue, for: indexPath) as! CategoriesTableViewCell
         cell.category = category
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            categoriesVM.selectedCategory = categoriesVM.categories[indexPath.row]
+            categoriesVM.deleteCategory()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        tableView.reloadData()
+        setupUI()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

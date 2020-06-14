@@ -18,7 +18,7 @@ class CategoryDataService{
     func getAllCategories(for context:NSManagedObjectContext) -> [Category]{
         let categoriesFetchRequest = fetchRequest
         do{
-            let categories = try context.fetch(categoriesFetchRequest)
+            let categories = try context.fetch(categoriesFetchRequest) 
             return categories
         }catch{
             print(error.localizedDescription)
@@ -49,6 +49,18 @@ class CategoryDataService{
         }
     }
     
-    
-    
+    func deleteCategory(for category:Category,context:NSManagedObjectContext){
+        let deleteRequest = fetchRequest
+        deleteRequest.predicate = NSPredicate(format: "name = %@", category.name)
+        do{
+            if let retrievedCategory = try context.fetch(deleteRequest).first{
+                context.delete(retrievedCategory)
+                try context.save()
+            }
+        }catch{
+            print(error.localizedDescription)
+            context.rollback()
+        }
+        
+    }
 }

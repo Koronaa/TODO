@@ -14,7 +14,6 @@ class QueryViewController: UIViewController {
     @IBOutlet weak var dateHeaderLabel: BodyLabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tasksHeaderLabel: UILabel!
     @IBOutlet weak var noTaskLabel: SmallTitleLabel!
     @IBOutlet weak var navigationTitleLabel: BodyLabel!
     @IBOutlet weak var collectionViewHolderViewHeightConstraint: NSLayoutConstraint!
@@ -67,6 +66,32 @@ class QueryViewController: UIViewController {
         
     }
     
+    @IBAction func sortButtonOnTapped(_ sender: Any) {
+        let sortAlertController = UIAlertController(title: "Sort Tasks", message: "Please select the sorting criteria.", preferredStyle: .actionSheet)
+        let nameAction = UIAlertAction(title: "By Name", style: .default) { _ in
+            if self.selectedUIType == HomeUIType.CATEGORIES{
+                self.queryVM.tasks = self.queryVM.getTaks(for: self.categoryName,isSortingEnabled: true,sortType: .BY_NAME)
+            }else{
+                self.queryVM.getFeaturedTasks(for: self.selectedFeature.type,isSortingEnabled: true,sortType: .BY_NAME)
+            }
+            self.tableView.reloadData()
+        }
+        let dateAction = UIAlertAction(title: "By Date", style: .default) { _ in
+            if self.selectedUIType == HomeUIType.CATEGORIES{
+                self.queryVM.tasks = self.queryVM.getTaks(for: self.categoryName,isSortingEnabled: true,sortType: .BY_DATE)
+            }else{
+                self.queryVM.getFeaturedTasks(for: self.selectedFeature.type,isSortingEnabled: true,sortType: .BY_DATE)
+            }
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        sortAlertController.addAction(nameAction)
+        sortAlertController.addAction(dateAction)
+        sortAlertController.addAction(cancelAction)
+        self.present(sortAlertController, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func backButtonOnTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -74,6 +99,8 @@ class QueryViewController: UIViewController {
     
     @IBAction func newTaskButtonOnTapped(_ sender: Any) {
         let addTaskModalVC = UIHelper.makeViewController(viewControllerName: .AddTaskVC) as! AddTaskViewController
+        addTaskModalVC.uiType = .CREATE
+        addTaskModalVC.addTaskViewControllerDelegate = self
         self.modalPresentationStyle = .currentContext
         self.present(addTaskModalVC, animated: true, completion: nil)
     }
@@ -99,7 +126,12 @@ extension QueryViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO
+        let task = queryVM.tasks?[indexPath.row]
+        let updateTaskVC = UIHelper.makeViewController(viewControllerName: .AddTaskVC) as! AddTaskViewController
+        updateTaskVC.addTaskViewControllerDelegate = self
+        updateTaskVC.uiType = .UPDATE
+        updateTaskVC.addTaskVM.currentTask = task
+        self.present(updateTaskVC, animated: true, completion: nil)
     }
 }
 
@@ -122,6 +154,10 @@ extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let currentDay = queryVM.days?[indexPath.row]
+        queryVM.getTasksForSpecificDate(dateString: currentDay!.dateString){
+            self.setupUI()
+            self.tableView.reloadData()
+        }
         for day in queryVM.days!{
             if day == currentDay{
                 day.isSelected = true
@@ -130,5 +166,12 @@ extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSourc
             }
         }
         collectionView.reloadData()
+    }
+}
+
+extension QueryViewController:AddTaskViewControllerDelegate{
+    func taskUpdated() {
+        setupData()
+        self.tableView.reloadData()
     }
 }

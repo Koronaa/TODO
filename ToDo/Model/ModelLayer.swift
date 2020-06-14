@@ -14,7 +14,7 @@ class ModelLayer{
     let tranlationLater = TranslationLayer()
     
     func getTasksForToday() -> [Task]{
-        return dataLayer.getFeaturedTaks(for: .Today)
+        return dataLayer.getFeaturedTaks(for: .Today,isSortingEnabled:false,sortType:.BY_NAME)
     }
     
     func getCategories() -> [CategoryDTO]{

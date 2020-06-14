@@ -110,6 +110,9 @@
                                             <constraint firstAttribute="height" constant="30" id="8gL-xV-MJB"/>
                                         </constraints>
                                         <state key="normal" image="sort"/>
+                                        <connections>
+                                            <action selector="sortButtonOnTapped:" destination="wcW-Aq-T8T" eventType="touchUpInside" id="K4a-Yv-Ung"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -260,6 +263,9 @@
                                     <constraint firstAttribute="width" constant="40" id="V1j-Z0-Gwe"/>
                                 </constraints>
                                 <state key="normal" image="delete"/>
+                                <connections>
+                                    <action selector="deleteButtonOnTapped:" destination="SUq-IZ-zHl" eventType="touchUpInside" id="Zob-4q-PN8"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnp-aP-YXs" customClass="TitleLabel" customModule="ToDo" customModuleProvider="target">
                                 <rect key="frame" x="20" y="50" width="280" height="20.5"/>
@@ -466,15 +472,18 @@
                     <navigationItem key="navigationItem" id="47x-CB-CEj"/>
                     <connections>
                         <outlet property="addNewCategoryLabel" destination="nxg-uV-gHl" id="4j4-QB-1E5"/>
+                        <outlet property="addTaskButton" destination="3gn-g9-dRM" id="64C-nu-AHG"/>
                         <outlet property="collectionView" destination="kqX-4M-cjS" id="bAx-O3-qG9"/>
                         <outlet property="datePicker" destination="dSP-Bw-Dgt" id="sSb-ke-Ap2"/>
                         <outlet property="dateTimeLabel" destination="k69-3I-heq" id="BOu-Vg-yHO"/>
+                        <outlet property="deleteButton" destination="MXq-sX-kkV" id="X1C-FG-R3S"/>
                         <outlet property="favouriteButton" destination="WaK-Wy-G2K" id="MNL-6l-IUg"/>
                         <outlet property="noRecordsLabel" destination="ANA-aR-xON" id="HVa-Sq-FFS"/>
                         <outlet property="pickerViewBottomConstraint" destination="hc4-dE-MyM" id="7nh-ae-6t3"/>
                         <outlet property="pickerViewTitleLabel" destination="xMe-W0-KhD" id="uac-JG-iQ5"/>
                         <outlet property="reminderSwitch" destination="WzB-TJ-A2t" id="Xoe-dB-Enf"/>
                         <outlet property="taskNameTextField" destination="QVB-hb-dpt" id="DXO-jX-ulK"/>
+                        <outlet property="titleLabel" destination="dnp-aP-YXs" id="Fg2-e5-sSn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bhp-um-hb5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -7,10 +7,15 @@
 //
 
 import Foundation
+
+enum SortType{
+    case BY_NAME
+    case BY_DATE
+}
+
 class QueryViewModel{
     
     let modelLayer = ModelLayer()
-    
     
     var title:String = "Tasks"
     var navigationTitle = "Tasks"
@@ -20,19 +25,28 @@ class QueryViewModel{
     var days:[Day]?
     
     
-    func getTaks(for categoryName:String) -> [Task]{
-        if let category = modelLayer.dataLayer.getCategoryByName(name: categoryName){
+    func getTaks(for categoryName:String?,isSortingEnabled:Bool = false,sortType:SortType = .BY_NAME) -> [Task]{
+        if let name = categoryName{
+            if let category = modelLayer.dataLayer.getCategoryByName(name: name){
+                navigationTitle = "Tasks"
+                dateTitle = ""
+                title = "\(name)"
+                return modelLayer.dataLayer.getTasksForCategory(category: category,isSortingEnabled:isSortingEnabled,sortType:sortType)
+            }else{
+                //ERROR: No category
+            }
+        }else{
             navigationTitle = "Tasks"
             dateTitle = ""
-            title = "\(categoryName)"
-            return modelLayer.dataLayer.getTaskForCategory(category: category)
-        }else{
-            //ERROR: No category
+            title = "Uncategorized"
+            return modelLayer.dataLayer.getTasksForCategory(category: nil,isSortingEnabled:isSortingEnabled,sortType:sortType)
         }
+        
+        
         return [Task]()
     }
     
-    func getFeaturedTasks(for type:FeaturedType){
+    func getFeaturedTasks(for type:FeaturedType,isSortingEnabled:Bool = false,sortType:SortType = .BY_NAME){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy"
         switch type {
@@ -58,7 +72,7 @@ class QueryViewModel{
         case .Favourite:
             navigationTitle = "Favourite Tasks"
         }
-        tasks =  modelLayer.dataLayer.getFeaturedTaks(for: type)
+        tasks =  modelLayer.dataLayer.getFeaturedTaks(for: type,isSortingEnabled:isSortingEnabled,sortType:sortType)
     }
     
     func getCalenderDays(noOFDays:Int,startDate:Date){
@@ -79,6 +93,19 @@ class QueryViewModel{
         }
     }
     
+    private func getSelectedDate(from dateString:String)->Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.date(from: dateString)!
+    }
     
-    
+    func getTasksForSpecificDate(dateString:String,isSortingEnabled:Bool = false,sortType:SortType = .BY_NAME,onCompleted:@escaping ()->Void){
+        let date = getSelectedDate(from: dateString)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+        navigationTitle = "Tasks"
+        dateTitle = "\(dateFormatter.string(from: date))"
+        tasks = modelLayer.dataLayer.getTasksForDate(date: date,isSortingEnabled:isSortingEnabled,sortType:sortType)
+        onCompleted()
+    }
 }

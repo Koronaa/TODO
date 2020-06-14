@@ -9,6 +9,6 @@
 import Foundation
 
 struct CategoryInfo{
-    var name:String
+    var name:String?
     var taskCount:Int
 }

@@ -31,6 +31,10 @@ class HomeViewController: UIViewController {
         self.setupUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     
     private func setupUI(){
         if homeVM.todysTaskCount == 0{
@@ -42,7 +46,10 @@ class HomeViewController: UIViewController {
     
     @IBAction func addButtonOnTapped(_ sender: Any) {
         let addTaskModalVC = UIHelper.makeViewController(viewControllerName: .AddTaskVC) as! AddTaskViewController
+        addTaskModalVC.uiType = .CREATE
+        addTaskModalVC.addTaskViewControllerDelegate = self
         self.modalPresentationStyle = .currentContext
+        
         self.present(addTaskModalVC, animated: true, completion: nil)
     }
     
@@ -138,7 +145,11 @@ extension HomeViewController:FeaturedCollectionViewDelegate{
         queryVC.selectedFeature = featured
         self.navigationController?.pushViewController(queryVC, animated: true)
     }
-    
-    
+}
+
+extension HomeViewController:AddTaskViewControllerDelegate{
+    func taskUpdated() {
+        self.tableView.reloadData()
+    }
 }
 

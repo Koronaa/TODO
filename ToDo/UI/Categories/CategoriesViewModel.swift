@@ -12,12 +12,18 @@ class CategoriesViewModel{
     
     let modelLayer = ModelLayer()
     
+    var selectedCategory:Category!
+    
     var categories:[Category]  {
         modelLayer.dataLayer.getAllCategories()
     }
     
     func addCategory(for name:String){
         modelLayer.dataLayer.addCategory(name: name)
+    }
+    
+    func deleteCategory(){
+        modelLayer.dataLayer.deleteCategory(category: selectedCategory)
     }
     
 }

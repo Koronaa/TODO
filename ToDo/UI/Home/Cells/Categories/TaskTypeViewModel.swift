@@ -17,7 +17,7 @@ class TaskTypeViewModel{
     }
     
     var name:String {
-        categoryInfo.name
+        categoryInfo.name ?? "Uncategorized"
     }
     
     var count:Int{
