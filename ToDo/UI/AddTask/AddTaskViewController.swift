@@ -35,9 +35,7 @@ class AddTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addTaskVM.getCategories{
-            
-        }
+        addTaskVM.getCategories{}
         loadData()
         taskNameTextField.delegate = self
         collectionView.dataSource = self
@@ -86,6 +84,7 @@ class AddTaskViewController: UIViewController {
         }
         
         if type == .CREATE{
+            UIHelper.disableView(view: addTaskButton)
             titleLabel.text = "Add Task"
             dateTimeLabel.text = datePicker.date.formatted
             pickerViewTitleLabel.text = "Set date and time"
@@ -200,6 +199,14 @@ extension AddTaskViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.validateText(validationType: .basic) ? UIHelper.enableView(view: addTaskButton) : UIHelper.disableView(view: addTaskButton)
+        if !textField.validateText(validationType: .basic){
+            //TODO
+            print("Task cannot be empty")
+        }
     }
 }
 

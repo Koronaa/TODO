@@ -588,6 +588,7 @@
                         <viewLayoutGuide key="safeArea" id="U0V-t4-qGL"/>
                     </view>
                     <connections>
+                        <outlet property="addCategoryButton" destination="jun-T4-CXo" id="Usy-s5-Naa"/>
                         <outlet property="categoryNameTextField" destination="fkp-3t-1Pz" id="ar0-6j-fhF"/>
                         <outlet property="noRecordsLabel" destination="Pku-hz-0yQ" id="3Rw-00-jeM"/>
                         <outlet property="tableView" destination="xpD-Hx-dPt" id="8uf-4a-y4o"/>

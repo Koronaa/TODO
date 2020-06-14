@@ -14,6 +14,7 @@ protocol CategoriesViewControllerDelegate {
 
 class CategoriesViewController: UIViewController {
     
+    @IBOutlet weak var addCategoryButton: CustomButton!
     @IBOutlet weak var noRecordsLabel: SmallTitleLabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var categoryNameTextField: CustomTextField!
@@ -31,6 +32,7 @@ class CategoriesViewController: UIViewController {
     }
     
     private func setupUI(){
+        UIHelper.disableView(view: addCategoryButton)
         if categoriesVM.categories.count > 0{
             UIHelper.hide(view: noRecordsLabel)
         }else{
@@ -83,5 +85,14 @@ extension CategoriesViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.validateText(validationType: .basic){
+            UIHelper.enableView(view: addCategoryButton)
+        }else{
+            print("Category cannot be empty")
+            UIHelper.disableView(view: addCategoryButton)
+        }
     }
 }

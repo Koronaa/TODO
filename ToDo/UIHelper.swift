@@ -42,6 +42,16 @@ class UIHelper{
         }
     }
     
+    static func disableView(view:UIView){
+            view.isUserInteractionEnabled = false
+            view.alpha = 0.5
+    }
+    
+    static func enableView(view:UIView){
+            view.isUserInteractionEnabled = true
+            view.alpha = 1.0
+    }
+    
     static func circular(view:UIView,devider:CGFloat = 2){
         view.layer.borderWidth = 0.0
         view.layer.masksToBounds = false

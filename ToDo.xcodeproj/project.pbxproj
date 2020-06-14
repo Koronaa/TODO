@@ -18,6 +18,8 @@
 		3D50BC872490FD2D00164866 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D50BC852490FD2D00164866 /* TaskTableViewCell.swift */; };
 		3D50BC882490FD2D00164866 /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D50BC862490FD2D00164866 /* TaskTableViewCell.xib */; };
 		3D8925782495D3D600265B8E /* TranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8925772495D3D600265B8E /* TranslationLayer.swift */; };
+		3D89257A24964A9300265B8E /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D89257924964A9300265B8E /* ValidationManager.swift */; };
+		3D89257C24964BB100265B8E /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D89257B24964BB100265B8E /* UITextField.swift */; };
 		3DC3F5C52491F9450050C61D /* Featured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C42491F9450050C61D /* Featured.swift */; };
 		3DC3F5C82491FA8C0050C61D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C72491FA8C0050C61D /* Date.swift */; };
 		3DC3F5CA2491FDA10050C61D /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C92491FDA10050C61D /* UIHelper.swift */; };
@@ -108,6 +110,8 @@
 		3D50BC852490FD2D00164866 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		3D50BC862490FD2D00164866 /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 		3D8925772495D3D600265B8E /* TranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLayer.swift; sourceTree = "<group>"; };
+		3D89257924964A9300265B8E /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
+		3D89257B24964BB100265B8E /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		3DC3F5C42491F9450050C61D /* Featured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Featured.swift; sourceTree = "<group>"; };
 		3DC3F5C72491FA8C0050C61D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		3DC3F5C92491FDA10050C61D /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 				3D8925772495D3D600265B8E /* TranslationLayer.swift */,
 				3DEE9EE92494B72D00AF44CC /* Data */,
 				3DE7166E2493489F0084059A /* DataLayer */,
+				3D89257924964A9300265B8E /* ValidationManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				3DC3F5C72491FA8C0050C61D /* Date.swift */,
 				3DC3F5CF249201D40050C61D /* UIColor.swift */,
 				3DE71671249349610084059A /* URL.swift */,
+				3D89257B24964BB100265B8E /* UITextField.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -626,6 +632,7 @@
 				3D50BC6C2490C9AC00164866 /* CustomButton.swift in Sources */,
 				3DE71670249348F40084059A /* CoreDataStack.swift in Sources */,
 				3DC3F5D22492023F0050C61D /* UIConstant.swift in Sources */,
+				3D89257A24964A9300265B8E /* ValidationManager.swift in Sources */,
 				3DD3DCBA249267F9000533C6 /* CategoriesCollectionViewCell.swift in Sources */,
 				3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */,
 				3DD3DCB0249247FD000533C6 /* QueryViewModel.swift in Sources */,
@@ -636,6 +643,7 @@
 				3DEE9EED2494B75700AF44CC /* TaskDTO.swift in Sources */,
 				3DC3F5CC2491FF0E0050C61D /* FeaturedTableViewCell.swift in Sources */,
 				3D50BC872490FD2D00164866 /* TaskTableViewCell.swift in Sources */,
+				3D89257C24964BB100265B8E /* UITextField.swift in Sources */,
 				3DD3DCBD249269EC000533C6 /* AddTaskViewModel.swift in Sources */,
 				3DC3F5C82491FA8C0050C61D /* Date.swift in Sources */,
 				3DC3F5D0249201D40050C61D /* UIColor.swift in Sources */,
@@ -829,7 +837,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R3GW2NEGBJ;
 				INFOPLIST_FILE = ToDo/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -848,7 +856,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R3GW2NEGBJ;
 				INFOPLIST_FILE = ToDo/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
