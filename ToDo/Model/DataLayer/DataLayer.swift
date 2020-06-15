@@ -38,7 +38,7 @@ class DataLayer{
         taskDataService.deleteTask(task: task, using: context)
     }
     
-    func updateTask(currentTask:Task,updatedTask:TaskDTO,updatedCategory:Category){
+    func updateTask(currentTask:Task,updatedTask:TaskDTO,updatedCategory:Category?){
         taskDataService.updateTask(task: currentTask, updatedCategory: updatedCategory, updatedTask: updatedTask, using: context)
     }
     
@@ -72,8 +72,12 @@ class DataLayer{
         categoryDataService.addCategory(name: name, for: context)
     }
     
-    func getCategoryByName(name:String) -> Category?{
-        return categoryDataService.getCategory(for: name, context: context)
+    func getCategoryByName(name:String?) -> Category?{
+        if name != nil{
+            return categoryDataService.getCategory(for: name!, context: context)
+        }else{
+            return nil
+        }
     }
     
     func deleteCategory(category:Category){

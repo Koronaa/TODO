@@ -35,6 +35,7 @@ class AddTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addTaskVM.getReminders()
         addTaskVM.getCategories{}
         loadData()
         taskNameTextField.delegate = self

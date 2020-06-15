@@ -19,7 +19,12 @@ class CategoriesViewModel{
     }
     
     func addCategory(for name:String){
-        modelLayer.dataLayer.addCategory(name: name)
+        let filetredCategory = categories.filter{ $0.name == name.trim}
+        if filetredCategory.count > 0{
+            print("This Category Already Exisit")
+        }else{
+            modelLayer.dataLayer.addCategory(name: name.trim)
+        }
     }
     
     func deleteCategory(){

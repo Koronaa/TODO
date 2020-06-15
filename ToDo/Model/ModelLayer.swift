@@ -12,6 +12,7 @@ class ModelLayer{
     
     let dataLayer = DataLayer()
     let tranlationLater = TranslationLayer()
+    let taskReminderManager = TaskReminderManager()
     
     func getTasksForToday() -> [Task]{
         return dataLayer.getFeaturedTaks(for: .Today,isSortingEnabled:false,sortType:.BY_NAME)
@@ -26,7 +27,7 @@ class ModelLayer{
     }
     
     func addTask(for taskDTO:TaskDTO,categoryDTO:CategoryDTO?){
-        let category = dataLayer.getCategoryByName(name: categoryDTO!.name)
+        let category = dataLayer.getCategoryByName(name: categoryDTO?.name)
         dataLayer.addTask(for: taskDTO, category: category)
     }
     

@@ -20,6 +20,8 @@
 		3D8925782495D3D600265B8E /* TranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8925772495D3D600265B8E /* TranslationLayer.swift */; };
 		3D89257A24964A9300265B8E /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D89257924964A9300265B8E /* ValidationManager.swift */; };
 		3D89257C24964BB100265B8E /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D89257B24964BB100265B8E /* UITextField.swift */; };
+		3DB63AEB249728A6004FD2B9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AEA249728A6004FD2B9 /* String.swift */; };
+		3DB63AED2497478F004FD2B9 /* TaskReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AEC2497478F004FD2B9 /* TaskReminderManager.swift */; };
 		3DC3F5C52491F9450050C61D /* Featured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C42491F9450050C61D /* Featured.swift */; };
 		3DC3F5C82491FA8C0050C61D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C72491FA8C0050C61D /* Date.swift */; };
 		3DC3F5CA2491FDA10050C61D /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C92491FDA10050C61D /* UIHelper.swift */; };
@@ -112,6 +114,8 @@
 		3D8925772495D3D600265B8E /* TranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLayer.swift; sourceTree = "<group>"; };
 		3D89257924964A9300265B8E /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		3D89257B24964BB100265B8E /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		3DB63AEA249728A6004FD2B9 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		3DB63AEC2497478F004FD2B9 /* TaskReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskReminderManager.swift; sourceTree = "<group>"; };
 		3DC3F5C42491F9450050C61D /* Featured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Featured.swift; sourceTree = "<group>"; };
 		3DC3F5C72491FA8C0050C61D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		3DC3F5C92491FDA10050C61D /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 				3DEE9EE92494B72D00AF44CC /* Data */,
 				3DE7166E2493489F0084059A /* DataLayer */,
 				3D89257924964A9300265B8E /* ValidationManager.swift */,
+				3DB63AEC2497478F004FD2B9 /* TaskReminderManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				3DC3F5CF249201D40050C61D /* UIColor.swift */,
 				3DE71671249349610084059A /* URL.swift */,
 				3D89257B24964BB100265B8E /* UITextField.swift */,
+				3DB63AEA249728A6004FD2B9 /* String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -622,6 +628,8 @@
 			files = (
 				3DC3F5CE249200850050C61D /* HomeViewModel.swift in Sources */,
 				3DE7167A24948C390084059A /* ModelLayer.swift in Sources */,
+				3DB63AED2497478F004FD2B9 /* TaskReminderManager.swift in Sources */,
+				3DB63AEB249728A6004FD2B9 /* String.swift in Sources */,
 				3DF6E3212490B2CE00C3C50F /* HomeViewController.swift in Sources */,
 				3D50BC702490D4BA00164866 /* AddTaskViewController.swift in Sources */,
 				3D50BC7B2490F6A200164866 /* FeaturedCollectionViewCell.swift in Sources */,
