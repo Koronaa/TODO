@@ -9,6 +9,7 @@
 
 import UIKit
 import CoreData
+import RxRelay
 
 class DataLayer{
     
@@ -68,8 +69,8 @@ class DataLayer{
         return categoryInfo
     }
     
-    func addCategory(name:String){
-        categoryDataService.addCategory(name: name, for: context)
+    func addCategory(name:String) -> BehaviorRelay<(Bool,CustomError?)>{
+        return categoryDataService.addCategory(name: name, for: context)
     }
     
     func getCategoryByName(name:String?) -> Category?{
@@ -80,8 +81,8 @@ class DataLayer{
         }
     }
     
-    func deleteCategory(category:Category){
-        categoryDataService.deleteCategory(for: category, context: context)
+    func deleteCategory(category:Category) -> BehaviorRelay<(Bool,CustomError?)>{
+        return categoryDataService.deleteCategory(for: category, context: context)
     }
     
     

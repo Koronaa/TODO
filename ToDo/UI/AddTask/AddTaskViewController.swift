@@ -7,10 +7,7 @@
 //
 
 import UIKit
-
-protocol AddTaskViewControllerDelegate {
-    func taskUpdated()
-}
+import RxSwift
 
 class AddTaskViewController: UIViewController {
     
@@ -29,15 +26,14 @@ class AddTaskViewController: UIViewController {
     @IBOutlet weak var deleteButton: UIButton!
     
     
-    let addTaskVM = AddTaskViewModel()
-    var uiType:AddTaskUIType!
-    var addTaskViewControllerDelegate:AddTaskViewControllerDelegate!
+    var addTaskVM:AddTaskViewModel!
+    let bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addTaskVM.getReminders()
-        addTaskVM.getCategories{}
         loadData()
+        addObservables()
+        
         taskNameTextField.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -50,8 +46,61 @@ class AddTaskViewController: UIViewController {
         dateTimeLabel.addGestureRecognizer(dateTimeTapGesture)
         datePicker.minimumDate = Date()
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(onCategoriesChanged(_:)), name: .categoriesUpdated, object: nil)
     }
+    
+    private func loadData(){
+        addTaskVM.getReminders()
+        addTaskVM.getTranslatedCategories()
+        addTaskVM.setupDataForView()
+        
+        if addTaskVM.UIType == .UPDATE{
+            if let task = addTaskVM.currentTask{
+                addTaskVM.updateData(from: task)
+                setupUI(for: .UPDATE)
+            }
+        }else{
+            setupUI(for: .CREATE)
+        }
+    }
+    
+    private func setupUI(for type:AddTaskUIType){
+        
+        dateTimeLabel.font = UIFont(name: "Montserrat-Bold", size: 23.0)
+        titleLabel.text = addTaskVM.headerLabel
+        addTaskButton.setTitle(addTaskVM.buttonTitle, for: .normal)
+        
+        
+        if addTaskVM.UIType == .CREATE{
+            UIHelper.disableView(view: addTaskButton)
+            dateTimeLabel.text = datePicker.date.formatted
+            UIHelper.hide(view: deleteButton)
+        }else{
+            dateTimeLabel.text = addTaskVM.selectedDate?.formatted
+            taskNameTextField.text = addTaskVM.taskTitle
+            reminderSwitch.setOn(addTaskVM.isReminder, animated: true)
+            addTaskVM.isFavourite ? favouriteButton.setImage(UIImage(named: "favourite_filled"), for: .normal) : favouriteButton.setImage(UIImage(named: "favourite"), for: .normal)
+            UIHelper.show(view: deleteButton)
+            
+        }
+    }
+    
+    private func addObservables(){
+        addTaskVM.translatedCategories.asObservable()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                self.collectionView.reloadData()
+                if self.addTaskVM.translatedCategoryCount > 0{
+                    UIHelper.hide(view: self.noRecordsLabel)
+                    UIHelper.show(view: self.collectionView)
+                }else{
+                    UIHelper.show(view: self.noRecordsLabel)
+                    UIHelper.hide(view: self.collectionView)
+                }
+            }).disposed(by: bag)
+    }
+    
+    
     
     @IBAction func favouriteButtonOnTapped(_ sender: Any) {
         addTaskVM.isFavourite = !addTaskVM.isFavourite
@@ -63,44 +112,7 @@ class AddTaskViewController: UIViewController {
         pickerViewTitleLabel.text = datePicker.date.formatted
     }
     
-    func loadData(){
-        if uiType == AddTaskUIType.UPDATE{
-            if let task = addTaskVM.currentTask{
-                addTaskVM.updateData(from: task)
-                setupUI(for: .UPDATE)
-            }
-        }else{
-            setupUI(for: .CREATE)
-        }
-    }
     
-    fileprivate func setupUI(for type:AddTaskUIType){
-        dateTimeLabel.font = UIFont(name: "Montserrat-Bold", size: 23.0)
-        if addTaskVM.categories?.count ?? 0 > 0{
-            UIHelper.hide(view: noRecordsLabel)
-            UIHelper.show(view: collectionView)
-        }else{
-            UIHelper.show(view: noRecordsLabel)
-            UIHelper.hide(view: collectionView)
-        }
-        
-        if type == .CREATE{
-            UIHelper.disableView(view: addTaskButton)
-            titleLabel.text = "Add Task"
-            dateTimeLabel.text = datePicker.date.formatted
-            pickerViewTitleLabel.text = "Set date and time"
-            addTaskButton.setTitle("Add Task", for: .normal)
-            UIHelper.hide(view: deleteButton)
-        }else{
-            dateTimeLabel.text = addTaskVM.selectedDate?.formatted
-            taskNameTextField.text = addTaskVM.taskTitle
-            reminderSwitch.setOn(addTaskVM.isReminder, animated: true)
-            addTaskVM.isFavourite ? favouriteButton.setImage(UIImage(named: "favourite_filled"), for: .normal) : favouriteButton.setImage(UIImage(named: "favourite"), for: .normal)
-            addTaskButton.setTitle("Update Task", for: .normal)
-            UIHelper.show(view: deleteButton)
-            titleLabel.text = "Update Task"
-        }
-    }
     
     @IBAction func remonderSwitchValueChanged(_ sender: Any) {
         addTaskVM.isReminder = reminderSwitch.isOn
@@ -117,7 +129,6 @@ class AddTaskViewController: UIViewController {
         let deleteAlertController = UIAlertController(title: "Delete Task", message: "Are you sure you want to delete?", preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             self.addTaskVM.deleteTask()
-            self.addTaskViewControllerDelegate.taskUpdated()
             self.dismiss(animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -132,12 +143,12 @@ class AddTaskViewController: UIViewController {
     
     @IBAction func addTaskButtonOnTapped(_ sender: Any) {
         addTaskVM.taskTitle = taskNameTextField.text!
-        if uiType == AddTaskUIType.CREATE{
+        if addTaskVM.UIType == .CREATE{
             addTaskVM.addTask()
         }else{
             addTaskVM.updateTask()
         }
-        addTaskViewControllerDelegate.taskUpdated()
+        NotificationCenter.default.post(Notification(name: .tasksUpdated))
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -148,7 +159,6 @@ class AddTaskViewController: UIViewController {
     
     @objc func addCategotyLabelOnTapped(){
         let categoryModelVC = UIHelper.makeViewController(viewControllerName: .CategoriesVC) as! CategoriesViewController
-        categoryModelVC.categoriesViewControllerDelegate = self
         self.modalPresentationStyle = .currentContext
         self.present(categoryModelVC, animated: true, completion: nil)
     }
@@ -158,25 +168,29 @@ class AddTaskViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .categoriesUpdated, object: nil)
+    }
 }
 
 extension AddTaskViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        addTaskVM.categories?.count ?? 0
+        addTaskVM.translatedCategories.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let category = addTaskVM.categories?[indexPath.row]
+        let category = addTaskVM.translatedCategories.value[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UIConstant.Cell.CategoriesCollectionViewCell.rawValue, for: indexPath) as! CategoriesCollectionViewCell
         cell.category = category
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedCategory = addTaskVM.categories?[indexPath.row]
+        let selectedCategory = addTaskVM.translatedCategories.value[indexPath.row]
         addTaskVM.selectedCategory = selectedCategory
-        for category in addTaskVM.categories!{
+        for category in addTaskVM.translatedCategories.value{
             if category == selectedCategory{
                 category.isSelected = true
             }else{
@@ -187,10 +201,10 @@ extension AddTaskViewController:UICollectionViewDelegate,UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let selectedCategory = addTaskVM.categories?[indexPath.row]
+        let selectedCategory = addTaskVM.translatedCategories.value[indexPath.row]
         let font = UIFont(name: "Montserrat-Bold", size: 11.0)
         let fontAttributes = [NSAttributedString.Key.font: font]
-        let initialSize = (selectedCategory!.name as NSString).size(withAttributes: fontAttributes as [NSAttributedString.Key : Any])
+        let initialSize = (selectedCategory.name as NSString).size(withAttributes: fontAttributes as [NSAttributedString.Key : Any])
         return CGSize(width: initialSize.width + 10, height: initialSize.height + 10)
     }
 }
@@ -205,16 +219,13 @@ extension AddTaskViewController:UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.validateText(validationType: .basic) ? UIHelper.enableView(view: addTaskButton) : UIHelper.disableView(view: addTaskButton)
         if !textField.validateText(validationType: .basic){
-            //TODO
-            print("Task cannot be empty")
+            UIHelper.makeBanner(error: CustomError(title: nil, message: "Task cannot be empty"))
         }
     }
 }
 
-extension AddTaskViewController:CategoriesViewControllerDelegate{
-    func categoriesUpdated() {
-        addTaskVM.getCategories{
-            self.collectionView.reloadData()
-        }
+extension AddTaskViewController{
+    @objc func onCategoriesChanged(_ notification:Notification){
+        addTaskVM.getTranslatedCategories()
     }
 }

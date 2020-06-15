@@ -7,10 +7,7 @@
 //
 
 import UIKit
-
-protocol CategoriesViewControllerDelegate {
-    func categoriesUpdated()
-}
+import RxSwift
 
 class CategoriesViewController: UIViewController {
     
@@ -20,10 +17,12 @@ class CategoriesViewController: UIViewController {
     @IBOutlet weak var categoryNameTextField: CustomTextField!
     
     let categoriesVM = CategoriesViewModel()
-    var categoriesViewControllerDelegate:CategoriesViewControllerDelegate!
+    let bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
+        setObservables()
         setupUI()
         categoryNameTextField.delegate = self
         tableView.delegate = self
@@ -33,47 +32,71 @@ class CategoriesViewController: UIViewController {
     
     private func setupUI(){
         UIHelper.disableView(view: addCategoryButton)
-        if categoriesVM.categories.count > 0{
+        if categoriesVM.categories.value.count > 0{
             UIHelper.hide(view: noRecordsLabel)
         }else{
             UIHelper.show(view: noRecordsLabel)
         }
     }
     
+    private func loadData(){
+        categoriesVM.getCategories()
+    }
+    
+    private func setObservables(){
+        categoriesVM.categories.asObservable()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
+                self?.setupUI()
+            }).disposed(by: bag)
+    }
+    
     
     @IBAction func closeButtonOnTapped(_ sender: Any) {
-        categoriesViewControllerDelegate.categoriesUpdated()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addCategoryButtonOnTapped(_ sender: Any) {
-        categoriesVM.addCategory(for: categoryNameTextField.text!)
-        categoriesViewControllerDelegate.categoriesUpdated()
-        self.dismiss(animated: true, completion: nil)
+        categoriesVM.addCategory(for: categoryNameTextField.text!).asObservable()
+            .subscribe(onNext: { (isAdded,error) in
+                if isAdded{
+                    NotificationCenter.default.post(Notification(name: .categoriesUpdated))
+                    self.dismiss(animated: true, completion: nil)
+                }else{
+                    UIHelper.makeBanner(error: error!)
+                    self.categoryNameTextField.text = ""
+                }
+            }).disposed(by: bag)
     }
 }
 
 extension CategoriesViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoriesVM.categories.count
+        return categoriesVM.categories.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let category = categoriesVM.categories[indexPath.row]
+        let category = categoriesVM.categories.value[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: UIConstant.Cell.CategoriesTableViewCell.rawValue, for: indexPath) as! CategoriesTableViewCell
-        cell.category = category
+        cell.categoriesTableViewVM = CategoriesTableViewViewModel(category: category)
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            categoriesVM.selectedCategory = categoriesVM.categories[indexPath.row]
-            categoriesVM.deleteCategory()
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            categoriesVM.selectedCategory = categoriesVM.categories.value[indexPath.row]
+            categoriesVM.deleteCategory().asObservable()
+                .subscribe(onNext: { [weak self] (isDeleted,error) in
+                    if isDeleted{
+                        NotificationCenter.default.post(Notification(name: .categoriesUpdated))
+                        self?.loadData()
+                    }else{
+                        UIHelper.makeBanner(error: error!, type: .ERROR)
+                    }
+                }).disposed(by: bag)
         }
-        tableView.reloadData()
-        setupUI()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -91,7 +114,7 @@ extension CategoriesViewController:UITextFieldDelegate{
         if textField.validateText(validationType: .basic){
             UIHelper.enableView(view: addCategoryButton)
         }else{
-            print("Category cannot be empty")
+            UIHelper.makeBanner(error: CustomError(title: nil, message: "Category cannot be empty"))
             UIHelper.disableView(view: addCategoryButton)
         }
     }

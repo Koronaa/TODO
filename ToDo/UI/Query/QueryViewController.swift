@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class QueryViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class QueryViewController: UIViewController {
     @IBOutlet weak var collectionViewHolderViewHeightConstraint: NSLayoutConstraint!
     
     let queryVM = QueryViewModel()
+    let bag = DisposeBag()
     
     var categoryName:String!
     var selectedUIType:HomeUIType!
@@ -36,17 +38,19 @@ class QueryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "CalenderCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: UIConstant.Cell.CalenderCollectionViewCell.rawValue)
         setupUI()
+        setObservable()
+        
     }
     
-    fileprivate func setupData(){
+    private func setupData(){
         if selectedUIType == HomeUIType.CATEGORIES{
-            queryVM.tasks = queryVM.getTaks(for: categoryName)
+            queryVM.getTaks(for: categoryName)
         }else{
             queryVM.getFeaturedTasks(for: selectedFeature.type)
         }
     }
     
-    fileprivate func setupUI(){
+    private func setupUI(){
         titleLabel.text = queryVM.title
         dateHeaderLabel.text = queryVM.dateTitle
         navigationTitleLabel.text = queryVM.navigationTitle
@@ -56,33 +60,40 @@ class QueryViewController: UIViewController {
             collectionViewHolderViewHeightConstraint.constant = 70
         }
         
-        if queryVM.tasks?.count ?? 0 > 0{
+        if queryVM.tasks.value.count > 0{
             UIHelper.hide(view: noTaskLabel)
             UIHelper.show(view: tableView)
         }else{
             UIHelper.show(view: noTaskLabel)
             UIHelper.hide(view: tableView)
         }
-        
+    }
+    
+    private func setObservable(){
+        queryVM.tasks.asObservable()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
+                self?.setupUI()
+            }).disposed(by: bag)
     }
     
     @IBAction func sortButtonOnTapped(_ sender: Any) {
         let sortAlertController = UIAlertController(title: "Sort Tasks", message: "Please select the sorting criteria.", preferredStyle: .actionSheet)
         let nameAction = UIAlertAction(title: "By Name", style: .default) { _ in
             if self.selectedUIType == HomeUIType.CATEGORIES{
-                self.queryVM.tasks = self.queryVM.getTaks(for: self.categoryName,isSortingEnabled: true,sortType: .BY_NAME)
+                self.queryVM.getTaks(for: self.categoryName,isSortingEnabled: true,sortType: .BY_NAME)
             }else{
                 self.queryVM.getFeaturedTasks(for: self.selectedFeature.type,isSortingEnabled: true,sortType: .BY_NAME)
             }
-            self.tableView.reloadData()
+            
         }
         let dateAction = UIAlertAction(title: "By Date", style: .default) { _ in
             if self.selectedUIType == HomeUIType.CATEGORIES{
-                self.queryVM.tasks = self.queryVM.getTaks(for: self.categoryName,isSortingEnabled: true,sortType: .BY_DATE)
+                self.queryVM.getTaks(for: self.categoryName,isSortingEnabled: true,sortType: .BY_DATE)
             }else{
                 self.queryVM.getFeaturedTasks(for: self.selectedFeature.type,isSortingEnabled: true,sortType: .BY_DATE)
             }
-            self.tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         sortAlertController.addAction(nameAction)
@@ -99,8 +110,7 @@ class QueryViewController: UIViewController {
     
     @IBAction func newTaskButtonOnTapped(_ sender: Any) {
         let addTaskModalVC = UIHelper.makeViewController(viewControllerName: .AddTaskVC) as! AddTaskViewController
-        addTaskModalVC.uiType = .CREATE
-        addTaskModalVC.addTaskViewControllerDelegate = self
+        addTaskModalVC.addTaskVM = AddTaskViewModel(UIType: .CREATE)
         self.modalPresentationStyle = .currentContext
         self.present(addTaskModalVC, animated: true, completion: nil)
     }
@@ -111,11 +121,11 @@ class QueryViewController: UIViewController {
 extension QueryViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return queryVM.tasks?.count ?? 0
+        return queryVM.tasks.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let task = queryVM.tasks?[indexPath.row]
+        let task = queryVM.tasks.value[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: UIConstant.Cell.TaskTableViewCell.rawValue, for: indexPath) as! TaskTableViewCell
         cell.task = task
         return cell
@@ -126,10 +136,9 @@ extension QueryViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task = queryVM.tasks?[indexPath.row]
+        let task = queryVM.tasks.value[indexPath.row]
         let updateTaskVC = UIHelper.makeViewController(viewControllerName: .AddTaskVC) as! AddTaskViewController
-        updateTaskVC.addTaskViewControllerDelegate = self
-        updateTaskVC.uiType = .UPDATE
+        updateTaskVC.addTaskVM = AddTaskViewModel(UIType: .UPDATE)
         updateTaskVC.addTaskVM.currentTask = task
         self.present(updateTaskVC, animated: true, completion: nil)
     }
@@ -138,11 +147,11 @@ extension QueryViewController:UITableViewDelegate,UITableViewDataSource{
 extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return queryVM.days?.count ?? 0
+        return queryVM.days.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let day = queryVM.days?[indexPath.row]
+        let day = queryVM.days.value[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UIConstant.Cell.CalenderCollectionViewCell.rawValue, for: indexPath) as! CalenderCollectionViewCell
         cell.day = day
         return cell
@@ -153,12 +162,9 @@ extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let currentDay = queryVM.days?[indexPath.row]
-        queryVM.getTasksForSpecificDate(dateString: currentDay!.dateString){
-            self.setupUI()
-            self.tableView.reloadData()
-        }
-        for day in queryVM.days!{
+        let currentDay = queryVM.days.value[indexPath.row]
+        queryVM.getTasksForSpecificDate(dateString: currentDay.dateString)
+        for day in queryVM.days.value{
             if day == currentDay{
                 day.isSelected = true
             }else{
@@ -169,7 +175,7 @@ extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSourc
     }
 }
 
-extension QueryViewController:AddTaskViewControllerDelegate{
+extension QueryViewController{
     func taskUpdated() {
         setupData()
         self.tableView.reloadData()

@@ -13,10 +13,10 @@ class CategoriesTableViewCell: UITableViewCell {
     @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var categoryNameLabel: BodyLabel!
     
-    var category:Category!{
+    var categoriesTableViewVM:CategoriesTableViewViewModel!{
         didSet{
             setupUI()
-            categoryNameLabel.text = category.name
+            categoryNameLabel.text = categoriesTableViewVM.name
         }
     }
     

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxRelay
+import RxSwift
 
 enum SortType{
     case BY_NAME
@@ -16,34 +18,36 @@ enum SortType{
 class QueryViewModel{
     
     let modelLayer = ModelLayer()
+    let bag = DisposeBag()
     
     var title:String = "Tasks"
     var navigationTitle = "Tasks"
     var dateTitle:String?
     
-    var tasks:[Task]?
-    var days:[Day]?
+    var tasks:BehaviorRelay<[Task]> = BehaviorRelay<[Task]>(value: [])
+    var days:BehaviorRelay<[Day]> = BehaviorRelay<[Day]>(value: [])
     
     
-    func getTaks(for categoryName:String?,isSortingEnabled:Bool = false,sortType:SortType = .BY_NAME) -> [Task]{
+    func getTaks(for categoryName:String?,isSortingEnabled:Bool = false,sortType:SortType = .BY_NAME){
         if let name = categoryName{
             if let category = modelLayer.dataLayer.getCategoryByName(name: name){
                 navigationTitle = "Tasks"
                 dateTitle = ""
                 title = "\(name)"
-                return modelLayer.dataLayer.getTasksForCategory(category: category,isSortingEnabled:isSortingEnabled,sortType:sortType)
-            }else{
-                //ERROR: No category
+                modelLayer.getTasksForCategory(category: category,isSortingEnabled:isSortingEnabled,sortType:sortType).asObservable()
+                    .subscribe(onNext: { tasks in
+                        self.tasks.accept(tasks)
+                    }).disposed(by: bag)
             }
         }else{
             navigationTitle = "Tasks"
             dateTitle = ""
             title = "Uncategorized"
-            return modelLayer.dataLayer.getTasksForCategory(category: nil,isSortingEnabled:isSortingEnabled,sortType:sortType)
+            modelLayer.getTasksForCategory(category: nil,isSortingEnabled:isSortingEnabled,sortType:sortType).asObservable()
+                .subscribe(onNext: { tasks in
+                    self.tasks.accept(tasks)
+                }).disposed(by: bag)
         }
-        
-        
-        return [Task]()
     }
     
     func getFeaturedTasks(for type:FeaturedType,isSortingEnabled:Bool = false,sortType:SortType = .BY_NAME){
@@ -72,11 +76,32 @@ class QueryViewModel{
         case .Favourite:
             navigationTitle = "Favourite Tasks"
         }
-        tasks =  modelLayer.dataLayer.getFeaturedTaks(for: type,isSortingEnabled:isSortingEnabled,sortType:sortType)
+        
+        modelLayer.getFeaturedTaks(for: type,isSortingEnabled:isSortingEnabled,sortType:sortType).asObservable()
+            .subscribe(onNext: { tasks in
+                self.tasks.accept(tasks)
+            }).disposed(by: bag)
+    }
+    
+    func getTasksForSpecificDate(dateString:String,isSortingEnabled:Bool = false,sortType:SortType = .BY_NAME){
+        let date = getSelectedDate(from: dateString)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+        navigationTitle = "Tasks"
+        dateTitle = "\(dateFormatter.string(from: date))"
+        modelLayer.getTasksForDate(date: date,isSortingEnabled:isSortingEnabled,sortType:sortType).asObservable()
+            .subscribe(onNext: { tasks in
+                self.tasks.accept(tasks)
+            }).disposed(by: bag)
+        
     }
     
     func getCalenderDays(noOFDays:Int,startDate:Date){
-        self.days = Day.getDays(for: noOFDays, from: startDate)
+        modelLayer.getCalenderDays(noOFDays: noOFDays, startDate: startDate).asObservable()
+            .subscribe(onNext: { days in
+                self.days.accept(days)
+            }).disposed(by: bag)
+        
     }
     
     func selectSpecificDate(date:Date){
@@ -84,7 +109,7 @@ class QueryViewModel{
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let dateString:String = dateFormatter.string(from: date)
         
-        for day in self.days!{
+        for day in self.days.value{
             if day.dateString == dateString{
                 day.isSelected = true
             }else{
@@ -97,15 +122,5 @@ class QueryViewModel{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         return dateFormatter.date(from: dateString)!
-    }
-    
-    func getTasksForSpecificDate(dateString:String,isSortingEnabled:Bool = false,sortType:SortType = .BY_NAME,onCompleted:@escaping ()->Void){
-        let date = getSelectedDate(from: dateString)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
-        navigationTitle = "Tasks"
-        dateTitle = "\(dateFormatter.string(from: date))"
-        tasks = modelLayer.dataLayer.getTasksForDate(date: date,isSortingEnabled:isSortingEnabled,sortType:sortType)
-        onCompleted()
     }
 }

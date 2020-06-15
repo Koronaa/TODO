@@ -23,6 +23,7 @@ class UIConstant{
     }
     
     enum Cell:String{
+        case FeaturedTableViewCell = "FeaturedTableViewCell"
         case FeaturedCollectionViewCell = "featuredCVCell"
         case TaskTypeTableViewCell = "taskTypeTVCell"
         case TaskTableViewCell = "taskTVCell"

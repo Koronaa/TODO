@@ -15,18 +15,16 @@ class FeaturedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var featureDescriptionLabel: SmallTitleLabel!
     @IBOutlet weak var featureHeaderLabel: BodyLabel!
     
-    
-    //TODO: Introduce a VM here
-   var featured:Featured!{
+   var featuredCollectionViewViewModel:FeaturedCollectionViewViewModel!{
         didSet{
             setupUI()
-            featureHeaderLabel.text = featured.name
-            if let image = featured.image{
+            featureHeaderLabel.text = featuredCollectionViewViewModel.name
+            if let image = featuredCollectionViewViewModel.itemImage{
                 featureImageView.image = image
                 UIHelper.show(view: featureImageView)
                 UIHelper.hide(view: featureDescriptionLabel)
             }
-            if let subtitle = featured.subTitile{
+            if let subtitle = featuredCollectionViewViewModel.subTitile{
                 featureDescriptionLabel.text = subtitle
                 UIHelper.show(view: featureDescriptionLabel)
                 UIHelper.hide(view: featureImageView)

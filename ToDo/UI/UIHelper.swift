@@ -7,6 +7,13 @@
 //
 
 import UIKit
+import NotificationBannerSwift
+
+enum BannerType:String{
+    case ERROR = "ERROR"
+    case WARNING = "WARNING"
+    case NORMAL = "NORMAL"
+}
 
 class UIHelper{
     
@@ -58,5 +65,25 @@ class UIHelper{
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.cornerRadius = view.frame.height/devider
         view.clipsToBounds = true
+    }
+    
+    static func makeBanner(error:CustomError,type:BannerType = BannerType.ERROR){
+        DispatchQueue.main.async {
+            var bannerType:BannerStyle = .danger
+            var bannerTitle:String?
+            switch type{
+            case .ERROR:
+                bannerType = .danger
+                bannerTitle = "Error!"
+            case .WARNING:
+                bannerType = .warning
+                bannerTitle = "Warning!"
+            case .NORMAL:
+                bannerTitle = "Success!"
+                bannerType = .success
+            }
+            let banner = GrowingNotificationBanner(title: error.title == nil ? bannerTitle : error.title, subtitle: error.message, style: bannerType)
+            banner.show()
+        }
     }
 }

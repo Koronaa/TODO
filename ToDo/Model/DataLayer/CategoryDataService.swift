@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-
+import RxRelay
 class CategoryDataService{
     
     private var fetchRequest:NSFetchRequest<Category>{
@@ -26,7 +26,7 @@ class CategoryDataService{
         }
     }
     
-    func addCategory(name:String,for context:NSManagedObjectContext){
+    func addCategory(name:String,for context:NSManagedObjectContext) -> BehaviorRelay<(Bool,CustomError?)>{
         let newCategory = NSEntityDescription.insertNewObject(forEntityName: Category.entityName, into: context) as! Category
         newCategory.name = name
         do{
@@ -34,7 +34,9 @@ class CategoryDataService{
         }catch{
             print(error.localizedDescription)
             context.rollback()
+            return BehaviorRelay<(Bool,CustomError?)>(value: (false,CustomError(title: "Error", message: error.localizedDescription)))
         }
+         return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
     }
     
     func getCategory(for name:String,context:NSManagedObjectContext) -> Category?{
@@ -49,7 +51,7 @@ class CategoryDataService{
         }
     }
     
-    func deleteCategory(for category:Category,context:NSManagedObjectContext){
+    func deleteCategory(for category:Category,context:NSManagedObjectContext) -> BehaviorRelay<(Bool,CustomError?)>{
         let deleteRequest = fetchRequest
         deleteRequest.predicate = NSPredicate(format: "name = %@", category.name)
         do{
@@ -58,9 +60,9 @@ class CategoryDataService{
                 try context.save()
             }
         }catch{
-            print(error.localizedDescription)
             context.rollback()
+            return BehaviorRelay<(Bool,CustomError?)>(value: (false,CustomError(title: "Deletion Error", message: error.localizedDescription)))
         }
-        
+        return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
     }
 }

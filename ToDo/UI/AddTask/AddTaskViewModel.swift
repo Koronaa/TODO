@@ -8,6 +8,8 @@
 
 import Foundation
 import EventKit
+import RxRelay
+import RxSwift
 
 enum AddTaskUIType{
     case CREATE
@@ -16,16 +18,41 @@ enum AddTaskUIType{
 
 class AddTaskViewModel{
     
+    var UIType:AddTaskUIType
+    
+    init(UIType:AddTaskUIType) {
+        self.UIType = UIType
+    }
+    
     let modelLayer = ModelLayer()
+    let bag = DisposeBag()
     
     var currentTask:Task?
     var taskTitle:String = ""
     var selectedDate:Date?
     var selectedCategory:CategoryDTO?
-    var categories:[CategoryDTO]?
+    var translatedCategories:BehaviorRelay<[CategoryDTO]> = BehaviorRelay<[CategoryDTO]>(value: [])
     var isFavourite:Bool = false
     var isReminder:Bool = false
+    var headerLabel:String = ""
+    var buttonTitle:String = ""
     
+    var translatedCategoryCount:Int{
+        return translatedCategories.value.count
+    }
+    
+    
+    func setupDataForView(){
+        if UIType == .CREATE{
+            headerLabel = "Add Task"
+            buttonTitle = "Add Task"
+        }else{
+            headerLabel = "Update Task"
+            buttonTitle = "Update Task"
+        }
+    }
+    
+     
     func addTask(){
         let taskDTO = TaskDTO(name: taskTitle, isFavourite: isFavourite, isReminder: isReminder, dateTime: selectedDate ?? Date())
         modelLayer.addTask(for: taskDTO, categoryDTO: selectedCategory)
@@ -36,9 +63,12 @@ class AddTaskViewModel{
         
     }
     
-    func getCategories(onCompleted:@escaping()->Void){
-        self.categories = modelLayer.getCategories()
-        onCompleted()
+    func getTranslatedCategories(){
+        modelLayer.getTranslatedCategories().asObservable()
+            .subscribe(onNext: { translatedCategories in
+                self.translatedCategories.accept(translatedCategories)
+            }).disposed(by: bag)
+        
     }
     
     func updateData(from task:Task){
@@ -50,8 +80,8 @@ class AddTaskViewModel{
     }
     
     private func selectSpecificCategory(for name:String?){
-        if let _ = name, let _ = self.categories{
-            for category in self.categories!{
+        if let _ = name{
+            for category in self.translatedCategories.value{
                 if category.name == name{
                     category.isSelected = true
                     selectedCategory = category
@@ -87,7 +117,7 @@ class AddTaskViewModel{
         modelLayer.taskReminderManager.fetchAllReminders()
     }
     
-    func addReminder(for taskDTO:TaskDTO){
+    private func addReminder(for taskDTO:TaskDTO){
         modelLayer.taskReminderManager.addReminder(for: taskDTO)
     }
     
@@ -101,13 +131,13 @@ class AddTaskViewModel{
         }
     }
     
-    func deleteReminder(for currentTask:Task){
+    private func deleteReminder(for currentTask:Task){
         if let reminder = getReminder(for: currentTask){
             modelLayer.taskReminderManager.removeReminder(reminder: reminder)
         }
     }
     
-    func updateReminder(for currentTask:Task,updatedTask:TaskDTO){
+    private func updateReminder(for currentTask:Task,updatedTask:TaskDTO){
         if let reminder = getReminder(for: currentTask){
             modelLayer.taskReminderManager.updateReminder(fro: reminder, updatedTask: updatedTask)
         }

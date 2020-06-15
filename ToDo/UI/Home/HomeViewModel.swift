@@ -7,20 +7,47 @@
 //
 
 import Foundation
+import RxRelay
+import RxSwift
+
 class HomeViewModel{
     
     let modelLayer = ModelLayer()
+    let bag = DisposeBag()
     
-    var featuredItems:[Featured] {
-        return Featured.getFeatures()
+    var title:String!
+    var featuredItems:[Featured]!
+    var categoryInfo:BehaviorRelay<[CategoryInfo]> = BehaviorRelay<[CategoryInfo]>(value: [])
+    var todysTaskCount:Int!
+    
+    
+    func getFeaturedItems(){
+        Featured.getFeatures().asObservable().subscribe(onNext: { items in
+            self.featuredItems = items
+        }).disposed(by: bag)
     }
     
-    var categoryInfo:[CategoryInfo] {
-        return modelLayer.getCategoryDetails()
+    func getcategoryInfo(){
+        modelLayer.getCategoryDetails().asObservable().subscribe(onNext: { categoryInformation in
+            self.categoryInfo.accept(categoryInformation)
+        }).disposed(by: bag)
     }
     
-    var todysTaskCount:Int{
-        return modelLayer.getTasksForToday().count
+    
+    func getTodysTaskCount(){
+        modelLayer.getTasksForToday().asObservable().subscribe(onNext: { tasks in
+            self.todysTaskCount = tasks.count
+        }).disposed(by: bag)
+    }
+    
+    func loadData(){
+        if todysTaskCount == 0{
+            title = "Hey, You've got no tasks today."
+        }else if todysTaskCount == 1{
+            title = "Hey, You've got \(todysTaskCount.description) task today."
+        }else{
+            title = "Hey, You've got \(todysTaskCount.description) tasks today."
+        }
     }
     
     

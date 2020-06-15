@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum HomeUIType{
     case FEATURED
@@ -16,41 +17,59 @@ enum HomeUIType{
 class HomeViewController: UIViewController {
     
     
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: WelcomeLabel!
     
-    var homeVM:HomeViewModel!
+    var homeVM = HomeViewModel()
+    let bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.homeVM = HomeViewModel()
+        
+        loadData()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.register(FeaturedTableViewCell.self, forCellReuseIdentifier: "FeaturedTableViewCell")
-        self.tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
         self.setupUI()
+        setObservables()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onCategoriesChanged(_:)), name: .categoriesUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onTasksChanged(_:)), name: .tasksUpdated, object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+    func loadData() {
+        homeVM.getTodysTaskCount()
+        homeVM.getcategoryInfo()
+        homeVM.loadData()
+    }
+    
+    func setObservables(){
+        homeVM.categoryInfo
+            .asObservable()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
+            }).disposed(by: bag)
     }
     
     
     private func setupUI(){
-        if homeVM.todysTaskCount == 0{
-            welcomeLabel.text = "Hey, You've got no tasks today."
-        }else{
-            welcomeLabel.text = "Hey, You've got \(homeVM.todysTaskCount) tasks today."
-        }
+        welcomeLabel.text = homeVM.title
+        
+        self.tableView.register(FeaturedTableViewCell.self, forCellReuseIdentifier: UIConstant.Cell.FeaturedTableViewCell.rawValue)
+        self.tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
     }
     
     @IBAction func addButtonOnTapped(_ sender: Any) {
         let addTaskModalVC = UIHelper.makeViewController(viewControllerName: .AddTaskVC) as! AddTaskViewController
-        addTaskModalVC.uiType = .CREATE
-        addTaskModalVC.addTaskViewControllerDelegate = self
+        addTaskModalVC.addTaskVM = AddTaskViewModel(UIType: .CREATE)
         self.modalPresentationStyle = .currentContext
-        
         self.present(addTaskModalVC, animated: true, completion: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .categoriesUpdated, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .tasksUpdated, object: nil)
     }
     
 }
@@ -62,10 +81,10 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
         case 0:
             return 1
         case 1:
-            return homeVM.categoryInfo.count
-        default:()
+            return homeVM.categoryInfo.value.count
+        default:
+            return 0
         }
-        return 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,7 +98,7 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
             cell.delegate = self
             return cell
         case 1:
-            let categoryInfo = homeVM.categoryInfo[indexPath.row]
+            let categoryInfo = homeVM.categoryInfo.value[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue, for: indexPath) as! TaskTypeTableViewCell
             cell.taskTypeVM = TaskTypeViewModel(categoryInfo: categoryInfo)
             return cell
@@ -116,13 +135,8 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
         myLabel.frame = CGRect(x: 15, y: -5, width: 320, height: 25)
         myLabel.backgroundColor = .clear
         myLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
-        
         let headerView = UIView()
-        //        if #available(iOS 13.0, *) {
-        headerView.backgroundColor = .clear
-        //        } else {
-        //            headerView.backgroundColor = .white
-        //        }
+        headerView.backgroundColor = .TODOYellow
         headerView.addSubview(myLabel)
         return headerView
     }
@@ -131,7 +145,7 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
         if indexPath.section == 1{
             let queryVC = UIHelper.makeViewController(viewControllerName: .QueryVC) as! QueryViewController
             queryVC.selectedUIType = .CATEGORIES
-            queryVC.categoryName = homeVM.categoryInfo[indexPath.row].name
+            queryVC.categoryName = homeVM.categoryInfo.value[indexPath.row].name
             self.navigationController?.pushViewController(queryVC, animated: true)
         }
     }
@@ -147,9 +161,15 @@ extension HomeViewController:FeaturedCollectionViewDelegate{
     }
 }
 
-extension HomeViewController:AddTaskViewControllerDelegate{
-    func taskUpdated() {
-        self.tableView.reloadData()
+//MARK: Notification
+extension HomeViewController{
+    
+    @objc func onCategoriesChanged(_ notification:Notification){
+        loadData()
+    }
+    
+    @objc func onTasksChanged(_ notification:Notification){
+        loadData()
     }
 }
 

@@ -14,16 +14,14 @@ protocol FeaturedCollectionViewDelegate {
 
 class FeaturedTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource {
     
+    let homeVM = HomeViewModel()
     var featuredCollectionView:UICollectionView!
     var delegate:FeaturedCollectionViewDelegate!
     
-    let homeVM = HomeViewModel()
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        homeVM.getFeaturedItems()
         setupFeaturedCollectionView()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -36,14 +34,8 @@ class FeaturedTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollecti
         featuredLayout.scrollDirection = .horizontal
         featuredLayout.itemSize = CGSize(width: 200.0, height: 160.0)
         
-        
         featuredCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 180), collectionViewLayout: featuredLayout)
-        
-        //        if #available(iOS 13.0, *) {
         featuredCollectionView.backgroundColor = .TODOYellow
-        //        } else {
-        //            featuredCollectionView.backgroundColor = .white
-        //        }
         featuredCollectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         featuredCollectionView.isScrollEnabled = true
         featuredCollectionView.showsHorizontalScrollIndicator = false
@@ -63,7 +55,7 @@ class FeaturedTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let featuredItem = homeVM.featuredItems[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UIConstant.Cell.FeaturedCollectionViewCell.rawValue, for: indexPath) as! FeaturedCollectionViewCell
-        cell.featured = featuredItem
+        cell.featuredCollectionViewViewModel = FeaturedCollectionViewViewModel(featuredItem: featuredItem)
         return cell
     }
     

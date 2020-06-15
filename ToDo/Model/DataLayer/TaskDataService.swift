@@ -42,7 +42,7 @@ class TaskDataService{
         }
         
         let fromPredicate = NSPredicate(format: "dateTime >= %@", dateFrom as NSDate)
-        let toPredicate = NSPredicate(format: "dateTime < %@", dateTo as! NSDate)
+        let toPredicate = NSPredicate(format: "dateTime < %@", dateTo as NSDate)
         let dateCoumpoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
         
         let taskFetchRequest = fetchRequest
@@ -99,7 +99,7 @@ class TaskDataService{
         let dateFrom = calender.startOfDay(for: date)
         let dateTo = calender.date(byAdding: .day, value: 1, to: dateFrom)!
         let fromPredicate = NSPredicate(format: "dateTime >= %@", dateFrom as NSDate)
-        let toPredicate = NSPredicate(format: "dateTime < %@", dateTo as! NSDate)
+        let toPredicate = NSPredicate(format: "dateTime < %@", dateTo as NSDate)
         let dateCoumpoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
         taskFetchRequest.predicate = dateCoumpoundPredicate
         

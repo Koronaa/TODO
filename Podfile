@@ -8,6 +8,7 @@ target 'ToDo' do
   # Pods for ToDo
   pod 'NotificationBannerSwift'
   pod 'RxSwift'
+  pod 'RxCocoa'
   
   
   target 'ToDoTests' do

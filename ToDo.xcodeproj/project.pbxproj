@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,10 @@
 		3D89257C24964BB100265B8E /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D89257B24964BB100265B8E /* UITextField.swift */; };
 		3DB63AEB249728A6004FD2B9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AEA249728A6004FD2B9 /* String.swift */; };
 		3DB63AED2497478F004FD2B9 /* TaskReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AEC2497478F004FD2B9 /* TaskReminderManager.swift */; };
+		3DB63AEF2497D323004FD2B9 /* FeaturedCollectionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AEE2497D323004FD2B9 /* FeaturedCollectionViewViewModel.swift */; };
+		3DB63AF12497D7F8004FD2B9 /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AF02497D7F8004FD2B9 /* Notification.Name.swift */; };
+		3DB63AF32497E963004FD2B9 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AF22497E963004FD2B9 /* Error.swift */; };
+		3DB63AF52497F185004FD2B9 /* CategoriesTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AF42497F185004FD2B9 /* CategoriesTableViewViewModel.swift */; };
 		3DC3F5C52491F9450050C61D /* Featured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C42491F9450050C61D /* Featured.swift */; };
 		3DC3F5C82491FA8C0050C61D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C72491FA8C0050C61D /* Date.swift */; };
 		3DC3F5CA2491FDA10050C61D /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3F5C92491FDA10050C61D /* UIHelper.swift */; };
@@ -120,6 +124,10 @@
 		3D89257B24964BB100265B8E /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		3DB63AEA249728A6004FD2B9 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		3DB63AEC2497478F004FD2B9 /* TaskReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskReminderManager.swift; sourceTree = "<group>"; };
+		3DB63AEE2497D323004FD2B9 /* FeaturedCollectionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCollectionViewViewModel.swift; sourceTree = "<group>"; };
+		3DB63AF02497D7F8004FD2B9 /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
+		3DB63AF22497E963004FD2B9 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		3DB63AF42497F185004FD2B9 /* CategoriesTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewViewModel.swift; sourceTree = "<group>"; };
 		3DC3F5C42491F9450050C61D /* Featured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Featured.swift; sourceTree = "<group>"; };
 		3DC3F5C72491FA8C0050C61D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		3DC3F5C92491FDA10050C61D /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
@@ -226,6 +234,8 @@
 		3D50BC732490F53500164866 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3DC3F5D12492023F0050C61D /* UIConstant.swift */,
+				3DC3F5C92491FDA10050C61D /* UIHelper.swift */,
 				3DF6E3222490B2CE00C3C50F /* Main.storyboard */,
 				3DF6E32A2490B2D000C3C50F /* LaunchScreen.storyboard */,
 				3D50BC772490F64C00164866 /* Home */,
@@ -283,6 +293,7 @@
 				3D50BC792490F6A200164866 /* FeaturedCollectionViewCell.swift */,
 				3D50BC7A2490F6A200164866 /* FeaturedCollectionViewCell.xib */,
 				3DC3F5CB2491FF0E0050C61D /* FeaturedTableViewCell.swift */,
+				3DB63AEE2497D323004FD2B9 /* FeaturedCollectionViewViewModel.swift */,
 			);
 			path = Featured;
 			sourceTree = "<group>";
@@ -349,6 +360,8 @@
 				3DE71671249349610084059A /* URL.swift */,
 				3D89257B24964BB100265B8E /* UITextField.swift */,
 				3DB63AEA249728A6004FD2B9 /* String.swift */,
+				3DB63AF02497D7F8004FD2B9 /* Notification.Name.swift */,
+				3DB63AF22497E963004FD2B9 /* Error.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -377,6 +390,7 @@
 			children = (
 				3DD3DCC12492714E000533C6 /* CategoriesTableViewCell.swift */,
 				3DD3DCC22492714E000533C6 /* CategoriesTableViewCell.xib */,
+				3DB63AF42497F185004FD2B9 /* CategoriesTableViewViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -437,8 +451,6 @@
 				3DF6E3512490B61300C3C50F /* Fonts */,
 				3D50BC742490F58D00164866 /* SupportingFiles */,
 				3D50BC732490F53500164866 /* UI */,
-				3DC3F5C92491FDA10050C61D /* UIHelper.swift */,
-				3DC3F5D12492023F0050C61D /* UIConstant.swift */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -507,7 +519,6 @@
 				3FCEA0932646C16170E5535C /* Pods-ToDoTests.debug.xcconfig */,
 				F4A4F7D75B61DBA454A67A2C /* Pods-ToDoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -784,6 +795,8 @@
 				3D50BC7B2490F6A200164866 /* FeaturedCollectionViewCell.swift in Sources */,
 				3D50BC6E2490CC9D00164866 /* QueryViewController.swift in Sources */,
 				3DF6E3502490B36F00C3C50F /* CustomLabel.swift in Sources */,
+				3DB63AEF2497D323004FD2B9 /* FeaturedCollectionViewViewModel.swift in Sources */,
+				3DB63AF52497F185004FD2B9 /* CategoriesTableViewViewModel.swift in Sources */,
 				3DD3DCBF249270EC000533C6 /* CategoriesViewModel.swift in Sources */,
 				3DD3DCB62492508F000533C6 /* Day.swift in Sources */,
 				3D50BC6C2490C9AC00164866 /* CustomButton.swift in Sources */,
@@ -800,6 +813,7 @@
 				3DEE9EED2494B75700AF44CC /* TaskDTO.swift in Sources */,
 				3DC3F5CC2491FF0E0050C61D /* FeaturedTableViewCell.swift in Sources */,
 				3D50BC872490FD2D00164866 /* TaskTableViewCell.swift in Sources */,
+				3DB63AF12497D7F8004FD2B9 /* Notification.Name.swift in Sources */,
 				3D89257C24964BB100265B8E /* UITextField.swift in Sources */,
 				3DD3DCBD249269EC000533C6 /* AddTaskViewModel.swift in Sources */,
 				3DC3F5C82491FA8C0050C61D /* Date.swift in Sources */,
@@ -809,6 +823,7 @@
 				3DEE9EF12494DAD500AF44CC /* TaskTypeViewModel.swift in Sources */,
 				3DE71672249349610084059A /* URL.swift in Sources */,
 				3D8925782495D3D600265B8E /* TranslationLayer.swift in Sources */,
+				3DB63AF32497E963004FD2B9 /* Error.swift in Sources */,
 				3DE7167424934D170084059A /* DataLayer.swift in Sources */,
 				3DE71678249364DF0084059A /* TaskDataService.swift in Sources */,
 				3DC3F5C52491F9450050C61D /* Featured.swift in Sources */,
