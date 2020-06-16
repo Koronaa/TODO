@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import RxRelay
+
 class CategoryDataService{
     
     private var fetchRequest:NSFetchRequest<Category>{
@@ -35,7 +36,7 @@ class CategoryDataService{
             context.rollback()
             return BehaviorRelay<(Bool,CustomError?)>(value: (false,CustomError(title: nil, message: error.localizedDescription)))
         }
-         return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
+        return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
     }
     
     func getCategory(for name:String,context:NSManagedObjectContext) -> Category?{

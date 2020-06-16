@@ -55,7 +55,6 @@ class HomeViewController: UIViewController {
     
     private func setupUI(){
         welcomeLabel.text = homeVM.title
-        
         self.tableView.register(FeaturedTableViewCell.self, forCellReuseIdentifier: UIConstant.Cell.FeaturedTableViewCell.rawValue)
         self.tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
     }
@@ -163,7 +162,6 @@ extension HomeViewController:FeaturedCollectionViewDelegate{
 
 //MARK: Notification
 extension HomeViewController{
-    
     @objc func onCategoriesChanged(_ notification:Notification){
         loadData()
     }

@@ -10,12 +10,10 @@ import Foundation
 class UIConstant{
     
     enum StoryBoardID:String{
-        
         case HomeVC = "homeVC"
         case AddTaskVC = "addTaskVC"
         case QueryVC = "queryVC"
         case CategoriesVC = "categoriesVC"
-        
     }
     
     enum StoryBoard:String{
@@ -30,7 +28,5 @@ class UIConstant{
         case CalenderCollectionViewCell = "calenderCVCell"
         case CategoriesCollectionViewCell = "categoriesCVCell"
         case CategoriesTableViewCell = "categoriesTVCell"
-        
     }
-    
 }

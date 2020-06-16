@@ -22,7 +22,6 @@ class CalenderCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
     private func setupUI(){
         UIHelper.circular(view: selectionIndicatorView)
         if calenderCollectionViewVM.isSelected{

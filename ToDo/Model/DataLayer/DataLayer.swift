@@ -65,7 +65,6 @@ class DataLayer{
         if unCategorizedTasks.count > 0{
             categoryInfo.append(CategoryInfo(name: nil, taskCount: unCategorizedTasks.count))
         }
-        
         return categoryInfo
     }
     
@@ -84,10 +83,4 @@ class DataLayer{
     func deleteCategory(category:Category) -> BehaviorRelay<(Bool,CustomError?)>{
         return categoryDataService.deleteCategory(for: category, context: context)
     }
-    
-    
-    
-    
-    
-    
 }

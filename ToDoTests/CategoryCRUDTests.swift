@@ -16,14 +16,14 @@ class CategoryCRUDTests: XCTestCase {
     
     var dataLayer:TestDataLayer!
     let bag = DisposeBag()
-
+    
     override func setUp() {
         createContainer { (container) in
             self.dataLayer = TestDataLayer(container: container)
         }
         
     }
-
+    
     override func tearDown() {
         dataLayer = nil
     }
@@ -38,25 +38,25 @@ class CategoryCRUDTests: XCTestCase {
     
     func testGetCategories(){
         dataLayer.addCategory(name: "Test").asObservable()
-        .subscribe(onNext: { (isAdded,_) in
-            let categories:[ToDo.Category] = self.dataLayer.getAllCategories()
-            XCTAssertNotNil(categories.first)
-            XCTAssertEqual(categories.first?.name, "Test")
-        }).disposed(by: bag)
+            .subscribe(onNext: { (isAdded,_) in
+                let categories:[ToDo.Category] = self.dataLayer.getAllCategories()
+                XCTAssertNotNil(categories.first)
+                XCTAssertEqual(categories.first?.name, "Test")
+            }).disposed(by: bag)
     }
     
     func testDeleteCategory(){
         dataLayer.addCategory(name: "Test").asObservable()
-        .subscribe(onNext: { (isAdded,error) in
-            self.testDeleteCategory(for: self.dataLayer.getAllCategories().first!)
-        }).disposed(by: bag)
+            .subscribe(onNext: { (isAdded,error) in
+                self.testDeleteCategory(for: self.dataLayer.getAllCategories().first!)
+            }).disposed(by: bag)
     }
     
     private func testDeleteCategory(for category:ToDo.Category){
         dataLayer.deleteCategory(category: category).asObservable()
             .subscribe(onNext: { (isDeleted,error) in
-                 XCTAssertTrue(isDeleted)
-                 XCTAssertNil(error)
+                XCTAssertTrue(isDeleted)
+                XCTAssertNil(error)
                 let categories:[ToDo.Category] = self.dataLayer.getAllCategories()
                 XCTAssertNil(categories.first)
                 XCTAssertEqual(categories.count, 0)
@@ -65,9 +65,9 @@ class CategoryCRUDTests: XCTestCase {
     
     func testCategoryByName(){
         dataLayer.addCategory(name: "Test").asObservable()
-        .subscribe(onNext: { (isAdded,error) in
-            XCTAssertNotNil(self.dataLayer.getCategoryByName(name: "Test"))
-        }).disposed(by: bag)
+            .subscribe(onNext: { (isAdded,error) in
+                XCTAssertNotNil(self.dataLayer.getCategoryByName(name: "Test"))
+            }).disposed(by: bag)
     }
     
     func testCategoryByNilName(){
@@ -83,5 +83,5 @@ class CategoryCRUDTests: XCTestCase {
                 XCTAssertEqual(categoryInfo.first!.name, "Test")
                 XCTAssertEqual(categoryInfo.first!.taskCount, 0)
             }).disposed(by: bag)
-        }
+    }
 }

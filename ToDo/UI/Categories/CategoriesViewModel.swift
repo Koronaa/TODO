@@ -37,5 +37,4 @@ class CategoriesViewModel{
     func deleteCategory() -> BehaviorRelay<(Bool,CustomError?)>{
         return modelLayer.dataLayer.deleteCategory(category: selectedCategory)
     }
-    
 }

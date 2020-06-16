@@ -112,8 +112,6 @@ class AddTaskViewController: UIViewController {
         pickerViewTitleLabel.text = datePicker.date.formatted
     }
     
-    
-    
     @IBAction func remonderSwitchValueChanged(_ sender: Any) {
         addTaskVM.isReminder = reminderSwitch.isOn
     }

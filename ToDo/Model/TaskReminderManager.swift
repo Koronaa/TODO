@@ -100,6 +100,4 @@ class TaskReminderManager:NSObject{
         }
         return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
     }
-    
-    
 }

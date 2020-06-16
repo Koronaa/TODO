@@ -27,7 +27,4 @@ class FeaturedCollectionViewViewModel {
     var itemImage:UIImage?{
         return featuredItem.image
     }
-    
-    
-    
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class CategoriesTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var categoryNameLabel: BodyLabel!
     
@@ -23,5 +23,4 @@ class CategoriesTableViewCell: UITableViewCell {
     private func setupUI(){
         UIHelper.addCornerRadius(to: holderView)
     }
-    
 }

@@ -23,7 +23,6 @@ class TaskTableViewCell: UITableViewCell {
     }
     
     private func setupUI(){
-//        UIHelper.addShadow(to: backgroundHolerView)
         UIHelper.addCornerRadius(to: backgroundHolerView)
         dateTimeLabel.font = UIFont(name: "Montserrat-Thin", size: 11)
     }

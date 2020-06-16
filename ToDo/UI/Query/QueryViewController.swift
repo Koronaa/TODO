@@ -29,7 +29,6 @@ class QueryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupData()
         tableView.delegate = self
         tableView.dataSource = self

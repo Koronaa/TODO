@@ -56,7 +56,7 @@ class AddTaskViewModelTests: XCTestCase {
         sut.selectedCategory = CategoryDTO(name: "Test", isSelected: true)
         sut.addTask().asObservable().subscribe(onNext: { (isAdded,error) in
             XCTAssertTrue(isAdded)
-//            XCTAssertNil(error)
+            //            XCTAssertNil(error)
         }).disposed(by: bag)
     }
     
@@ -65,8 +65,6 @@ class AddTaskViewModelTests: XCTestCase {
         sut.getTranslatedCategories()
         XCTAssertEqual(sut.translatedCategories.value.count, 1)
     }
-    
-    
     
     func testUpdateTask(){
         addCategory()
@@ -79,10 +77,9 @@ class AddTaskViewModelTests: XCTestCase {
         sut.selectedCategory = CategoryDTO(name: "Test", isSelected: true)
         sut.updateTask().subscribe(onNext: { (isUpdated,error) in
             XCTAssertTrue(isUpdated)
-//            XCTAssertNil(error)
+            //            XCTAssertNil(error)
         }).disposed(by: bag)
     }
-    
     
     func testDeleteTask(){
         addCategory()
@@ -94,8 +91,4 @@ class AddTaskViewModelTests: XCTestCase {
         }).disposed(by: bag)
         
     }
-    
-    
-    
-    
 }

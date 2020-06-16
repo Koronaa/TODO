@@ -9,12 +9,6 @@
 import UIKit
 import NotificationBannerSwift
 
-enum BannerType:String{
-    case ERROR = "ERROR"
-    case WARNING = "WARNING"
-    case NORMAL = "NORMAL"
-}
-
 class UIHelper{
     
     static private func makeViewController(storyBoardName:String, viewControllerName:String) -> UIViewController {
@@ -50,13 +44,13 @@ class UIHelper{
     }
     
     static func disableView(view:UIView){
-            view.isUserInteractionEnabled = false
-            view.alpha = 0.5
+        view.isUserInteractionEnabled = false
+        view.alpha = 0.5
     }
     
     static func enableView(view:UIView){
-            view.isUserInteractionEnabled = true
-            view.alpha = 1.0
+        view.isUserInteractionEnabled = true
+        view.alpha = 1.0
     }
     
     static func circular(view:UIView,devider:CGFloat = 2){
@@ -67,22 +61,10 @@ class UIHelper{
         view.clipsToBounds = true
     }
     
-    static func makeBanner(error:CustomError,type:BannerType = BannerType.ERROR){
+    static func makeBanner(error:CustomError){
         DispatchQueue.main.async {
-            var bannerType:BannerStyle = .danger
-            var bannerTitle:String?
-            switch type{
-            case .ERROR:
-                bannerType = .danger
-                bannerTitle = "Error!"
-            case .WARNING:
-                bannerType = .warning
-                bannerTitle = "Warning!"
-            case .NORMAL:
-                bannerTitle = "Success!"
-                bannerType = .success
-            }
-            let banner = GrowingNotificationBanner(title: error.title == nil ? bannerTitle : error.title, subtitle: error.message, style: bannerType)
+            let bannerTitle:String = "Error!"
+            let banner = GrowingNotificationBanner(title: error.title == nil ? bannerTitle : error.title, subtitle: error.message, style: .danger)
             banner.show()
         }
     }

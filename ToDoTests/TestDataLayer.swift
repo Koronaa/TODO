@@ -6,16 +6,13 @@
 //  Copyright © 2020 Sajith Konara. All rights reserved.
 //
 
-import Foundation
-import CoreData
-import RxRelay
 
+import CoreData
 @testable import ToDo
 
 class TestDataLayer:DataLayer{
     
     var container:NSPersistentContainer
-    
     
     init(container:NSPersistentContainer) {
         self.container = container
@@ -25,4 +22,3 @@ class TestDataLayer:DataLayer{
         return container.viewContext
     }
 }
-

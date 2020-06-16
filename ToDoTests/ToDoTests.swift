@@ -34,4 +34,3 @@ func createContainer(onCompleted:@escaping (_ container:NSPersistentContainer)->
         onCompleted(container)
     }
 }
-

@@ -49,6 +49,4 @@ class HomeViewModel{
             title = "Hey, You've got \(todysTaskCount.description) tasks today."
         }
     }
-    
-    
 }

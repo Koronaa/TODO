@@ -51,7 +51,6 @@ class AddTaskViewModel{
         }
     }
     
-    
     func addTask() -> BehaviorRelay<(Bool,CustomError?)>{
         var isTaskAdded:Bool  = false
         var isReminderAdded:Bool = false
@@ -72,15 +71,13 @@ class AddTaskViewModel{
             }).disposed(by: bag)
         
         //Priority goes for task
-            if isTaskAdded && isReminderAdded{
-                return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
-            }else if isTaskAdded && !isReminderAdded{
-                return BehaviorRelay<(Bool,CustomError?)>(value: (true,receivedError))
-            }else{
-                return BehaviorRelay<(Bool,CustomError?)>(value: (false,receivedError))
-            }
-        
-        
+        if isTaskAdded && isReminderAdded{
+            return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
+        }else if isTaskAdded && !isReminderAdded{
+            return BehaviorRelay<(Bool,CustomError?)>(value: (true,receivedError))
+        }else{
+            return BehaviorRelay<(Bool,CustomError?)>(value: (false,receivedError))
+        }
     }
     
     func getTranslatedCategories(){
@@ -88,7 +85,6 @@ class AddTaskViewModel{
             .subscribe(onNext: { translatedCategories in
                 self.translatedCategories.accept(translatedCategories)
             }).disposed(by: bag)
-        
     }
     
     func updateData(from task:Task){
@@ -134,14 +130,13 @@ class AddTaskViewModel{
             }).disposed(by: bag)
         
         
-            if isTaskDeleted && isReminderDeleted{
-                return BehaviorRelay<(Bool,CustomError?)>(value: (true, nil))
-            }else if isTaskDeleted && !isReminderDeleted{
-                return BehaviorRelay<(Bool,CustomError?)>(value: (true, receivedError))
-            }else{
-                return BehaviorRelay<(Bool,CustomError?)>(value: (false, receivedError))
-            }
-        
+        if isTaskDeleted && isReminderDeleted{
+            return BehaviorRelay<(Bool,CustomError?)>(value: (true, nil))
+        }else if isTaskDeleted && !isReminderDeleted{
+            return BehaviorRelay<(Bool,CustomError?)>(value: (true, receivedError))
+        }else{
+            return BehaviorRelay<(Bool,CustomError?)>(value: (false, receivedError))
+        }
     }
     
     func updateTask() -> BehaviorRelay<(Bool,CustomError?)>{
@@ -166,18 +161,18 @@ class AddTaskViewModel{
                                 }).disposed(by: self.bag)
                         }else{
                             self.deleteReminder(for: self.currentTask!).asObservable()
-                            .subscribe(onNext: { (isReminderDeleted,error) in
-                                reminderUpdated = isReminderDeleted
-                                receivedError = error
-                            }).disposed(by: self.bag)
+                                .subscribe(onNext: { (isReminderDeleted,error) in
+                                    reminderUpdated = isReminderDeleted
+                                    receivedError = error
+                                }).disposed(by: self.bag)
                         }
                     }else{
                         if self.isReminder{
                             self.addReminder(for: updatedTask).asObservable()
-                            .subscribe(onNext: { (isReminderCreated,error) in
-                                reminderUpdated = isReminderCreated
-                                receivedError = error
-                            }).disposed(by: self.bag)
+                                .subscribe(onNext: { (isReminderCreated,error) in
+                                    reminderUpdated = isReminderCreated
+                                    receivedError = error
+                                }).disposed(by: self.bag)
                         }
                     }
                 }
@@ -191,8 +186,6 @@ class AddTaskViewModel{
         }else{
             return BehaviorRelay<(Bool,CustomError?)>(value: (false, receivedError))
         }
-        
-
     }
     
     //MARK: Reminder Manager

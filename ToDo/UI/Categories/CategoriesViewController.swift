@@ -93,7 +93,7 @@ extension CategoriesViewController:UITableViewDelegate,UITableViewDataSource{
                         NotificationCenter.default.post(Notification(name: .categoriesUpdated))
                         self?.loadData()
                     }else{
-                        UIHelper.makeBanner(error: error!, type: .ERROR)
+                        UIHelper.makeBanner(error: error!)
                     }
                 }).disposed(by: bag)
         }

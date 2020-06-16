@@ -100,7 +100,4 @@ class QueryViewModelTests: XCTestCase {
         XCTAssertTrue(sut.tasks.value.count == 1)
         XCTAssertEqual(sut.tasks.value.first!.name, "Test Task")
     }
-    
-    
-    
 }
