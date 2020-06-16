@@ -55,7 +55,6 @@
 		3DD3DCBF249270EC000533C6 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCBE249270EC000533C6 /* CategoriesViewModel.swift */; };
 		3DD3DCC32492714E000533C6 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3DCC12492714E000533C6 /* CategoriesTableViewCell.swift */; };
 		3DD3DCC42492714E000533C6 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3DCC22492714E000533C6 /* CategoriesTableViewCell.xib */; };
-		3DE71670249348F40084059A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE7166F249348F40084059A /* CoreDataStack.swift */; };
 		3DE7167424934D170084059A /* DataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE7167324934D170084059A /* DataLayer.swift */; };
 		3DE71676249353000084059A /* CategoryDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE71675249353000084059A /* CategoryDataService.swift */; };
 		3DE71678249364DF0084059A /* TaskDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE71677249364DF0084059A /* TaskDataService.swift */; };
@@ -142,7 +141,6 @@
 		3DD3DCBE249270EC000533C6 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		3DD3DCC12492714E000533C6 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		3DD3DCC22492714E000533C6 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
-		3DE7166F249348F40084059A /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		3DE7167324934D170084059A /* DataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLayer.swift; sourceTree = "<group>"; };
 		3DE71675249353000084059A /* CategoryDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDataService.swift; sourceTree = "<group>"; };
 		3DE71677249364DF0084059A /* TaskDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDataService.swift; sourceTree = "<group>"; };
@@ -369,7 +367,6 @@
 			isa = PBXGroup;
 			children = (
 				3DF6E3252490B2CE00C3C50F /* ToDo.xcdatamodeld */,
-				3DE7166F249348F40084059A /* CoreDataStack.swift */,
 				3DE7167324934D170084059A /* DataLayer.swift */,
 				3DE71675249353000084059A /* CategoryDataService.swift */,
 				3DE71677249364DF0084059A /* TaskDataService.swift */,
@@ -666,7 +663,6 @@
 				3DD3DCBF249270EC000533C6 /* CategoriesViewModel.swift in Sources */,
 				3DD3DCB62492508F000533C6 /* Day.swift in Sources */,
 				3D50BC6C2490C9AC00164866 /* CustomButton.swift in Sources */,
-				3DE71670249348F40084059A /* CoreDataStack.swift in Sources */,
 				3DC3F5D22492023F0050C61D /* UIConstant.swift in Sources */,
 				3D89257A24964A9300265B8E /* ValidationManager.swift in Sources */,
 				3DD3DCBA249267F9000533C6 /* CategoriesCollectionViewCell.swift in Sources */,
@@ -799,7 +795,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -853,7 +849,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -15,9 +15,9 @@ import RxRelay
 class ToDoTests: XCTestCase {
     
     func testManagedObjectContext(){
-        createMainContext(completion: { (container) in
-            XCTAssertNotNil(container)
-        })
+        createContainer { (container) in
+            XCTAssertNotNil(container.viewContext)
+        }
     }
 }
 
