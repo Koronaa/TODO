@@ -11,7 +11,7 @@ import RxRelay
 
 class ModelLayer{
     
-    let dataLayer = DataLayer()
+    var dataLayer = DataLayer()
     let tranlationLater = TranslationLayer()
     let taskReminderManager = TaskReminderManager()
     

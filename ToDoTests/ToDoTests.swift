@@ -7,28 +7,31 @@
 //
 
 import XCTest
+import CoreData
+import RxRelay
+
 @testable import ToDo
 
 class ToDoTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func testManagedObjectContext(){
+        createMainContext(completion: { (container) in
+            XCTAssertNotNil(container)
+        })
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
+
+func createContainer(onCompleted:@escaping (_ container:NSPersistentContainer)->Void){
+    let container = NSPersistentContainer(name: "ToDo")
+    let description = NSPersistentStoreDescription()
+    description.type = NSInMemoryStoreType
+    description.shouldAddStoreAsynchronously = false
+    container.persistentStoreDescriptions = [description]
+    container.loadPersistentStores { (description, error) in
+        if let e = error{
+            fatalError(e.localizedDescription)
+        }
+        onCompleted(container)
+    }
+}
+

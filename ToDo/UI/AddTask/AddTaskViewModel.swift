@@ -41,7 +41,6 @@ class AddTaskViewModel{
         return translatedCategories.value.count
     }
     
-    
     func setupDataForView(){
         if UIType == .CREATE{
             headerLabel = "Add Task"
