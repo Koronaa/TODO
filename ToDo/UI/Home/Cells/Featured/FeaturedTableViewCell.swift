@@ -48,7 +48,6 @@ class FeaturedTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollecti
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(homeVM.featuredItems.count)
         return homeVM.featuredItems.count
     }
     
