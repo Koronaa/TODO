@@ -52,14 +52,35 @@ class AddTaskViewModel{
         }
     }
     
-     
-    func addTask(){
+    
+    func addTask() -> BehaviorRelay<(Bool,CustomError?)>{
+        var isTaskAdded:Bool  = false
+        var isReminderAdded:Bool = false
+        var receivedError:CustomError?
         let taskDTO = TaskDTO(name: taskTitle, isFavourite: isFavourite, isReminder: isReminder, dateTime: selectedDate ?? Date())
-        modelLayer.addTask(for: taskDTO, categoryDTO: selectedCategory)
+        modelLayer.addTask(for: taskDTO, categoryDTO: selectedCategory).asObservable()
+            .subscribe(onNext: { (isAdded,error) in
+                receivedError = error
+                isTaskAdded = isAdded
+                if isAdded{
+                    if self.isReminder{
+                        self.addReminder(for: taskDTO).asObservable().subscribe(onNext: { (isAdded,error) in
+                            isReminderAdded = isAdded
+                            receivedError = error
+                        }).disposed(by: self.bag)
+                    }
+                }
+            }).disposed(by: bag)
         
-        if isReminder{
-            addReminder(for: taskDTO)
-        }
+        //Priority goes for task
+            if isTaskAdded && isReminderAdded{
+                return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
+            }else if isTaskAdded && !isReminderAdded{
+                return BehaviorRelay<(Bool,CustomError?)>(value: (true,receivedError))
+            }else{
+                return BehaviorRelay<(Bool,CustomError?)>(value: (false,receivedError))
+            }
+        
         
     }
     
@@ -92,23 +113,87 @@ class AddTaskViewModel{
         }
     }
     
-    func deleteTask(){
-        modelLayer.dataLayer.deleteTask(task: currentTask!)
+    func deleteTask() -> BehaviorRelay<(Bool,CustomError?)>{
+        var isTaskDeleted:Bool  = false
+        var isReminderDeleted:Bool = false
+        var receivedError:CustomError?
+        let wasTaskAReminder:Bool = currentTask!.isReminder
         
-        if currentTask!.isReminder{
-            deleteReminder(for: currentTask!)
-        }
+        modelLayer.dataLayer.deleteTask(task: currentTask!).asObservable()
+            .subscribe(onNext: { (taskDeleted,error) in
+                isTaskDeleted = taskDeleted
+                receivedError = error
+                if taskDeleted{
+                    if wasTaskAReminder{
+                        self.deleteReminder(for: self.currentTask!).asObservable()
+                            .subscribe(onNext: { (reminderDeleted,error) in
+                                isReminderDeleted = taskDeleted
+                                receivedError = error
+                            }).disposed(by: self.bag)
+                    }
+                }
+            }).disposed(by: bag)
+        
+        
+            if isTaskDeleted && isReminderDeleted{
+                return BehaviorRelay<(Bool,CustomError?)>(value: (true, nil))
+            }else if isTaskDeleted && !isReminderDeleted{
+                return BehaviorRelay<(Bool,CustomError?)>(value: (true, receivedError))
+            }else{
+                return BehaviorRelay<(Bool,CustomError?)>(value: (false, receivedError))
+            }
         
     }
     
-    func updateTask(){
+    func updateTask() -> BehaviorRelay<(Bool,CustomError?)>{
+        var taskUpdated:Bool  = false
+        var reminderUpdated:Bool = false
+        var receivedError:CustomError?
         let updatedCategory = modelLayer.dataLayer.getCategoryByName(name: selectedCategory?.name)
         let updatedTask = TaskDTO(name: taskTitle, isFavourite: isFavourite, isReminder: isReminder, dateTime: selectedDate ?? Date())
-        modelLayer.dataLayer.updateTask(currentTask: currentTask!, updatedTask: updatedTask, updatedCategory: updatedCategory)
+        let taskWasAReminder:Bool = currentTask!.isReminder
         
-        if isReminder{
-            updateReminder(for: currentTask!, updatedTask: updatedTask)
+        modelLayer.dataLayer.updateTask(currentTask: currentTask!, updatedTask: updatedTask, updatedCategory: updatedCategory).asObservable()
+            .subscribe(onNext: { (isTaskUpdated,error) in
+                taskUpdated = isTaskUpdated
+                receivedError = error
+                if isTaskUpdated{
+                    if taskWasAReminder{
+                        if self.isReminder{
+                            self.updateReminder(for: self.currentTask!, updatedTask: updatedTask).asObservable()
+                                .subscribe(onNext: { (isReminderUpdated,error) in
+                                    reminderUpdated = isReminderUpdated
+                                    receivedError = error
+                                }).disposed(by: self.bag)
+                        }else{
+                            self.deleteReminder(for: self.currentTask!).asObservable()
+                            .subscribe(onNext: { (isReminderDeleted,error) in
+                                reminderUpdated = isReminderDeleted
+                                receivedError = error
+                            }).disposed(by: self.bag)
+                        }
+                    }else{
+                        if self.isReminder{
+                            self.addReminder(for: updatedTask).asObservable()
+                            .subscribe(onNext: { (isReminderCreated,error) in
+                                reminderUpdated = isReminderCreated
+                                receivedError = error
+                            }).disposed(by: self.bag)
+                        }
+                    }
+                }
+            }).disposed(by: bag)
+        
+        
+        if taskUpdated && reminderUpdated{
+            return BehaviorRelay<(Bool,CustomError?)>(value: (true, nil))
+        }else if taskUpdated && !reminderUpdated{
+            return BehaviorRelay<(Bool,CustomError?)>(value: (true, receivedError))
+        }else{
+            return BehaviorRelay<(Bool,CustomError?)>(value: (false, receivedError))
         }
+        
+
     }
     
     //MARK: Reminder Manager
@@ -117,7 +202,7 @@ class AddTaskViewModel{
         modelLayer.taskReminderManager.fetchAllReminders()
     }
     
-    private func addReminder(for taskDTO:TaskDTO){
+    private func addReminder(for taskDTO:TaskDTO) -> BehaviorRelay<(Bool,CustomError?)>{
         modelLayer.taskReminderManager.addReminder(for: taskDTO)
     }
     
@@ -131,15 +216,17 @@ class AddTaskViewModel{
         }
     }
     
-    private func deleteReminder(for currentTask:Task){
+    private func deleteReminder(for currentTask:Task) -> BehaviorRelay<(Bool,CustomError?)>{
         if let reminder = getReminder(for: currentTask){
-            modelLayer.taskReminderManager.removeReminder(reminder: reminder)
+            return modelLayer.taskReminderManager.removeReminder(reminder: reminder)
         }
+        return BehaviorRelay<(Bool,CustomError?)>(value: (false,CustomError(title: "Reminder Error", message: "Couldn't find any reminders for this specific task")))
     }
     
-    private func updateReminder(for currentTask:Task,updatedTask:TaskDTO){
+    private func updateReminder(for currentTask:Task,updatedTask:TaskDTO) -> BehaviorRelay<(Bool,CustomError?)>{
         if let reminder = getReminder(for: currentTask){
-            modelLayer.taskReminderManager.updateReminder(fro: reminder, updatedTask: updatedTask)
+            return modelLayer.taskReminderManager.updateReminder(fro: reminder, updatedTask: updatedTask)
         }
+        return BehaviorRelay<(Bool,CustomError?)>(value: (false,CustomError(title: "Reminder Error", message: "Couldn't find any reminders for this specific task")))
     }
 }

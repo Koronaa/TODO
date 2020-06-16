@@ -21,6 +21,8 @@
 		3D8925782495D3D600265B8E /* TranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8925772495D3D600265B8E /* TranslationLayer.swift */; };
 		3D89257A24964A9300265B8E /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D89257924964A9300265B8E /* ValidationManager.swift */; };
 		3D89257C24964BB100265B8E /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D89257B24964BB100265B8E /* UITextField.swift */; };
+		3D8C92F4249888D300A17385 /* TaskTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C92F3249888D300A17385 /* TaskTableViewViewModel.swift */; };
+		3D8C92F6249889BB00A17385 /* CalenderCollectionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C92F5249889BB00A17385 /* CalenderCollectionViewViewModel.swift */; };
 		3DB63AEB249728A6004FD2B9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AEA249728A6004FD2B9 /* String.swift */; };
 		3DB63AED2497478F004FD2B9 /* TaskReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AEC2497478F004FD2B9 /* TaskReminderManager.swift */; };
 		3DB63AEF2497D323004FD2B9 /* FeaturedCollectionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB63AEE2497D323004FD2B9 /* FeaturedCollectionViewViewModel.swift */; };
@@ -122,6 +124,8 @@
 		3D8925772495D3D600265B8E /* TranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLayer.swift; sourceTree = "<group>"; };
 		3D89257924964A9300265B8E /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		3D89257B24964BB100265B8E /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		3D8C92F3249888D300A17385 /* TaskTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewViewModel.swift; sourceTree = "<group>"; };
+		3D8C92F5249889BB00A17385 /* CalenderCollectionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderCollectionViewViewModel.swift; sourceTree = "<group>"; };
 		3DB63AEA249728A6004FD2B9 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		3DB63AEC2497478F004FD2B9 /* TaskReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskReminderManager.swift; sourceTree = "<group>"; };
 		3DB63AEE2497D323004FD2B9 /* FeaturedCollectionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCollectionViewViewModel.swift; sourceTree = "<group>"; };
@@ -323,8 +327,10 @@
 			children = (
 				3D50BC852490FD2D00164866 /* TaskTableViewCell.swift */,
 				3D50BC862490FD2D00164866 /* TaskTableViewCell.xib */,
+				3D8C92F3249888D300A17385 /* TaskTableViewViewModel.swift */,
 				3DD3DCB124924E6B000533C6 /* CalenderCollectionViewCell.swift */,
 				3DD3DCB224924E6B000533C6 /* CalenderCollectionViewCell.xib */,
+				3D8C92F5249889BB00A17385 /* CalenderCollectionViewViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -805,8 +811,10 @@
 				3D89257A24964A9300265B8E /* ValidationManager.swift in Sources */,
 				3DD3DCBA249267F9000533C6 /* CategoriesCollectionViewCell.swift in Sources */,
 				3DF6E31D2490B2CE00C3C50F /* AppDelegate.swift in Sources */,
+				3D8C92F6249889BB00A17385 /* CalenderCollectionViewViewModel.swift in Sources */,
 				3DD3DCB0249247FD000533C6 /* QueryViewModel.swift in Sources */,
 				3DEE9EEF2494DA0200AF44CC /* CategoryInfo.swift in Sources */,
+				3D8C92F4249888D300A17385 /* TaskTableViewViewModel.swift in Sources */,
 				3DF6E31F2490B2CE00C3C50F /* SceneDelegate.swift in Sources */,
 				3DC3F5CA2491FDA10050C61D /* UIHelper.swift in Sources */,
 				3DC3F5D424920B8D0050C61D /* Category+CoreDataClass.swift in Sources */,

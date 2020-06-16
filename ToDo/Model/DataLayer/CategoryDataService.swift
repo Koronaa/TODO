@@ -32,9 +32,8 @@ class CategoryDataService{
         do{
             try context.save()
         }catch{
-            print(error.localizedDescription)
             context.rollback()
-            return BehaviorRelay<(Bool,CustomError?)>(value: (false,CustomError(title: "Error", message: error.localizedDescription)))
+            return BehaviorRelay<(Bool,CustomError?)>(value: (false,CustomError(title: nil, message: error.localizedDescription)))
         }
          return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
     }

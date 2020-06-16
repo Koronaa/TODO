@@ -128,8 +128,17 @@ class AddTaskViewController: UIViewController {
     @IBAction func deleteButtonOnTapped(_ sender: Any) {
         let deleteAlertController = UIAlertController(title: "Delete Task", message: "Are you sure you want to delete?", preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
-            self.addTaskVM.deleteTask()
-            self.dismiss(animated: true, completion: nil)
+            self.addTaskVM.deleteTask().asObservable()
+                .subscribe(onNext: { (isTaskDeleted,error) in
+                    if isTaskDeleted{
+                        NotificationCenter.default.post(Notification(name: .tasksUpdated))
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    if let e = error{
+                        UIHelper.makeBanner(error: e)
+                    }
+                }).disposed(by: self.bag)
+            
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         deleteAlertController.addAction(cancelAction)
@@ -144,12 +153,29 @@ class AddTaskViewController: UIViewController {
     @IBAction func addTaskButtonOnTapped(_ sender: Any) {
         addTaskVM.taskTitle = taskNameTextField.text!
         if addTaskVM.UIType == .CREATE{
-            addTaskVM.addTask()
+            addTaskVM.addTask().asObservable()
+                .subscribe(onNext: { (isTaskAdded,error) in
+                    if isTaskAdded{
+                        NotificationCenter.default.post(Notification(name: .tasksUpdated))
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    if let e = error{
+                        UIHelper.makeBanner(error: e)
+                    }
+                    
+                }).disposed(by: bag)
         }else{
-            addTaskVM.updateTask()
+            addTaskVM.updateTask().asObservable()
+                .subscribe(onNext: { (isTaskUpdated,error) in
+                    if isTaskUpdated{
+                        NotificationCenter.default.post(Notification(name: .tasksUpdated))
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    if let e = error{
+                        UIHelper.makeBanner(error: e)
+                    }
+                }).disposed(by: bag)
         }
-        NotificationCenter.default.post(Notification(name: .tasksUpdated))
-        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func showPickerView(){

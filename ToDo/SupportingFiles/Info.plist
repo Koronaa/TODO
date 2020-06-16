@@ -69,6 +69,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSRemindersUsageDescription</key>
-	<string>Allow access to reminders in order to save tasks</string>
+	<string>Allow access to reminders to save tasks as reminders in your calender</string>
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
 </dict>
 </plist>

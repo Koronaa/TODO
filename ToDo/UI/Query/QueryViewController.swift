@@ -40,6 +40,8 @@ class QueryViewController: UIViewController {
         setupUI()
         setObservable()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(onTasksChanged(_:)), name: .tasksUpdated, object: nil)
+        
     }
     
     private func setupData(){
@@ -115,7 +117,9 @@ class QueryViewController: UIViewController {
         self.present(addTaskModalVC, animated: true, completion: nil)
     }
     
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .tasksUpdated, object: nil)
+    }
 }
 
 extension QueryViewController:UITableViewDelegate,UITableViewDataSource{
@@ -127,7 +131,7 @@ extension QueryViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let task = queryVM.tasks.value[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: UIConstant.Cell.TaskTableViewCell.rawValue, for: indexPath) as! TaskTableViewCell
-        cell.task = task
+        cell.taskTableViewVM = TaskTableViewViewModel(task: task)
         return cell
     }
     
@@ -153,7 +157,7 @@ extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let day = queryVM.days.value[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UIConstant.Cell.CalenderCollectionViewCell.rawValue, for: indexPath) as! CalenderCollectionViewCell
-        cell.day = day
+        cell.calenderCollectionViewVM = CalenderCollectionViewViewModel(day: day)
         return cell
     }
     
@@ -176,8 +180,8 @@ extension QueryViewController:UICollectionViewDelegate,UICollectionViewDataSourc
 }
 
 extension QueryViewController{
-    func taskUpdated() {
+    
+    @objc func onTasksChanged(_ notification:Notification){
         setupData()
-        self.tableView.reloadData()
     }
 }

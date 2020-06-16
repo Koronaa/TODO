@@ -32,9 +32,9 @@ class ModelLayer{
         return BehaviorRelay<[CategoryInfo]>(value: dataLayer.getCategoryInfo())
     }
     
-    func addTask(for taskDTO:TaskDTO,categoryDTO:CategoryDTO?){
+    func addTask(for taskDTO:TaskDTO,categoryDTO:CategoryDTO?) -> BehaviorRelay<(Bool,CustomError?)>{
         let category = dataLayer.getCategoryByName(name: categoryDTO?.name)
-        dataLayer.addTask(for: taskDTO, category: category)
+        return dataLayer.addTask(for: taskDTO, category: category)
     }
     
     func deleteCategory(category:Category) -> BehaviorRelay<(Bool,CustomError?)>{

@@ -14,11 +14,11 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var taskLabel: BodyLabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
     
-    var task:Task!{
+    var taskTableViewVM:TaskTableViewViewModel!{
         didSet{
             setupUI()
-            taskLabel.text = task.name
-            dateTimeLabel.text = task.dateTime.formatted
+            taskLabel.text = taskTableViewVM.taskName
+            dateTimeLabel.text = taskTableViewVM.dateString
         }
     }
     

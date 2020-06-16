@@ -27,19 +27,19 @@ class DataLayer{
         return taskDataService.getFeaturedTasks(for: context, for: type,isSortingEnabled:isSortingEnabled,sortType:sortType)
     }
     
-    func addTask(for taskDTO:TaskDTO,category:Category?){
-        taskDataService.addTask(taskDTO: taskDTO, category: category, for: context)
+    func addTask(for taskDTO:TaskDTO,category:Category?) -> BehaviorRelay<(Bool,CustomError?)>{
+        return taskDataService.addTask(taskDTO: taskDTO, category: category, for: context)
     }
     
     func getTasksForCategory(category:Category?,isSortingEnabled:Bool,sortType:SortType) -> [Task]{
         return taskDataService.getTasks(for: category, using: context,isSortingEnabled:isSortingEnabled,sortType:sortType)
     }
     
-    func deleteTask(task:Task){
+    func deleteTask(task:Task) -> BehaviorRelay<(Bool,CustomError?)>{
         taskDataService.deleteTask(task: task, using: context)
     }
     
-    func updateTask(currentTask:Task,updatedTask:TaskDTO,updatedCategory:Category?){
+    func updateTask(currentTask:Task,updatedTask:TaskDTO,updatedCategory:Category?) -> BehaviorRelay<(Bool,CustomError?)>{
         taskDataService.updateTask(task: currentTask, updatedCategory: updatedCategory, updatedTask: updatedTask, using: context)
     }
     

@@ -8,8 +8,7 @@
 
 import Foundation
 import CoreData
-
-
+import RxRelay
 
 class TaskDataService{
     
@@ -122,7 +121,7 @@ class TaskDataService{
         }
     }
     
-    func addTask(taskDTO:TaskDTO,category:Category?,for context:NSManagedObjectContext){
+    func addTask(taskDTO:TaskDTO,category:Category?,for context:NSManagedObjectContext) -> BehaviorRelay<(Bool,CustomError?)>{
         let newTask = NSEntityDescription.insertNewObject(forEntityName: Task.entityName, into: context) as! Task
         newTask.name = taskDTO.name
         newTask.isFavourite = taskDTO.isFavourite
@@ -132,9 +131,10 @@ class TaskDataService{
         do{
             try context.save()
         }catch{
-            print(error.localizedDescription)
             context.rollback()
+            return BehaviorRelay<(Bool,CustomError?)>(value: (false,CustomError(title: nil, message: error.localizedDescription)))
         }
+        return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
     }
     
     func getTasks(for category:Category?,using context:NSManagedObjectContext,isSortingEnabled:Bool,sortType:SortType)->[Task]{
@@ -177,7 +177,7 @@ class TaskDataService{
         }
     }
     
-    func deleteTask(task:Task,using context:NSManagedObjectContext){
+    func deleteTask(task:Task,using context:NSManagedObjectContext) -> BehaviorRelay<(Bool,CustomError?)>{
         let deleteFetchRquest = fetchRequest
         deleteFetchRquest.predicate = NSPredicate(format: "name = %@ AND dateTime = %@", task.name,task.dateTime as CVarArg)
         
@@ -187,13 +187,13 @@ class TaskDataService{
                 try context.save()
             }
         }catch{
-            print(error.localizedDescription)
             context.rollback()
+            return BehaviorRelay<(Bool,CustomError?)>(value: (false,CustomError(title: nil, message: error.localizedDescription)))
         }
-        
+        return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
     }
     
-    func updateTask(task:Task,updatedCategory:Category?,updatedTask:TaskDTO,using context:NSManagedObjectContext){
+    func updateTask(task:Task,updatedCategory:Category?,updatedTask:TaskDTO,using context:NSManagedObjectContext) -> BehaviorRelay<(Bool,CustomError?)>{
         let updateFetchRequest = fetchRequest
         updateFetchRequest.predicate = NSPredicate(format: "name = %@ AND dateTime = %@", task.name,task.dateTime as CVarArg)
         
@@ -207,10 +207,10 @@ class TaskDataService{
                 try context.save()
             }
         }catch{
-            print(error.localizedDescription)
             context.rollback()
+            return BehaviorRelay<(Bool,CustomError?)>(value: (false,CustomError(title: nil, message: error.localizedDescription)))
         }
-        
+        return BehaviorRelay<(Bool,CustomError?)>(value: (true,nil))
     }
     
 }
