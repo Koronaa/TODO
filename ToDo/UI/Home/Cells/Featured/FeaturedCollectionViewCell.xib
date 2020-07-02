@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -54,7 +53,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.1137254902" green="0.81960784310000001" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WDR-DF-PrH" firstAttribute="top" secondItem="5KG-jk-TJj" secondAttribute="top" constant="5" id="26x-If-Zfr"/>
                             <constraint firstAttribute="trailing" secondItem="WDR-DF-PrH" secondAttribute="trailing" constant="5" id="85Y-68-62J"/>
@@ -64,7 +63,7 @@
                     </view>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.1137254902" green="0.81960784310000001" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="5KG-jk-TJj" secondAttribute="trailing" id="E4Y-q8-dpF"/>
                 <constraint firstItem="5KG-jk-TJj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EER-fO-241"/>
@@ -73,6 +72,7 @@
             </constraints>
             <size key="customSize" width="194" height="159"/>
             <connections>
+                <outlet property="containerView" destination="5KG-jk-TJj" id="y9e-aw-Jl4"/>
                 <outlet property="featureDescriptionLabel" destination="3aA-CR-SNr" id="9d0-Jq-iWa"/>
                 <outlet property="featureHeaderLabel" destination="vFl-qr-pwc" id="67S-PO-oak"/>
                 <outlet property="featureImageView" destination="AX4-Mm-f4a" id="QDx-Ox-5U1"/>

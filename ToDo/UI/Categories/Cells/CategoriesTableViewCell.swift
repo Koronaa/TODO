@@ -10,6 +10,7 @@ import UIKit
 
 class CategoriesTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var contentViewHolderView: UIView!
     @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var categoryNameLabel: BodyLabel!
     
@@ -21,6 +22,7 @@ class CategoriesTableViewCell: UITableViewCell {
     }
     
     private func setupUI(){
+        contentViewHolderView.backgroundColor = .BackgroundColor
         UIHelper.addCornerRadius(to: holderView)
     }
 }

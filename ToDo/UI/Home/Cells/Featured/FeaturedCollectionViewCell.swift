@@ -10,6 +10,7 @@ import UIKit
 
 class FeaturedCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var featureImageView: UIImageView!
     @IBOutlet weak var featureDescriptionLabel: SmallTitleLabel!
@@ -33,6 +34,7 @@ class FeaturedCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupUI(){
+        containerView.backgroundColor = .BackgroundColor
         UIHelper.addShadow(to: holderView)
         UIHelper.addCornerRadius(to: holderView,withRadius: 15)
     }

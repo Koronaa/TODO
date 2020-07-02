@@ -11,6 +11,8 @@ import RxSwift
 
 class QueryViewController: UIViewController {
     
+    @IBOutlet weak var tableViewHolderView: UIView!
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var titleLabel: TitleLabel!
     @IBOutlet weak var dateHeaderLabel: BodyLabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -52,6 +54,9 @@ class QueryViewController: UIViewController {
     }
     
     private func setupUI(){
+        tableViewHolderView.backgroundColor = .BackgroundColor
+        mainView.backgroundColor = .BackgroundColor
+        tableView.backgroundColor = .BackgroundColor
         titleLabel.text = queryVM.title
         dateHeaderLabel.text = queryVM.dateTitle
         navigationTitleLabel.text = queryVM.navigationTitle

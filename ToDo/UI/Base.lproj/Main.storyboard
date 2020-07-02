@@ -38,7 +38,7 @@
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o67-hD-vhX">
                                 <rect key="frame" x="0.0" y="94" width="320" height="474"/>
-                                <color key="backgroundColor" red="0.9882352941176471" green="0.82352941176470584" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.11372549019607843" green="0.81960784313725488" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vn2-S6-MY6">
                                 <rect key="frame" x="20" y="73" width="280" height="1"/>
@@ -48,7 +48,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.9882352941176471" green="0.82352941176470584" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.11372549019607843" green="0.81960784313725488" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="o67-hD-vhX" firstAttribute="leading" secondItem="Jh7-dE-kMl" secondAttribute="leading" id="5F6-Jb-2l6"/>
                             <constraint firstItem="AX0-W8-1yf" firstAttribute="top" secondItem="Jh7-dE-kMl" secondAttribute="top" id="AQ8-xI-rtM"/>
@@ -67,13 +67,14 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="vLy-g7-6dP" id="trC-28-Ef6"/>
+                        <outlet property="mainView" destination="1LM-f4-zu3" id="XjV-i8-ZsU"/>
                         <outlet property="tableView" destination="o67-hD-vhX" id="X3D-zJ-qy4"/>
                         <outlet property="welcomeLabel" destination="wQq-3C-ceq" id="4xf-jG-NEf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Piu-qr-l0X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153.75" y="-24.295774647887324"/>
+            <point key="canvasLocation" x="113" y="-24"/>
         </scene>
         <!--Query View Controller-->
         <scene sceneID="6mJ-9N-eYB">
@@ -216,15 +217,17 @@
                         <outlet property="collectionView" destination="v4C-yf-mdH" id="woY-W8-OJM"/>
                         <outlet property="collectionViewHolderViewHeightConstraint" destination="nI6-r5-AdT" id="cbP-Kc-jkv"/>
                         <outlet property="dateHeaderLabel" destination="tw7-s5-NQA" id="rfN-Jq-ZJr"/>
+                        <outlet property="mainView" destination="Xcv-ev-h3L" id="cNN-tH-zyd"/>
                         <outlet property="navigationTitleLabel" destination="vJz-F3-KYG" id="9g3-vO-TgX"/>
                         <outlet property="noTaskLabel" destination="zMh-Vk-28p" id="YlV-Z2-JM6"/>
                         <outlet property="tableView" destination="3yc-8F-2sk" id="9Ie-XB-5K6"/>
+                        <outlet property="tableViewHolderView" destination="Z7b-O4-Z4v" id="Py4-ce-8Lw"/>
                         <outlet property="titleLabel" destination="SOK-Om-3nd" id="RFZ-lw-mix"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Jn-N0-xh2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1096.875" y="-856.69014084507046"/>
+            <point key="canvasLocation" x="941" y="-781"/>
         </scene>
         <!--Add Task View Controller-->
         <scene sceneID="UN1-MI-eET">
@@ -431,7 +434,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.98823529409999999" green="0.82352941180000006" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="QVB-hb-dpt" firstAttribute="top" secondItem="dnp-aP-YXs" secondAttribute="bottom" constant="20" id="3g0-vB-1W8"/>
                             <constraint firstItem="ccF-k4-l2g" firstAttribute="trailing" secondItem="1fP-Oh-qfE" secondAttribute="trailing" id="4Nc-dr-aCF"/>
@@ -474,11 +477,14 @@
                         <outlet property="addNewCategoryLabel" destination="nxg-uV-gHl" id="4j4-QB-1E5"/>
                         <outlet property="addTaskButton" destination="3gn-g9-dRM" id="64C-nu-AHG"/>
                         <outlet property="collectionView" destination="kqX-4M-cjS" id="bAx-O3-qG9"/>
+                        <outlet property="collectionViewHolderView" destination="ccF-k4-l2g" id="EeC-Mm-aLN"/>
                         <outlet property="datePicker" destination="dSP-Bw-Dgt" id="sSb-ke-Ap2"/>
                         <outlet property="dateTimeLabel" destination="k69-3I-heq" id="BOu-Vg-yHO"/>
                         <outlet property="deleteButton" destination="MXq-sX-kkV" id="X1C-FG-R3S"/>
                         <outlet property="favouriteButton" destination="WaK-Wy-G2K" id="MNL-6l-IUg"/>
+                        <outlet property="mainView" destination="OR7-iU-jKZ" id="ZT9-7K-hFH"/>
                         <outlet property="noRecordsLabel" destination="ANA-aR-xON" id="HVa-Sq-FFS"/>
+                        <outlet property="pickerView" destination="dkn-8Y-MvH" id="jN8-Co-CG2"/>
                         <outlet property="pickerViewBottomConstraint" destination="hc4-dE-MyM" id="7nh-ae-6t3"/>
                         <outlet property="pickerViewTitleLabel" destination="xMe-W0-KhD" id="uac-JG-iQ5"/>
                         <outlet property="reminderSwitch" destination="WzB-TJ-A2t" id="Xoe-dB-Enf"/>
@@ -488,7 +494,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bhp-um-hb5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1096.875" y="-44.366197183098592"/>
+            <point key="canvasLocation" x="943" y="-39"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="6KY-yc-n35">
@@ -590,13 +596,14 @@
                     <connections>
                         <outlet property="addCategoryButton" destination="jun-T4-CXo" id="Usy-s5-Naa"/>
                         <outlet property="categoryNameTextField" destination="fkp-3t-1Pz" id="ar0-6j-fhF"/>
+                        <outlet property="mainView" destination="omN-5a-5Vy" id="NsU-5K-c7q"/>
                         <outlet property="noRecordsLabel" destination="Pku-hz-0yQ" id="3Rw-00-jeM"/>
                         <outlet property="tableView" destination="xpD-Hx-dPt" id="8uf-4a-y4o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kw9-rb-Ja2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1912.5" y="-39.08450704225352"/>
+            <point key="canvasLocation" x="1763" y="-39"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C66-vw-HVP">

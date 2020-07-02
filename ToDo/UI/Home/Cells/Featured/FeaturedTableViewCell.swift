@@ -35,7 +35,7 @@ class FeaturedTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollecti
         featuredLayout.itemSize = CGSize(width: 200.0, height: 160.0)
         
         featuredCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 180), collectionViewLayout: featuredLayout)
-        featuredCollectionView.backgroundColor = .TODOYellow
+        featuredCollectionView.backgroundColor = .BackgroundColor
         featuredCollectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         featuredCollectionView.isScrollEnabled = true
         featuredCollectionView.showsHorizontalScrollIndicator = false

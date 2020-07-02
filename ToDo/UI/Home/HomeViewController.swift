@@ -16,7 +16,7 @@ enum HomeUIType{
 
 class HomeViewController: UIViewController {
     
-    
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: WelcomeLabel!
@@ -54,6 +54,8 @@ class HomeViewController: UIViewController {
     
     
     private func setupUI(){
+        mainView.backgroundColor = .BackgroundColor
+        tableView.backgroundColor = .BackgroundColor
         welcomeLabel.text = homeVM.title
         self.tableView.register(FeaturedTableViewCell.self, forCellReuseIdentifier: UIConstant.Cell.FeaturedTableViewCell.rawValue)
         self.tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
@@ -135,7 +137,7 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
         myLabel.backgroundColor = .clear
         myLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         let headerView = UIView()
-        headerView.backgroundColor = .TODOYellow
+        headerView.backgroundColor = .BackgroundColor
         headerView.addSubview(myLabel)
         return headerView
     }
@@ -170,4 +172,3 @@ extension HomeViewController{
         loadData()
     }
 }
-

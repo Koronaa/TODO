@@ -18,7 +18,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
             setupUI()
             categoryLabel.text = category.name
             if category.isSelected{
-                holderView.backgroundColor = .TODOYellow
+                holderView.backgroundColor = .BackgroundColor
             }else{
                 holderView.backgroundColor = .white
             }

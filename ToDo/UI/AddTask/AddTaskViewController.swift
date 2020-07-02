@@ -11,6 +11,9 @@ import RxSwift
 
 class AddTaskViewController: UIViewController {
     
+    @IBOutlet weak var pickerView: UIView!
+    @IBOutlet var mainView: UIView!
+    @IBOutlet weak var collectionViewHolderView: UIView!
     @IBOutlet weak var titleLabel: TitleLabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var addNewCategoryLabel: UILabel!
@@ -66,10 +69,13 @@ class AddTaskViewController: UIViewController {
     
     private func setupUI(for type:AddTaskUIType){
         
+        mainView.backgroundColor = .BackgroundColor
+        collectionViewHolderView.backgroundColor = .BackgroundColor
+        collectionView.backgroundColor = .BackgroundColor
+        pickerView.backgroundColor = .BackgroundColor
         dateTimeLabel.font = UIFont(name: "Montserrat-Bold", size: 23.0)
         titleLabel.text = addTaskVM.headerLabel
         addTaskButton.setTitle(addTaskVM.buttonTitle, for: .normal)
-        
         
         if addTaskVM.UIType == .CREATE{
             UIHelper.disableView(view: addTaskButton)

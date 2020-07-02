@@ -13,4 +13,6 @@ struct TaskDTO{
     var isFavourite:Bool
     var isReminder:Bool
     var dateTime:Date
+    
+    
 }

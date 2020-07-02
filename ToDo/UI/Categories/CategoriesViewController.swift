@@ -11,6 +11,7 @@ import RxSwift
 
 class CategoriesViewController: UIViewController {
     
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var addCategoryButton: CustomButton!
     @IBOutlet weak var noRecordsLabel: SmallTitleLabel!
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +32,8 @@ class CategoriesViewController: UIViewController {
     }
     
     private func setupUI(){
+        mainView.backgroundColor = .BackgroundColor
+        tableView.backgroundColor = .BackgroundColor
         UIHelper.disableView(view: addCategoryButton)
         if categoriesVM.categories.value.count > 0{
             UIHelper.hide(view: noRecordsLabel)

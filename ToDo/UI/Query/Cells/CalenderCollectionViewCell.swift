@@ -23,6 +23,7 @@ class CalenderCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupUI(){
+        selectionIndicatorView.backgroundColor = .BackgroundColor
         UIHelper.circular(view: selectionIndicatorView)
         if calenderCollectionViewVM.isSelected{
             UIHelper.show(view: selectionIndicatorView)
