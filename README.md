@@ -17,7 +17,7 @@ iOS 11+
 
 ## Pods Used
 
-YTS-Mobile uses number of open source dependencies for its magic 
+TODO uses number of open source dependencies for its magic 
 
 * [RxSwift](https://github.com/ReactiveX/RxSwift)
 * [RxCocoa](https://github.com/ReactiveX/RxSwift)
