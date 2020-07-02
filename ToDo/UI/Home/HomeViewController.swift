@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 enum HomeUIType{
     case FEATURED
@@ -40,7 +41,6 @@ class HomeViewController: UIViewController {
     func loadData() {
         homeVM.getTodysTaskCount()
         homeVM.getcategoryInfo()
-        homeVM.loadData()
     }
     
     func setObservables(){
@@ -50,13 +50,16 @@ class HomeViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
             }).disposed(by: bag)
+        
+        homeVM.title.asDriver(onErrorJustReturn: "")
+            .drive(welcomeLabel.rx.text)
+            .disposed(by: bag)
     }
     
     
     private func setupUI(){
         mainView.backgroundColor = .BackgroundColor
         tableView.backgroundColor = .BackgroundColor
-        welcomeLabel.text = homeVM.title
         self.tableView.register(FeaturedTableViewCell.self, forCellReuseIdentifier: UIConstant.Cell.FeaturedTableViewCell.rawValue)
         self.tableView.register(UINib(nibName: "TaskTypeTableViewCell", bundle: .main), forCellReuseIdentifier: UIConstant.Cell.TaskTypeTableViewCell.rawValue)
     }

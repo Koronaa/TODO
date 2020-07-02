@@ -15,7 +15,7 @@ class HomeViewModel{
     let modelLayer = ModelLayer()
     let bag = DisposeBag()
     
-    var title:String!
+    var title:BehaviorSubject<String> = BehaviorSubject<String>(value: "")
     var featuredItems:[Featured]!
     var categoryInfo:BehaviorRelay<[CategoryInfo]> = BehaviorRelay<[CategoryInfo]>(value: [])
     var todysTaskCount:Int!
@@ -37,16 +37,17 @@ class HomeViewModel{
     func getTodysTaskCount(){
         modelLayer.getTasksForToday().asObservable().subscribe(onNext: { tasks in
             self.todysTaskCount = tasks.count
+            self.loadData()
         }).disposed(by: bag)
     }
     
-    func loadData(){
-        if todysTaskCount == 0{
-            title = "Hey, You've got no tasks today."
-        }else if todysTaskCount == 1{
-            title = "Hey, You've got \(todysTaskCount.description) task today."
+    private func loadData(){
+        if todysTaskCount! == 0{
+            title.onNext("Hey, You've got no tasks today.")
+        }else if todysTaskCount! == 1{
+            title.onNext("Hey, You've got \(todysTaskCount.description) task today.")
         }else{
-            title = "Hey, You've got \(todysTaskCount.description) tasks today."
+            title.onNext("Hey, You've got \(todysTaskCount.description) tasks today.")
         }
     }
 }
