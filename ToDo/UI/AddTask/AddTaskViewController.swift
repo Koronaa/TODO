@@ -76,6 +76,7 @@ class AddTaskViewController: UIViewController {
         dateTimeLabel.font = UIFont(name: "Montserrat-Bold", size: 23.0)
         titleLabel.text = addTaskVM.headerLabel
         addTaskButton.setTitle(addTaskVM.buttonTitle, for: .normal)
+        pickerViewTitleLabel.text = datePicker.date.formatted
         
         if addTaskVM.UIType == .CREATE{
             UIHelper.disableView(view: addTaskButton)
