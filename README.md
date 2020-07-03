@@ -7,8 +7,11 @@ Simple ToDo application written in Swift 5
 [![license](https://img.shields.io/badge/license-mit-brightgreen.svg)](https://github.com/Koronaa/TODO/blob/master/LICENSE)
 [![blog](https://img.shields.io/badge/blog-techkoronå-brightgreen)](https://techkoronaa.blogspot.com/)
 
+<a href="https://apps.apple.com/lk/app/todo/id1521800756" >
+<img src="https://cdn.freebiesupply.com/logos/thumbs/2x/download-on-the-app-store-apple-logo.png" width="140" height="110"></a>
 
 ![](TODO.gif)
+
 
 ## Supports
 
