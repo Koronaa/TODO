@@ -44,5 +44,5 @@ This policy is effective as of 2020-07-02
 
 ## Contact Us
 
-If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at konara.sajith@gmail.com.
+If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at sakoatwork@gmail.com.
 
